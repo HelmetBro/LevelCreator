@@ -1,4 +1,4 @@
-package com.LevelEditor.FileTabActions;
+package com.LevelEditor.TabActions.FileTabActions;
 
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
@@ -26,11 +26,11 @@ public class SaveActionListener implements ActionListener {
 
         if (!InitializeWindow.isFileLoaded) {
 
-            //no file was loaded
             JOptionPane.showMessageDialog(null,
                     "A file wasn't loaded, so there's nothing to save too.\n" +
                             "Try exporting to JSON or an XML file to create one.",
-                    "Can't save", JOptionPane.WARNING_MESSAGE);
+                    "Can't Save", JOptionPane.ERROR_MESSAGE, null);
+
             return;
         }
 

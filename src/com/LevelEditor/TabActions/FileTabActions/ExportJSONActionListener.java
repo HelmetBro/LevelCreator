@@ -1,4 +1,4 @@
-package com.LevelEditor.FileTabActions;
+package com.LevelEditor.TabActions.FileTabActions;
 
 
 import com.LevelEditor.Main;

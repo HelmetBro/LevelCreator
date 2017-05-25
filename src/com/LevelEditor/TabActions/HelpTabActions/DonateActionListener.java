@@ -1,4 +1,4 @@
-package com.LevelEditor.HelpTabActions;
+package com.LevelEditor.TabActions.HelpTabActions;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;

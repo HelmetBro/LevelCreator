@@ -1,6 +1,6 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
-import com.LevelEditor.FileTabActions.ExportAction;
+import com.LevelEditor.TabActions.FileTabActions.ExportAction;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

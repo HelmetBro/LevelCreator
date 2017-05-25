@@ -6,6 +6,7 @@ import com.LevelEditor.ScreenComponents.DarkComponents.DarkTree.*;
 import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.Serializable;
 
@@ -81,25 +82,10 @@ public class Main implements Serializable {
     public static final float smallFontSize = 12f;
 
     public static void main(String[] args) {
-        changeLook();
         changeUI();
 
         //creating start window
         new InitializeWindow();
-    }
-
-    private static void changeLook() {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception ignore) {
-        }
-
-        //if look isn't found, keep to standard feel
     }
 
     private static void changeUI() {
@@ -157,6 +143,36 @@ public class Main implements Serializable {
 
         //changing Slider
         UIManager.put("Slider.focus", backgroundShadedColor);
+
+        //changing menu bar items
+        UIManager.put("MenuItem.background", backgroundShadedColor);
+        UIManager.put("MenuItem.font", basicFont.deriveFont(mediumFontSize));
+        UIManager.put("MenuItem.foreground", lightShadedColor);
+        UIManager.put("MenuItem.selectionBackground", lightShadedColor);
+        UIManager.put("MenuItem.selectionForeground", Color.BLACK);
+        UIManager.put("MenuItem.border", BorderFactory.createEmptyBorder());
+
+        //changing menu bar
+        UIManager.put("MenuBar.background", backgroundShadedColor);
+        UIManager.put("MenuBar.border", BorderFactory.createEmptyBorder());
+
+        //changing menu
+        UIManager.put("Menu.font", basicFont.deriveFont(mediumFontSize));
+        UIManager.put("Menu.selectionBackground", lightShadedColor);
+        UIManager.put("Menu.selectionForeground", Color.BLACK);
+        UIManager.put("Menu.border", BorderFactory.createEmptyBorder());
+
+        //changing popup menu
+        UIManager.put("PopupMenu.border", BorderFactory.createEmptyBorder());
+
+        //changing option pane
+        UIManager.put("OptionPane.background", backgroundShadedColor);
+        UIManager.put("OptionPane.messageForeground", lightColor);
+        UIManager.put("OptionPane.messageFont", basicFont.deriveFont(mediumFontSize));
+
+        // both for file chooser
+        UIManager.put("Panel.background", backgroundShadedColor); //changing panel
+        UIManager.put("Label.foreground", lightColor); //changing label
 
     }
 

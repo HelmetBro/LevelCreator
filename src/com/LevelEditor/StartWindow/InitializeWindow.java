@@ -1,7 +1,7 @@
 package com.LevelEditor.StartWindow;
 
 import com.LevelEditor.ApplicationWindow;
-import com.LevelEditor.FileTabActions.ExportAction;
+import com.LevelEditor.TabActions.FileTabActions.ExportAction;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkJButton;
@@ -76,6 +76,7 @@ public class InitializeWindow extends JFrame {
         setPreferredSize(new Dimension(initializeWindowWidth, initializeWindowHeight));
         setResizable(false);
         setLayout(new BorderLayout());
+        setTitle(TITLE);
 
         settings = new AspectSettings();
 
@@ -90,6 +91,12 @@ public class InitializeWindow extends JFrame {
         updateRatioText();
 
         //very last
+        ClassLoader classLoader = getClass().getClassLoader();
+        try {
+            ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
+            setIconImage(img.getImage());
+        } catch (NullPointerException ignore) {}
+
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -457,6 +464,7 @@ public class InitializeWindow extends JFrame {
         //start button
         DarkJButton start = new DarkJButton("Begin", 80, 30, startFont, startButtonColor, lightColor);
         start.addActionListener(new BeginListener());
+        start.setBorder(new LineBorder(Color.BLACK, 1));
 
         //progress bar
         JPanel progressPanel = new JPanel(null);

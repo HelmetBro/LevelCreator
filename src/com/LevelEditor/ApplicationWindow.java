@@ -1,11 +1,11 @@
 package com.LevelEditor;
 
-import com.LevelEditor.FileTabActions.ExportJSONActionListener;
-import com.LevelEditor.FileTabActions.ExportXMLActionListener;
-import com.LevelEditor.FileTabActions.SaveActionListener;
-import com.LevelEditor.HelpTabActions.DonateActionListener;
-import com.LevelEditor.HelpTabActions.HowToUseActionListener;
-import com.LevelEditor.HelpTabActions.ReportBugActionListener;
+import com.LevelEditor.TabActions.FileTabActions.ExportJSONActionListener;
+import com.LevelEditor.TabActions.FileTabActions.ExportXMLActionListener;
+import com.LevelEditor.TabActions.FileTabActions.SaveActionListener;
+import com.LevelEditor.TabActions.HelpTabActions.DonateActionListener;
+import com.LevelEditor.TabActions.HelpTabActions.HowToUseActionListener;
+import com.LevelEditor.TabActions.HelpTabActions.ReportBugActionListener;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
 import com.LevelEditor.ScreenComponents.InfoPanels.RightPanel.BackRightYPanel;
 import com.LevelEditor.ScreenComponents.InfoPanels.TopPanel.BackTopXPanel;
@@ -128,6 +128,7 @@ public class ApplicationWindow extends JFrame {
         //file tab------
         JMenu fileTab = new JMenu("File");
         fileTab.setMnemonic(KeyEvent.VK_F);
+        fileTab.setForeground(lightShadedColor);
 
         JMenuItem save = new JMenuItem("Save");
         save.setMnemonic(KeyEvent.VK_S);
@@ -155,9 +156,10 @@ public class ApplicationWindow extends JFrame {
         fileTab.add(exportToXML);
         fileTab.add(exit);
 
-        //help options------
+        //help tab------
         JMenu helpTab = new JMenu("Help");
         helpTab.setMnemonic(KeyEvent.VK_H);
+        helpTab.setForeground(lightShadedColor);
 
         JMenuItem donateTab = new JMenuItem("Donate");
         donateTab.setMnemonic(KeyEvent.VK_D);

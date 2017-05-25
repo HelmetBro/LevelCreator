@@ -1,7 +1,7 @@
 package com.LevelEditor.StartWindow.StartListeners;
 
 
-import com.LevelEditor.FileTabActions.ExportAction;
+import com.LevelEditor.TabActions.FileTabActions.ExportAction;
 import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class OpenDirectoryListener implements ActionListener {
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setDragEnabled(true);
 
-        int userSelection = fileChooser.showSaveDialog(browser);
+        int userSelection = fileChooser.showOpenDialog(browser);
 
         File f = fileChooser.getSelectedFile();
         if (f == null)
