@@ -10,6 +10,7 @@ public class UpdatePaint {
 
     public static void remakeWindow() {
         ApplicationWindow.lvlWindow.repaint();
+        ApplicationWindow.scrollHolder.repaint();
     }
 
     private static void remakeRightY() {

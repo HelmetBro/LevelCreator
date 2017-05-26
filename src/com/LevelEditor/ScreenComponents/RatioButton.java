@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static com.LevelEditor.ApplicationWindow.backgroundColor;
+import static com.LevelEditor.ApplicationWindow.borderColor;
 import static com.LevelEditor.ApplicationWindow.lightColor;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
@@ -25,7 +26,7 @@ public class RatioButton extends JButton implements Resizable {
         setFont(font);
         setBackground(backgroundColor);
         setForeground(lightColor);
-        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
+        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, borderColor));
         setToolTipText("Multiplier: " + ApplicationWindow.settings.getMultiplier());
         addActionListener(e -> incrementBackground());
     }

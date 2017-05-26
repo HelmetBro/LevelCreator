@@ -1,15 +1,12 @@
 package com.LevelEditor.ScreenComponents;
 
-import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.*;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
-import com.LevelEditor.Main;
-import com.LevelEditor.Resizable;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.PrecisionLinesListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.SnapToGridListener;
-import com.LevelEditor.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +14,6 @@ import java.awt.*;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class LevelWindow extends JPanel implements Resizable {
-
-    private int startX;
-    private int startY;
 
     //default values
     public static boolean drawPrecision;
@@ -39,9 +33,7 @@ public class LevelWindow extends JPanel implements Resizable {
     public LevelWindow(int x, int y, int width, int height) {
         this.width = width;
         this.height = height;
-        this.startX = x;
-        this.startY = y;
-        setSize(width, height);
+        setPreferredSize(new Dimension(width, height));
         setBounds(x, y, width, height);
         setColor(colorState);
         setVisible(true);
@@ -60,7 +52,8 @@ public class LevelWindow extends JPanel implements Resizable {
         Graphics2D g2d = (Graphics2D) g;
 
         if (antiAlias)
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+            g2d.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
 
         //added shapes
@@ -139,7 +132,7 @@ public class LevelWindow extends JPanel implements Resizable {
     public void moveComponent(int windowWidth, int windowHeight) {
         int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX) / 2;
         int moveDistanceY = (windowHeight - ApplicationWindow.settings.getLvlMakerHeight()) / 2;
-        setLocation(startX + moveDistanceX, startY + moveDistanceY - Resizable.YOffset);
+        setLocation(moveDistanceX, moveDistanceY - Resizable.YOffset);
     }
 
     enum BackgroundColorState {

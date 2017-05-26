@@ -17,7 +17,7 @@ public class RightYPanel extends SidePanel implements Resizable {
 
     public RightYPanel(String text, Font font, int x, int y, int width, int height) {
         super(text, font, x, y, width, height);
-        setBorder(BorderFactory.createMatteBorder(0, 1, 0, 1, Color.BLACK));
+        setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.BLACK));
     }
 
     @Override

@@ -32,7 +32,7 @@ public class InfoLabelButton extends JButton implements Resizable {
         setToolTipText("To change the state, move your mouse wheel!");
         setFont(basicFont);
         setBounds(x, y, width, heightOfLabel);
-        setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, lightColor));
+        setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, borderColor));
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
 

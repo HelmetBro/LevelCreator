@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static com.LevelEditor.ApplicationWindow.backgroundColor;
+import static com.LevelEditor.ApplicationWindow.borderColor;
 import static com.LevelEditor.ApplicationWindow.lightShadedColor;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
@@ -33,7 +34,7 @@ public class ToolBarButton extends JButton implements Resizable {
         setFocusPainted(false);
         setContentAreaFilled(false);
 
-        setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.BLACK));
+        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, borderColor));
 
         addActionListener(e -> incrementState());
 

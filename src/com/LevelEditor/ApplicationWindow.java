@@ -1,5 +1,7 @@
 package com.LevelEditor;
 
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomScrollBarUI;
+import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollLevelHolder;
 import com.LevelEditor.TabActions.FileTabActions.ExportJSONActionListener;
 import com.LevelEditor.TabActions.FileTabActions.ExportXMLActionListener;
 import com.LevelEditor.TabActions.FileTabActions.SaveActionListener;
@@ -31,6 +33,7 @@ public class ApplicationWindow extends JFrame {
     public static InfoLabelButton infoLabelButton;
     public static ScrollPaneHandler scrollPaneHandler;
     public static LevelWindow lvlWindow;
+    public static ScrollLevelHolder scrollHolder;
 
     static BackRightYPanel backRightYPanel;
     static BackTopXPanel backTopXPanel;
@@ -46,6 +49,8 @@ public class ApplicationWindow extends JFrame {
 
     public static final Color lightColor = new Color(175, 175, 172);
     public static final Color lightShadedColor = new Color(165, 165, 162);
+
+    public static final Color borderColor = lightShadedColor.darker().darker();
 
     private static final Font fontOfLabels = new Font("monospaced", Font.BOLD, 14);
     public static final Font basicFont = new Font("Consolas", Font.PLAIN, 14);
@@ -79,7 +84,6 @@ public class ApplicationWindow extends JFrame {
         //very last
         pack();
         setLocationRelativeTo(null);
-        setMinimumSize(new Dimension(getWidth(), getHeight()));
         setVisible(true);
     }
 
@@ -108,13 +112,16 @@ public class ApplicationWindow extends JFrame {
         toolBarButton = new ToolBarButton(fontOfLabels, settings.getLvlMakerWidth() + RULER_WIDTH, 0, settings.toolsWindowSizeX, RULER_HEIGHT);
 
         //main window
-        lvlWindow = new LevelWindow(0, RULER_HEIGHT, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
+        lvlWindow = new LevelWindow(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
+        //scroller that holds it
+        scrollHolder = new ScrollLevelHolder(lvlWindow, 0, RULER_HEIGHT);
+
 
         //order matters
         add(backTopXPanel);
         add(ratioButton);
         add(toolBarButton);
-        add(lvlWindow);
+        add(scrollHolder);
         add(backRightYPanel);
         add(infoLabelButton);
         add(scrollPaneHandler);

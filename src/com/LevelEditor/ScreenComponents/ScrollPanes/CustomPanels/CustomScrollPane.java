@@ -6,6 +6,7 @@ import com.LevelEditor.ScreenComponents.ScrollPanes.CustomScrollBarUI;
 import javax.swing.*;
 
 import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
+import static com.LevelEditor.ApplicationWindow.borderColor;
 import static com.LevelEditor.ApplicationWindow.lightColor;
 
 public abstract class CustomScrollPane extends JScrollPane  {
@@ -26,6 +27,8 @@ public abstract class CustomScrollPane extends JScrollPane  {
         setScrollBottomRight();
 
         changeScrollToolLook();
+
+        setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, borderColor));
     }
 
     private void setScrollBottomRight() {

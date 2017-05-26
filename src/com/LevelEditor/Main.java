@@ -110,7 +110,7 @@ public class Main implements Serializable {
         UIManager.put("DarkRadioButton.foreground",
                 lightColor.darker());
 
-        //changing UI for check boxes
+        //changing UI for tree
         UIManager.put("Tree.closedIcon", new DarkTreeClosedIcon());
         UIManager.put("Tree.leafIcon", new DarkTreeLeafIcon());
         UIManager.put("Tree.openIcon", new DarkTreeOpenIcon());
@@ -154,7 +154,8 @@ public class Main implements Serializable {
 
         //changing menu bar
         UIManager.put("MenuBar.background", backgroundShadedColor);
-        UIManager.put("MenuBar.border", BorderFactory.createEmptyBorder());
+        UIManager.put("MenuBar.border", BorderFactory.createMatteBorder(
+                0, 0, 1, 0, borderColor));
 
         //changing menu
         UIManager.put("Menu.font", basicFont.deriveFont(mediumFontSize));
