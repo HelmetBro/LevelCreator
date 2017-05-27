@@ -1,7 +1,7 @@
 package com.LevelEditor;
 
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomScrollBarUI;
-import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollLevelHolder;
+import com.LevelEditor.ScreenComponents.Canvas.CanvasHolder;
+import com.LevelEditor.ScreenComponents.Canvas.ScrollLevelHolder;
 import com.LevelEditor.TabActions.FileTabActions.ExportJSONActionListener;
 import com.LevelEditor.TabActions.FileTabActions.ExportXMLActionListener;
 import com.LevelEditor.TabActions.FileTabActions.SaveActionListener;
@@ -11,7 +11,7 @@ import com.LevelEditor.TabActions.HelpTabActions.ReportBugActionListener;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
 import com.LevelEditor.ScreenComponents.InfoPanels.RightPanel.BackRightYPanel;
 import com.LevelEditor.ScreenComponents.InfoPanels.TopPanel.BackTopXPanel;
-import com.LevelEditor.ScreenComponents.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 import com.LevelEditor.ScreenComponents.RatioButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.ScreenComponents.ToolBarButton;
@@ -34,6 +34,7 @@ public class ApplicationWindow extends JFrame {
     public static ScrollPaneHandler scrollPaneHandler;
     public static LevelWindow lvlWindow;
     public static ScrollLevelHolder scrollHolder;
+    public static CanvasHolder panelHolder;
 
     static BackRightYPanel backRightYPanel;
     static BackTopXPanel backTopXPanel;
@@ -62,6 +63,11 @@ public class ApplicationWindow extends JFrame {
         windowSettings();
 
         addComponentListener(new ResizeListener(this));
+    }
+
+    public void forceWindowResize(int width, int height){
+        setSize(width, height);
+        pack();
     }
 
     private void windowSettings() {
@@ -113,9 +119,12 @@ public class ApplicationWindow extends JFrame {
 
         //main window
         lvlWindow = new LevelWindow(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
+        //pane holder for scroller
+        panelHolder = new CanvasHolder(lvlWindow);
         //scroller that holds it
-        scrollHolder = new ScrollLevelHolder(lvlWindow, 0, RULER_HEIGHT);
-
+        scrollHolder = new ScrollLevelHolder(panelHolder, 0, RULER_HEIGHT,
+                settings.getWindowWidth() + settings.toolsWindowSizeX,
+                settings.getWindowHeight());
 
         //order matters
         add(backTopXPanel);

@@ -1,9 +1,10 @@
-package com.LevelEditor.ScreenComponents;
+package com.LevelEditor.ScreenComponents.Canvas;
 
 import com.LevelEditor.*;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.PrecisionLinesListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.SnapToGridListener;
@@ -21,8 +22,8 @@ public class LevelWindow extends JPanel implements Resizable {
     public static boolean snapToGrid;
     public static boolean antiAlias = true;
 
-    private static BackgroundColorState colorState = BackgroundColorState.LIGHT_BLACK;
-    static final byte numOfBackStates = 5;
+    public static BackgroundColorState colorState = BackgroundColorState.LIGHT_BLACK;
+    public static final byte numOfBackStates = 5;
 
     private int width;
     private int height;
@@ -120,11 +121,11 @@ public class LevelWindow extends JPanel implements Resizable {
         }
     }
 
-    void setColor(BackgroundColorState state) {
+    public void setColor(BackgroundColorState state) {
         setBackground(new Color(state.red, state.green, state.blue));
     }
 
-    static BackgroundColorState getColorState() {
+    public static BackgroundColorState getColorState() {
         return colorState;
     }
 
@@ -135,7 +136,7 @@ public class LevelWindow extends JPanel implements Resizable {
         setLocation(moveDistanceX, moveDistanceY - Resizable.YOffset);
     }
 
-    enum BackgroundColorState {
+    public enum BackgroundColorState {
 
         BLACK(3, 3, 0, 0),
         LIGHT_BLACK(46, 46, 43, 1),
@@ -143,10 +144,10 @@ public class LevelWindow extends JPanel implements Resizable {
         DARK_WHITE(195, 195, 192, 3),
         WHITE(255, 255, 252, 4);
 
-        int red;
-        int green;
-        int blue;
-        int index;
+        public int red;
+        public int green;
+        public int blue;
+        public int index;
 
         BackgroundColorState(int red, int green, int blue, int index) {
             this.red = red;

@@ -23,7 +23,8 @@ public class ResizeListener extends ComponentAdapter {
         int width = window.getContentPane().getSize().width;
         int height = window.getContentPane().getSize().height;
 
-        ApplicationWindow.settings.resizeWindow(window.getWidth(), window.getHeight());
+        //setting the values
+        ApplicationWindow.settings.resizeWindowValues(window.getWidth(), window.getHeight());
 
         ApplicationWindow.backTopXPanel.moveComponent(width, height);
         ApplicationWindow.backRightYPanel.moveComponent(width, height);
@@ -31,7 +32,8 @@ public class ResizeListener extends ComponentAdapter {
         ApplicationWindow.infoLabelButton.moveComponent(width, height);
         ApplicationWindow.scrollPaneHandler.moveComponent(width, height);
         ApplicationWindow.toolBarButton.moveComponent(width, height);
-        ApplicationWindow.scrollHolder.moveComponent(width, height);
+        ApplicationWindow.panelHolder.moveComponent(width, height);
+        ApplicationWindow.scrollHolder.moveComponent(width, height); // ??
         ApplicationWindow.lvlWindow.moveComponent(width, height);
     }
 

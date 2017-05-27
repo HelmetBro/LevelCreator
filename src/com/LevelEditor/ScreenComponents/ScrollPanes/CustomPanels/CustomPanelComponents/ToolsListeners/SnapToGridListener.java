@@ -1,7 +1,7 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
 
-import com.LevelEditor.ScreenComponents.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 import com.LevelEditor.UpdatePaint;
 
 import javax.swing.*;

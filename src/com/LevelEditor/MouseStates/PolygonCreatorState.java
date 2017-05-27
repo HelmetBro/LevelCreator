@@ -4,7 +4,7 @@ package com.LevelEditor.MouseStates;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.LoggingManager;
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Polygon;
 

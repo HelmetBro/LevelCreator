@@ -1,15 +1,12 @@
 package com.LevelEditor.GlobalMouseListeners;
 
 import com.LevelEditor.Main;
-import com.LevelEditor.ScreenComponents.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.UpdatePaint;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-
-import static com.LevelEditor.StartWindow.AspectSettings.RULER_HEIGHT;
 
 public class CustomMouseMoveListener implements MouseMotionListener {
 

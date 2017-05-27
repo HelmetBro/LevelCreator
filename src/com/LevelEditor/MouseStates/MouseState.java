@@ -4,7 +4,7 @@ package com.LevelEditor.MouseStates;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.Main;
-import com.LevelEditor.ScreenComponents.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

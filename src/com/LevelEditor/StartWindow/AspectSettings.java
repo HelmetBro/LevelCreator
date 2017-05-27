@@ -1,6 +1,7 @@
 package com.LevelEditor.StartWindow;
 
 
+import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Utilities;
 
 import java.awt.*;
@@ -128,8 +129,10 @@ public class AspectSettings {
         return windowHeight;
     }
 
-    public void resizeWindow(int windowWidth, int windowHeight)  {
+    //changes values
+    public void resizeWindowValues(int windowWidth, int windowHeight)  {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
     }
+
 }

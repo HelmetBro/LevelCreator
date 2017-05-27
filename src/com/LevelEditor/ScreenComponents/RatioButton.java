@@ -2,6 +2,7 @@ package com.LevelEditor.ScreenComponents;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Resizable;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 
 import javax.swing.*;
 import java.awt.*;
