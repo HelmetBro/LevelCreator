@@ -36,7 +36,7 @@ public final class ManageLevelArrayLists {
 
     /**
      * If shape is selected, removes from array, adds to deleted array.
-     * */
+     */
     public static void removeSelectedShapes() {
         Main.currentLevel.circles.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.CIRCLE));
         Main.currentLevel.points.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.POINT));
@@ -47,7 +47,7 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
     }
 
-    private static boolean shapeSelectedAndDeleted(Shape shape, ShapeType type){
+    private static boolean shapeSelectedAndDeleted(Shape shape, ShapeType type) {
 
         if (!shape.isSelected)
             return false;
@@ -55,7 +55,7 @@ public final class ManageLevelArrayLists {
         shape.isSelected = false;
         deletedShapes.add(shape);
 
-        switch (type){
+        switch (type) {
 
             case POINT:
                 LoggingManager.history.push(Point.logMessageDelete);
@@ -231,7 +231,7 @@ public final class ManageLevelArrayLists {
             LoggingManager.history.push(Polygon.logMessage);
     }
 
-    public static ArrayList<Shape> getSelectedShapes(){
+    public static ArrayList<Shape> getSelectedShapes() {
 
         ArrayList<Shape> shapes = new ArrayList<>();
 

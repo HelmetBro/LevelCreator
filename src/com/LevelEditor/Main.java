@@ -6,7 +6,6 @@ import com.LevelEditor.ScreenComponents.DarkComponents.DarkTree.*;
 import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.Serializable;
 

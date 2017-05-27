@@ -9,7 +9,6 @@ import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.ToolsScrollPane
 
 import java.awt.*;
 
-import static com.LevelEditor.StartWindow.AspectSettings.RULER_HEIGHT;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class ScrollPaneHandler extends Container implements Resizable {

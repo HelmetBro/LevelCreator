@@ -25,7 +25,7 @@ public class SliderListener implements ChangeListener {
 
         sliderValue = slider.getValue();
 
-        if (!AspectGridListener.isSelected){
+        if (!AspectGridListener.isSelected) {
             GridListener.gridSizeX = sliderValue;
             GridListener.gridSizeY = sliderValue;
         }

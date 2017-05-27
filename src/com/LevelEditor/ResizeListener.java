@@ -12,7 +12,7 @@ public class ResizeListener extends ComponentAdapter {
     //reference
     private static JFrame window;
 
-    public ResizeListener(JFrame window){
+    public ResizeListener(JFrame window) {
         ResizeListener.window = window;
     }
 

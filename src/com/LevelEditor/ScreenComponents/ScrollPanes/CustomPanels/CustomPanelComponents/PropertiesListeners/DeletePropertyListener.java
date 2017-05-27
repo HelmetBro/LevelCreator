@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by eric on 2/19/2017.
  */
-public class DeletePropertyListener implements ActionListener{
+public class DeletePropertyListener implements ActionListener {
 
     private Property p;
     private Shape shape;

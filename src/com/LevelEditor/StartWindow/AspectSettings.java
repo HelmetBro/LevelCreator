@@ -1,7 +1,6 @@
 package com.LevelEditor.StartWindow;
 
 
-import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Utilities;
 
 import java.awt.*;
@@ -111,6 +110,7 @@ public class AspectSettings {
     public int getAspectRatioX() {
         return aspectRatioX;
     }
+
     public int getAspectRatioY() {
         return aspectRatioY;
     }
@@ -118,6 +118,7 @@ public class AspectSettings {
     public int getLvlMakerWidth() {
         return lvlMakerWidth;
     }
+
     public int getLvlMakerHeight() {
         return lvlMakerHeight;
     }
@@ -125,12 +126,13 @@ public class AspectSettings {
     public int getWindowWidth() {
         return windowWidth;
     }
+
     public int getWindowHeight() {
         return windowHeight;
     }
 
     //changes values
-    public void resizeWindowValues(int windowWidth, int windowHeight)  {
+    public void resizeWindowValues(int windowWidth, int windowHeight) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
     }

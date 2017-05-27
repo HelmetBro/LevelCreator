@@ -5,11 +5,9 @@ import com.LevelEditor.ScreenComponents.ScrollPanes.CustomScrollBarUI;
 
 import javax.swing.*;
 
-import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
-import static com.LevelEditor.ApplicationWindow.borderColor;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.*;
 
-public abstract class CustomScrollPane extends JScrollPane  {
+public abstract class CustomScrollPane extends JScrollPane {
 
     JPanel scrollPanel;
 

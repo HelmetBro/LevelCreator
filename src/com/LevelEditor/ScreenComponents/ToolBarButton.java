@@ -6,9 +6,7 @@ import com.LevelEditor.Resizable;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.LevelEditor.ApplicationWindow.backgroundColor;
-import static com.LevelEditor.ApplicationWindow.borderColor;
-import static com.LevelEditor.ApplicationWindow.lightShadedColor;
+import static com.LevelEditor.ApplicationWindow.*;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class ToolBarButton extends JButton implements Resizable {

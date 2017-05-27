@@ -4,7 +4,6 @@ import com.LevelEditor.StartWindow.AspectSettings;
 import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 
 public class DimensionListener extends ValueDocumentListener {
@@ -44,7 +43,7 @@ public class DimensionListener extends ValueDocumentListener {
 
         int value;
 
-        if (inWrongState()){
+        if (inWrongState()) {
             window.updateRatioText();
             return;
         }
@@ -83,7 +82,7 @@ public class DimensionListener extends ValueDocumentListener {
     }
 
     @Override
-    protected boolean inWrongState(){
+    protected boolean inWrongState() {
         return InitializeWindow.selectionChoice == RadioListener.StartOptions.AUTO ||
                 InitializeWindow.selectionChoice == RadioListener.StartOptions.LOAD ||
                 InitializeWindow.selectionChoice == RadioListener.StartOptions.CUSTOM_AB;

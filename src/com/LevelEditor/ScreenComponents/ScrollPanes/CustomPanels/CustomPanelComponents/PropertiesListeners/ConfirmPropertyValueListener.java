@@ -25,7 +25,8 @@ public class ConfirmPropertyValueListener implements DocumentListener {
 
         try {
             lastVal = e.getDocument().getText(0, e.getDocument().getLength());
-        } catch (BadLocationException ignored) {}
+        } catch (BadLocationException ignored) {
+        }
 
 
         p.data = lastVal.trim();

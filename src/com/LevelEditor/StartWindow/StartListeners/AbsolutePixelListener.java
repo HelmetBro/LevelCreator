@@ -4,12 +4,11 @@ import com.LevelEditor.StartWindow.AspectSettings;
 import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 
 public class AbsolutePixelListener extends ValueDocumentListener {
 
-    public enum Dimension{
+    public enum Dimension {
         WIDTH,
         HEIGHT
     }
@@ -19,7 +18,7 @@ public class AbsolutePixelListener extends ValueDocumentListener {
     private long width;
     private long height;
 
-    public AbsolutePixelListener(InitializeWindow window, AspectSettings settings, Dimension dimension){
+    public AbsolutePixelListener(InitializeWindow window, AspectSettings settings, Dimension dimension) {
         super(window, settings);
         this.d = dimension;
         this.width = settings.getLvlMakerWidth();
@@ -42,11 +41,11 @@ public class AbsolutePixelListener extends ValueDocumentListener {
     }
 
     @Override
-    protected void updateFields(DocumentEvent e){
+    protected void updateFields(DocumentEvent e) {
 
         int value;
 
-        if (inWrongState()){
+        if (inWrongState()) {
             window.updateAbsoluteText(width, height);
             return;
         }
@@ -65,10 +64,10 @@ public class AbsolutePixelListener extends ValueDocumentListener {
         }
 
         //changing values from text input
-        if (d == Dimension.WIDTH){
+        if (d == Dimension.WIDTH) {
             settings.changeWidth(value);
             width = value;
-        } else if (d == Dimension.HEIGHT){
+        } else if (d == Dimension.HEIGHT) {
             settings.changeHeight(value);
             height = value;
         } else {
@@ -77,7 +76,7 @@ public class AbsolutePixelListener extends ValueDocumentListener {
     }
 
     @Override
-    protected boolean inWrongState(){
+    protected boolean inWrongState() {
         return InitializeWindow.selectionChoice == RadioListener.StartOptions.AUTO ||
                 InitializeWindow.selectionChoice == RadioListener.StartOptions.LOAD ||
                 InitializeWindow.selectionChoice == RadioListener.StartOptions.CUSTOM_AR;

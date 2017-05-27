@@ -15,7 +15,7 @@ public class CustomMouseMoveListener implements MouseMotionListener {
 
     private LevelWindow levelWindow;
 
-    public CustomMouseMoveListener(LevelWindow levelWindow){
+    public CustomMouseMoveListener(LevelWindow levelWindow) {
         this.levelWindow = levelWindow;
     }
 
@@ -33,7 +33,7 @@ public class CustomMouseMoveListener implements MouseMotionListener {
 
     private void updateMousePosition() {
 
-        try{
+        try {
 
             x = levelWindow.getMousePosition().x;
 
@@ -42,7 +42,8 @@ public class CustomMouseMoveListener implements MouseMotionListener {
             else
                 y = levelWindow.getMousePosition().y;
 
-        }catch (Exception ignore){}
+        } catch (Exception ignore) {
+        }
 
     }
 

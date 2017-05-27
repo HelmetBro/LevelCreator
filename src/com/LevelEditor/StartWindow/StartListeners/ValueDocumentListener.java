@@ -14,7 +14,7 @@ public abstract class ValueDocumentListener implements DocumentListener {
     protected final AspectSettings settings;
     protected final InitializeWindow window;
 
-    protected ValueDocumentListener(InitializeWindow window, AspectSettings settings){
+    protected ValueDocumentListener(InitializeWindow window, AspectSettings settings) {
         this.window = window;
         this.settings = settings;
     }

@@ -25,15 +25,15 @@ public class BackTopXPanel extends BackPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (int i = 0; i < RULER_HEIGHT; i++){
+        for (int i = 0; i < RULER_HEIGHT; i++) {
 
-            float newAlpha = FADE_BACKGROUND_COLOR.getAlpha() - (255 * i / (float)RULER_HEIGHT);
+            float newAlpha = FADE_BACKGROUND_COLOR.getAlpha() - (255 * i / (float) RULER_HEIGHT);
 
             g.setColor(new Color(
                     FADE_BACKGROUND_COLOR.getRed(),
                     FADE_BACKGROUND_COLOR.getGreen(),
                     FADE_BACKGROUND_COLOR.getBlue(),
-                    (int)newAlpha)
+                    (int) newAlpha)
             );
 
             g.drawLine(0, i, getWidth(), i);

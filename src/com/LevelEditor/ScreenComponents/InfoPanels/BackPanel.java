@@ -20,7 +20,7 @@ public abstract class BackPanel extends JPanel implements Resizable {
     protected int x;
     protected int y;
 
-    public BackPanel(int width, int height, int x, int y){
+    public BackPanel(int width, int height, int x, int y) {
         this.startWidth = width;
         this.startHeight = height;
         this.x = x;

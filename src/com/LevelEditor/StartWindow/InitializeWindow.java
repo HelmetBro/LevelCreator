@@ -1,7 +1,6 @@
 package com.LevelEditor.StartWindow;
 
 import com.LevelEditor.ApplicationWindow;
-import com.LevelEditor.TabActions.FileTabActions.ExportAction;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkJButton;
@@ -11,6 +10,7 @@ import com.LevelEditor.StartWindow.StartListeners.AbsolutePixelListener;
 import com.LevelEditor.StartWindow.StartListeners.DimensionListener;
 import com.LevelEditor.StartWindow.StartListeners.OpenDirectoryListener;
 import com.LevelEditor.StartWindow.StartListeners.RadioListener;
+import com.LevelEditor.TabActions.FileTabActions.ExportAction;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -95,7 +95,8 @@ public class InitializeWindow extends JFrame {
         try {
             ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
             setIconImage(img.getImage());
-        } catch (NullPointerException ignore) {}
+        } catch (NullPointerException ignore) {
+        }
 
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -188,7 +189,7 @@ public class InitializeWindow extends JFrame {
         add(p, SwingConstants.CENTER);
     }
 
-    private Container customAbsoluteContainer(Border border){
+    private Container customAbsoluteContainer(Border border) {
         Container c = new Container();
         FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 15, 10);
         c.setLayout(flowLayout);
@@ -506,7 +507,7 @@ public class InitializeWindow extends JFrame {
 
     }
 
-    public void updateAbsoluteText(long width, long height){
+    public void updateAbsoluteText(long width, long height) {
 
         if (changingDocuments)
             return;

@@ -7,9 +7,7 @@ import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.LevelEditor.ApplicationWindow.backgroundColor;
-import static com.LevelEditor.ApplicationWindow.borderColor;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.*;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class RatioButton extends JButton implements Resizable {

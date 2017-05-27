@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_HEIGHT;
-import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class RightYPanel extends SidePanel implements Resizable {
 
@@ -61,6 +60,6 @@ public class RightYPanel extends SidePanel implements Resizable {
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
         int moveDistanceY = (windowHeight - ApplicationWindow.settings.getLvlMakerHeight() - RULER_HEIGHT) / 2;
-        setLocation(0,  moveDistanceY);
+        setLocation(0, moveDistanceY);
     }
 }//RightYPanel

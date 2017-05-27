@@ -29,7 +29,7 @@ public class AspectGridListener implements ActionListener {
             int x = ApplicationWindow.settings.getAspectRatioX();
             int y = ApplicationWindow.settings.getAspectRatioY();
 
-            if (x < 5 || y < 5){
+            if (x < 5 || y < 5) {
                 x *= MINI_MULTIPLIER;
                 y *= MINI_MULTIPLIER;
             }

@@ -1,13 +1,16 @@
 package com.LevelEditor.ScreenComponents.Canvas;
 
-import com.LevelEditor.*;
+import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.Main;
+import com.LevelEditor.Resizable;
 import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.PrecisionLinesListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.SnapToGridListener;
+import com.LevelEditor.Utilities;
 
 import javax.swing.*;
 import java.awt.*;

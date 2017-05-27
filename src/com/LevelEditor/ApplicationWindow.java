@@ -1,22 +1,22 @@
 package com.LevelEditor;
 
 import com.LevelEditor.ScreenComponents.Canvas.CanvasHolder;
+import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
 import com.LevelEditor.ScreenComponents.Canvas.ScrollLevelHolder;
+import com.LevelEditor.ScreenComponents.InfoLabelButton;
+import com.LevelEditor.ScreenComponents.InfoPanels.RightPanel.BackRightYPanel;
+import com.LevelEditor.ScreenComponents.InfoPanels.TopPanel.BackTopXPanel;
+import com.LevelEditor.ScreenComponents.RatioButton;
+import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
+import com.LevelEditor.ScreenComponents.ToolBarButton;
+import com.LevelEditor.StartWindow.AspectSettings;
+import com.LevelEditor.StartWindow.InitializeWindow;
 import com.LevelEditor.TabActions.FileTabActions.ExportJSONActionListener;
 import com.LevelEditor.TabActions.FileTabActions.ExportXMLActionListener;
 import com.LevelEditor.TabActions.FileTabActions.SaveActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.DonateActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.HowToUseActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.ReportBugActionListener;
-import com.LevelEditor.ScreenComponents.InfoLabelButton;
-import com.LevelEditor.ScreenComponents.InfoPanels.RightPanel.BackRightYPanel;
-import com.LevelEditor.ScreenComponents.InfoPanels.TopPanel.BackTopXPanel;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
-import com.LevelEditor.ScreenComponents.RatioButton;
-import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
-import com.LevelEditor.ScreenComponents.ToolBarButton;
-import com.LevelEditor.StartWindow.AspectSettings;
-import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +65,7 @@ public class ApplicationWindow extends JFrame {
         addComponentListener(new ResizeListener(this));
     }
 
-    public void forceWindowResize(int width, int height){
+    public void forceWindowResize(int width, int height) {
         setSize(width, height);
         pack();
     }
@@ -77,7 +77,8 @@ public class ApplicationWindow extends JFrame {
         try {
             ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
             setIconImage(img.getImage());
-        } catch (NullPointerException ignore) {}
+        } catch (NullPointerException ignore) {
+        }
 
         //mandatory settings
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

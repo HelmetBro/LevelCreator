@@ -26,15 +26,15 @@ public class BackRightYPanel extends BackPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (int i = 0; i < RULER_WIDTH; i++){
+        for (int i = 0; i < RULER_WIDTH; i++) {
 
-            float newAlpha = FADE_BACKGROUND_COLOR.getAlpha() - (255 * i / (float)RULER_WIDTH);
+            float newAlpha = FADE_BACKGROUND_COLOR.getAlpha() - (255 * i / (float) RULER_WIDTH);
 
             g.setColor(new Color(
                     FADE_BACKGROUND_COLOR.getRed(),
                     FADE_BACKGROUND_COLOR.getGreen(),
                     FADE_BACKGROUND_COLOR.getBlue(),
-                    (int)newAlpha)
+                    (int) newAlpha)
             );
 
             g.drawLine(getWidth() - i, 0, getWidth() - i, getHeight());
