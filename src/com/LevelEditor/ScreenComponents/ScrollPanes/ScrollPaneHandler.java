@@ -68,5 +68,7 @@ public class ScrollPaneHandler extends Container implements Resizable {
         int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX);
         int resizeHeight = windowHeight - ApplicationWindow.settings.getLvlMakerHeight() - RULER_WIDTH;
         setBounds(startX + moveDistance, startY, startWidth, startHeight + resizeHeight + Resizable.YOffset + 5);
+
+        revalidate();
     }
 }

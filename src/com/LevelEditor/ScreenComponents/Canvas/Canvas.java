@@ -17,7 +17,7 @@ import java.awt.*;
 
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
-public class LevelWindow extends JPanel implements Resizable {
+public class Canvas extends JPanel implements Resizable {
 
     //default values
     public static boolean drawPrecision;
@@ -25,16 +25,21 @@ public class LevelWindow extends JPanel implements Resizable {
     public static boolean snapToGrid;
     public static boolean antiAlias = true;
 
-    public static BackgroundColorState colorState = BackgroundColorState.LIGHT_BLACK;
+    private static BackgroundColorState colorState = BackgroundColorState.LIGHT_BLACK;
     public static final byte numOfBackStates = 5;
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public static int snappedX = 0;
     public static int snappedY = 0;
 
-    public LevelWindow(int x, int y, int width, int height) {
+    private float currentZoom = 1f;
+    private static final float ZOOM_INTERVAL = 0.05f;
+    private static final float ZOOM_MAX = 10f;
+    private static final float ZOOM_MIN = 0f;
+
+    public Canvas(int x, int y, int width, int height) {
         this.width = width;
         this.height = height;
         setPreferredSize(new Dimension(width, height));
@@ -44,9 +49,32 @@ public class LevelWindow extends JPanel implements Resizable {
         setFocusable(true);
 
         addMouseListener(new CustomMouseListener());
-        addMouseWheelListener(new CustomMouseWheelListener());
+        addMouseWheelListener(new CustomMouseWheelListener(this));
         addKeyListener(new CustomKeyboardListener());
         addMouseMotionListener(new CustomMouseMoveListener(this));
+    }
+
+    public void zoomInRequest(){
+        if (currentZoom < ZOOM_MAX)
+            currentZoom += ZOOM_INTERVAL;
+
+        repaint();
+    }
+
+    public void zoomOutRequest(){
+        if (currentZoom > ZOOM_MIN)
+            currentZoom += -ZOOM_INTERVAL;
+
+        repaint();
+    }
+
+    private void zoom(Graphics2D g2d){
+        //scale it
+        g2d.scale(currentZoom, currentZoom);
+
+        asdfasdf
+        g2d.translate(CustomMouseMoveListener.getX() * currentZoom, CustomMouseMoveListener.getY() * currentZoom);
+
     }
 
     @Override
@@ -59,6 +87,8 @@ public class LevelWindow extends JPanel implements Resizable {
             g2d.setRenderingHint(
                     RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
+
+        zoom(g2d);
 
         //added shapes
         Main.currentLevel.updateLevel(g2d);

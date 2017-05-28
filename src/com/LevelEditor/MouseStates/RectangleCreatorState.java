@@ -2,7 +2,7 @@ package com.LevelEditor.MouseStates;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Rectangle;
 
@@ -68,7 +68,7 @@ public class RectangleCreatorState extends MouseState {
         g.drawRect(drawtangle.getTopLeft().getX(), drawtangle.getTopLeft().getY(),
                 drawtangle.width, drawtangle.height);
 
-        if (LevelWindow.drawGrid) {
+        if (Canvas.drawGrid) {
 
             g.setStroke(new BasicStroke(lineWidth));
             g.setColor(ApplicationWindow.selectionColor);
@@ -103,6 +103,8 @@ public class RectangleCreatorState extends MouseState {
                 initialP = new Point(currentClickX, currentClickY);
 
             currentRect.setTopLeft(initialP);
+        } else if (SwingUtilities.isRightMouseButton(e)){
+            select();
         }
 
     }

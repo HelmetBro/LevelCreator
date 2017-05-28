@@ -25,9 +25,10 @@ public class CanvasHolder extends JPanel implements Resizable {
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
         int newWidth = ApplicationWindow.settings.getWindowWidth() - ApplicationWindow.settings.toolsWindowSizeX - RULER_WIDTH;
-        int newHeight = ApplicationWindow.settings.getWindowHeight();
+        int newHeight = ApplicationWindow.settings.getWindowHeight() - RULER_HEIGHT;
 
-        setSize(new Dimension(newWidth - 16, newHeight - RULER_HEIGHT - 37 - Resizable.YOffset));
+        //offsets
+        setSize(new Dimension(newWidth - 16, newHeight - 37 - Resizable.YOffset));
         revalidate();
     }
 }

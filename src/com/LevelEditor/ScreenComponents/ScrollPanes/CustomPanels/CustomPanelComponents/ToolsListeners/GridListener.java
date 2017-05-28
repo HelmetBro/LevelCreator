@@ -1,6 +1,6 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.UpdatePaint;
 
 import javax.swing.*;
@@ -20,7 +20,7 @@ public class GridListener implements ActionListener {
 
         AbstractButton abstractButton = (AbstractButton) e.getSource();
 
-        LevelWindow.drawGrid = abstractButton.getModel().isSelected();
+        Canvas.drawGrid = abstractButton.getModel().isSelected();
 
         UpdatePaint.remakeAll();
     }

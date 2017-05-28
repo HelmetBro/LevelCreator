@@ -2,7 +2,7 @@ package com.LevelEditor.MouseStates;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.Shapes.Ellipse;
 import com.LevelEditor.Shapes.Point;
 
@@ -69,7 +69,7 @@ public class EllipseCreatorState extends MouseState {
         g.drawOval(drawlipse.getTopLeft().getX(), drawlipse.getTopLeft().getY(),
                 drawlipse.width, drawlipse.height);
 
-        if (LevelWindow.drawGrid) {
+        if (Canvas.drawGrid) {
 
             g.setStroke(new BasicStroke(lineWidth));
             g.setColor(ApplicationWindow.selectionColor);
@@ -104,6 +104,8 @@ public class EllipseCreatorState extends MouseState {
                 initialP = new Point(currentClickX, currentClickY);
 
             currentEllipse.setTopLeft(initialP);
+        } else if (SwingUtilities.isRightMouseButton(e) && initialP == null){
+            select();
         }
 
     }

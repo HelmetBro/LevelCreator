@@ -1,8 +1,8 @@
 package com.LevelEditor;
 
 import com.LevelEditor.ScreenComponents.Canvas.CanvasHolder;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
-import com.LevelEditor.ScreenComponents.Canvas.ScrollLevelHolder;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
+import com.LevelEditor.ScreenComponents.Canvas.ScrollHolder;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
 import com.LevelEditor.ScreenComponents.InfoPanels.RightPanel.BackRightYPanel;
 import com.LevelEditor.ScreenComponents.InfoPanels.TopPanel.BackTopXPanel;
@@ -32,8 +32,8 @@ public class ApplicationWindow extends JFrame {
 
     public static InfoLabelButton infoLabelButton;
     public static ScrollPaneHandler scrollPaneHandler;
-    public static LevelWindow lvlWindow;
-    public static ScrollLevelHolder scrollHolder;
+    public static Canvas lvlWindow;
+    public static ScrollHolder scrollHolder;
     public static CanvasHolder panelHolder;
 
     static BackRightYPanel backRightYPanel;
@@ -68,6 +68,7 @@ public class ApplicationWindow extends JFrame {
     public void forceWindowResize(int width, int height) {
         setSize(width, height);
         pack();
+        setLocationRelativeTo(null);
     }
 
     private void windowSettings() {
@@ -119,11 +120,11 @@ public class ApplicationWindow extends JFrame {
         toolBarButton = new ToolBarButton(fontOfLabels, settings.getLvlMakerWidth() + RULER_WIDTH, 0, settings.toolsWindowSizeX, RULER_HEIGHT);
 
         //main window
-        lvlWindow = new LevelWindow(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
+        lvlWindow = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
         //pane holder for scroller
         panelHolder = new CanvasHolder(lvlWindow);
         //scroller that holds it
-        scrollHolder = new ScrollLevelHolder(panelHolder, 0, RULER_HEIGHT,
+        scrollHolder = new ScrollHolder(panelHolder, 0, RULER_HEIGHT,
                 settings.getWindowWidth() + settings.toolsWindowSizeX,
                 settings.getWindowHeight());
 

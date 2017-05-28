@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 
 import static com.LevelEditor.ApplicationWindow.*;
 
-public class ScrollLevelHolder extends JScrollPane implements Resizable {
+public class ScrollHolder extends JScrollPane implements Resizable {
 
     private CanvasHolder holder;
 
     private int startWidth;
     private int startHeight;
 
-    public ScrollLevelHolder(CanvasHolder component, int x, int y, int startWindowWidth, int startWindowHeight) {
+    public ScrollHolder(CanvasHolder component, int x, int y, int startWindowWidth, int startWindowHeight) {
         super(component);
         this.holder = component;
         this.startWidth = startWindowWidth;

@@ -2,7 +2,7 @@ package com.LevelEditor.MouseStates;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.Shapes.Circle;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Utilities;
@@ -55,7 +55,7 @@ public class CircleCreatorState extends MouseState {
         g.drawOval(drawcle.getTopLeft().getX(), drawcle.getTopLeft().getY(),
                 drawcle.radius * 2, drawcle.radius * 2);
 
-        if (LevelWindow.drawGrid) {
+        if (Canvas.drawGrid) {
 
             g.setStroke(new BasicStroke(lineWidth));
             g.setColor(ApplicationWindow.selectionColor);
@@ -90,6 +90,8 @@ public class CircleCreatorState extends MouseState {
                 initialP = new Point(currentClickX, currentClickY);
 
             currentCircle.setTopLeft(initialP);
+        } else if (SwingUtilities.isRightMouseButton(e) && initialP == null){
+            select();
         }
 
     }

@@ -1,6 +1,6 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.UpdatePaint;
 
 import javax.swing.*;
@@ -18,7 +18,7 @@ public class PrecisionLinesListener implements ActionListener {
 
         AbstractButton abstractButton = (AbstractButton) e.getSource();
 
-        LevelWindow.drawPrecision = abstractButton.getModel().isSelected();
+        Canvas.drawPrecision = abstractButton.getModel().isSelected();
 
         UpdatePaint.remakeAll();
     }

@@ -1,10 +1,12 @@
 package com.LevelEditor.MouseStates;
 
 
-import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.*;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
-import com.LevelEditor.Main;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
+import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
+import com.LevelEditor.Shapes.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -47,9 +49,9 @@ public abstract class MouseState {
 
     public void updateLayer(Graphics2D g) {
 
-        if (LevelWindow.snapToGrid) {
-            currentClickX = LevelWindow.snappedX;
-            currentClickY = LevelWindow.snappedY;
+        if (Canvas.snapToGrid) {
+            currentClickX = Canvas.snappedX;
+            currentClickY = Canvas.snappedY;
         } else {
             currentClickX = CustomMouseMoveListener.getX();
             currentClickY = CustomMouseMoveListener.getY();
@@ -57,6 +59,40 @@ public abstract class MouseState {
 
         Main.applicationWindow.setTitle("Mouse Location: (" + currentClickX + ", " + currentClickY + ")");
 
+    }
+
+    public void select(){
+
+        //if not pressing shift or ctrl, then remove all selections
+        if (!CustomKeyboardListener.isPressingCtrl() && !CustomKeyboardListener.isPressingShift())
+            ManageLevelArrayLists.removeAllSelections();
+
+
+        for (Circle c : Main.currentLevel.circles)
+            if (Utilities.circleCollide(c.getCenter(), c.radius, currentClickX, currentClickY) && !c.isSelected)
+                c.isSelected = true;
+
+        for (Ellipse e1 : Main.currentLevel.ellipses)
+            if (Utilities.ellipseCollide(e1.getCenter(), e1.width, e1.height, currentClickX, currentClickY) && !e1.isSelected)
+                e1.isSelected = true;
+
+        for (com.LevelEditor.Shapes.Point p : Main.currentLevel.points)
+            if (Utilities.rectangleCollide(
+                    new com.LevelEditor.Shapes.Rectangle(new com.LevelEditor.Shapes.Point(p.getX() - com.LevelEditor.Shapes.Point.pointSize, p.getY() - com.LevelEditor.Shapes.Point.pointSize),
+                            com.LevelEditor.Shapes.Point.pointSize * 2, com.LevelEditor.Shapes.Point.pointSize * 2), currentClickX, currentClickY)
+                    && !p.isSelected)
+                p.isSelected = true;
+
+        for (com.LevelEditor.Shapes.Polygon p : Main.currentLevel.polygons)
+            if (Utilities.polyCollide(p.getNumPoints(), p.arrayOfXPoints(), p.arrayOfYPoints(), currentClickX, currentClickY) && !p.isSelected)
+                p.isSelected = true;
+
+        for (com.LevelEditor.Shapes.Rectangle r : Main.currentLevel.rectangles)
+            if (Utilities.rectangleCollide(r, currentClickX, currentClickY) && !r.isSelected)
+                r.isSelected = true;
+
+        UpdatePaint.remakeWindow();
+        ScrollPaneHandler.propSP.updatePropertyEditor();
     }
 
     public abstract void mouseClicked(MouseEvent e);

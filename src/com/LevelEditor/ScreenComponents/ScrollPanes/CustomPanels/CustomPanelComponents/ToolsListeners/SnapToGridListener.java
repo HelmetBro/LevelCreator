@@ -1,7 +1,7 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
 
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.UpdatePaint;
 
 import javax.swing.*;
@@ -17,7 +17,7 @@ public class SnapToGridListener implements ActionListener {
 
         AbstractButton abstractButton = (AbstractButton) e.getSource();
 
-        LevelWindow.snapToGrid = abstractButton.getModel().isSelected();
+        Canvas.snapToGrid = abstractButton.getModel().isSelected();
 
         UpdatePaint.remakeAll();
     }

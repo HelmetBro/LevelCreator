@@ -128,7 +128,6 @@ public class ToolsScrollPane extends CustomScrollPane {
         slider.setBackground(backgroundShadedColor);
         slider.setFocusable(false);
         slider.addChangeListener(new SliderListener(valueLabel));
-        slider.setPreferredSize(new Dimension(width - 60, 5));
         slider.setUI(new DarkSlider(slider));
 
         //check box aspect value

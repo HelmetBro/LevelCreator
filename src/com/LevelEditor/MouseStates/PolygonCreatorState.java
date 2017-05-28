@@ -4,7 +4,7 @@ package com.LevelEditor.MouseStates;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.LoggingManager;
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Polygon;
 
@@ -40,7 +40,7 @@ public class PolygonCreatorState extends MouseState {
             g.draw(new Line2D.Float(p.getX() - sz, p.getY() - sz, p.getX() + sz, p.getY() + sz));
             g.draw(new Line2D.Float(p.getX() + sz, p.getY() - sz, p.getX() - sz, p.getY() + sz));
 
-            if (LevelWindow.drawGrid) {
+            if (Canvas.drawGrid) {
                 g.setStroke(new BasicStroke(Math.abs(lineWidth - 3)));
                 g.setColor(ApplicationWindow.selectionColor);
                 g.draw(new Line2D.Float(p.getX() - sz, p.getY() - sz, p.getX() + sz, p.getY() + sz));
@@ -98,8 +98,14 @@ public class PolygonCreatorState extends MouseState {
 
         if (SwingUtilities.isLeftMouseButton(e))
             addPointCurrentPoly();
-        else if (SwingUtilities.isRightMouseButton(e))
+        else if (SwingUtilities.isRightMouseButton(e)){
+
+            if (currentPoly.isEmpty())
+                select();
+
             finalizePoly();
+
+        }
     }
 
     @Override

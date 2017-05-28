@@ -2,6 +2,8 @@ package com.LevelEditor.GlobalMouseListeners;
 
 import com.LevelEditor.MouseStates.*;
 import com.LevelEditor.MouseStates.MouseState.EMouseStates;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
+import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
 import com.LevelEditor.UpdatePaint;
 
@@ -23,7 +25,12 @@ public class CustomMouseWheelListener implements MouseWheelListener {
     private static MouseState circleState;
     private static MouseState pointState;
 
-    public CustomMouseWheelListener() {
+    private Canvas canvas;
+
+    public CustomMouseWheelListener(Canvas canvas) {
+
+        this.canvas = canvas;
+
         polyState = new PolygonCreatorState();
         normalState = new SelectionMouseState();
         rectState = new RectangleCreatorState();
@@ -38,10 +45,21 @@ public class CustomMouseWheelListener implements MouseWheelListener {
     public void mouseWheelMoved(MouseWheelEvent e) {
 
         //up/down mouse scroll
-        if (e.getWheelRotation() < 0)
-            decrementState();
-        else
+        if (e.getWheelRotation() < 0){
+
+            if (CustomKeyboardListener.isPressingCtrl())
+                canvas.zoomInRequest();
+            else
+                decrementState();
+
+        } else {
+
+            if (CustomKeyboardListener.isPressingCtrl())
+                canvas.zoomOutRequest();
+            else
             incrementEnumState();
+
+        }
 
         CustomMouseListener.currentState = enumToMouseState(currentMouseEnumState);
 

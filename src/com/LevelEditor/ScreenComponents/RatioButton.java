@@ -2,7 +2,7 @@ package com.LevelEditor.ScreenComponents;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Resizable;
-import com.LevelEditor.ScreenComponents.Canvas.LevelWindow;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,9 +32,9 @@ public class RatioButton extends JButton implements Resizable {
 
     private void incrementBackground() {
 
-        int newIndex = ++LevelWindow.getColorState().index % LevelWindow.numOfBackStates;
+        int newIndex = ++Canvas.getColorState().index % Canvas.numOfBackStates;
 
-        ApplicationWindow.lvlWindow.setColor(LevelWindow.BackgroundColorState.values()[newIndex]);
+        ApplicationWindow.lvlWindow.setColor(Canvas.BackgroundColorState.values()[newIndex]);
     }
 
     @Override
