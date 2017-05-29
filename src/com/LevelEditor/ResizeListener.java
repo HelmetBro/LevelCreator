@@ -34,7 +34,7 @@ public class ResizeListener extends ComponentAdapter {
         ApplicationWindow.toolBarButton.moveComponent(width, height);
         ApplicationWindow.panelHolder.moveComponent(width, height);
         ApplicationWindow.scrollHolder.moveComponent(width, height); // ??
-        ApplicationWindow.lvlWindow.moveComponent(width, height);
+        ApplicationWindow.canvas.moveComponent(width, height);
     }
 
 }

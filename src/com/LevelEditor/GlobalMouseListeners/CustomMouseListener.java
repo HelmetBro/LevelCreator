@@ -37,7 +37,7 @@ public class CustomMouseListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        ApplicationWindow.lvlWindow.requestFocus();
+        ApplicationWindow.canvas.requestFocus();
         currentState.mouseEntered(e);
     }
 

@@ -63,9 +63,9 @@ public class InfoLabelButton extends JButton implements Resizable {
         @Override
         public void mousePressed(MouseEvent e) {
             if (SwingUtilities.isLeftMouseButton(e)) {
-                ((CustomMouseWheelListener) (ApplicationWindow.lvlWindow.getMouseWheelListeners()[0])).manualWheelMove(1);
+                ((CustomMouseWheelListener) (ApplicationWindow.canvas.getMouseWheelListeners()[0])).manualWheelMove(1);
             } else {
-                ((CustomMouseWheelListener) (ApplicationWindow.lvlWindow.getMouseWheelListeners()[0])).manualWheelMove(-1);
+                ((CustomMouseWheelListener) (ApplicationWindow.canvas.getMouseWheelListeners()[0])).manualWheelMove(-1);
             }
         }
 

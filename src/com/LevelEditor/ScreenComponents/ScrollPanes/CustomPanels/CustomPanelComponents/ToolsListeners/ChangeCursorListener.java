@@ -16,7 +16,7 @@ public class ChangeCursorListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ApplicationWindow.lvlWindow.setCursor(cursor);
+        ApplicationWindow.canvas.setCursor(cursor);
     }
 }
 

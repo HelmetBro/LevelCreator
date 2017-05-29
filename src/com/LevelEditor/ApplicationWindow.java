@@ -32,7 +32,7 @@ public class ApplicationWindow extends JFrame {
 
     public static InfoLabelButton infoLabelButton;
     public static ScrollPaneHandler scrollPaneHandler;
-    public static Canvas lvlWindow;
+    public static Canvas canvas;
     public static ScrollHolder scrollHolder;
     public static CanvasHolder panelHolder;
 
@@ -119,10 +119,10 @@ public class ApplicationWindow extends JFrame {
         //tools button
         toolBarButton = new ToolBarButton(fontOfLabels, settings.getLvlMakerWidth() + RULER_WIDTH, 0, settings.toolsWindowSizeX, RULER_HEIGHT);
 
-        //main window
-        lvlWindow = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
+        //main window (passing in ratio button for zoom animation)
+        canvas = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight(), ratioButton);
         //pane holder for scroller
-        panelHolder = new CanvasHolder(lvlWindow);
+        panelHolder = new CanvasHolder(canvas);
         //scroller that holds it
         scrollHolder = new ScrollHolder(panelHolder, 0, RULER_HEIGHT,
                 settings.getWindowWidth() + settings.toolsWindowSizeX,

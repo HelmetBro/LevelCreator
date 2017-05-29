@@ -7,6 +7,7 @@ import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
 import com.LevelEditor.Main;
 import com.LevelEditor.Resizable;
 import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
+import com.LevelEditor.ScreenComponents.RatioButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.PrecisionLinesListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.SnapToGridListener;
@@ -15,6 +16,7 @@ import com.LevelEditor.Utilities;
 import javax.swing.*;
 import java.awt.*;
 
+import static com.LevelEditor.ApplicationWindow.lightColor;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class Canvas extends JPanel implements Resizable {
@@ -34,14 +36,22 @@ public class Canvas extends JPanel implements Resizable {
     public static int snappedX = 0;
     public static int snappedY = 0;
 
+    //zooming properties
     private float currentZoom = 1f;
     private static final float ZOOM_INTERVAL = 0.05f;
-    private static final float ZOOM_MAX = 10f;
-    private static final float ZOOM_MIN = 0f;
+    private static final float ZOOM_MAX = 8f;
+    private static final float ZOOM_MIN = ZOOM_INTERVAL;
+    private boolean translate = false;
 
-    public Canvas(int x, int y, int width, int height) {
+    private float translateCoorX = 0;
+    private float translateCoorY = 0;
+
+    private RatioButton button;
+
+    public Canvas(int x, int y, int width, int height, RatioButton button) {
         this.width = width;
         this.height = height;
+        this.button = button;
         setPreferredSize(new Dimension(width, height));
         setBounds(x, y, width, height);
         setColor(colorState);
@@ -55,26 +65,45 @@ public class Canvas extends JPanel implements Resizable {
     }
 
     public void zoomInRequest(){
-        if (currentZoom < ZOOM_MAX)
+        if (currentZoom < ZOOM_MAX){
             currentZoom += ZOOM_INTERVAL;
+            translate = true;
+        }
 
         repaint();
     }
 
     public void zoomOutRequest(){
-        if (currentZoom > ZOOM_MIN)
+        if (currentZoom > ZOOM_MIN){
             currentZoom += -ZOOM_INTERVAL;
+            translate = true;
+        }
 
         repaint();
     }
 
     private void zoom(Graphics2D g2d){
-        //scale it
+
+        if (translate){
+
+            float xOff = (width - width * currentZoom);
+            float yOff = (height - height * currentZoom);
+            translateCoorX = xOff * CustomMouseMoveListener.getX() / (float)width / currentZoom;
+            translateCoorY = yOff * CustomMouseMoveListener.getY() / (float)height / currentZoom;
+
+            button.displayZoom(currentZoom);
+
+            //resetting flag
+            translate = false;
+        }
+
+        //scale/translate it
         g2d.scale(currentZoom, currentZoom);
+        g2d.translate(translateCoorX, translateCoorY);
 
-        asdfasdf
-        g2d.translate(CustomMouseMoveListener.getX() * currentZoom, CustomMouseMoveListener.getY() * currentZoom);
-
+        //draw outline so user can see canvas
+        g2d.setColor(lightColor);
+        g2d.drawRect(-1, -1, width + 1, height + 1);
     }
 
     @Override

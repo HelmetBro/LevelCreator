@@ -9,7 +9,7 @@ public class UpdatePaint {
     }
 
     public static void remakeWindow() {
-        ApplicationWindow.lvlWindow.repaint();
+        ApplicationWindow.canvas.repaint();
         ApplicationWindow.scrollHolder.repaint();
     }
 

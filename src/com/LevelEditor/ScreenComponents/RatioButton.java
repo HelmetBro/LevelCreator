@@ -14,9 +14,18 @@ public class RatioButton extends JButton implements Resizable {
 
     private int startX;
 
+    private final String text;
+
+    //zoom properties
+    private static float TIMER = 2f;
+    private float duration = 0f;
+    private boolean zooming = false;
+    private String zoomText;
+
     public RatioButton(String text, Font font, int x, int y, int width, int height) {
         super(text);
         this.startX = x;
+        this.text = text;
         setBounds(x, y, width, height);
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
@@ -30,11 +39,47 @@ public class RatioButton extends JButton implements Resizable {
         addActionListener(e -> incrementBackground());
     }
 
+    public void displayZoom(float level){
+
+        //rounding to 1 decimal
+        float zoom = Math.round(level * 100) / 100f;
+
+        if (zooming){
+            duration = 0;
+            zoomText = "x" + zoom;
+            return;
+        }
+
+        new Thread(() -> {
+
+            zooming = true;
+
+            //wait
+            while (duration < TIMER) {
+                setText(zoomText);
+
+                //wait 5 mills
+                try {
+                    Thread.sleep(5);
+                } catch (InterruptedException ignore) {}
+
+                duration += 0.005;
+            }
+
+            //the reset
+            duration = 0f;
+            setText(text);
+            zooming = false;
+
+        }).start();
+
+    }
+
     private void incrementBackground() {
 
         int newIndex = ++Canvas.getColorState().index % Canvas.numOfBackStates;
 
-        ApplicationWindow.lvlWindow.setColor(Canvas.BackgroundColorState.values()[newIndex]);
+        ApplicationWindow.canvas.setColor(Canvas.BackgroundColorState.values()[newIndex]);
     }
 
     @Override
