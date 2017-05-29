@@ -195,6 +195,7 @@ public class ToolsScrollPane extends CustomScrollPane {
         //mouse markers
         DarkerCheckBox mouseMarker = new DarkerCheckBox("Mouse Marker", basicFont);
         mouseMarker.setToolTipText("Adds markers on the measuring labels");
+        mouseMarker.setSelected(true);
         mouseMarker.addActionListener(new MarkerListener());
 
         //grid

@@ -17,7 +17,7 @@ public class CustomKeyboardListener implements KeyListener {
 
     private Canvas canvas;
 
-    public CustomKeyboardListener(Canvas canvas){
+    public CustomKeyboardListener(Canvas canvas) {
         this.canvas = canvas;
     }
 
@@ -28,11 +28,15 @@ public class CustomKeyboardListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        //checking for arrow keys
-        if (e.getKeyCode() == KeyEvent.VK_UP)asdfgasdfg
-
-                //ADD ARROW KEYS FOR MOVING CANVAS
-
+        //checking for arrow keys 1 = up, 2 = right, 3 = down, 4 = left
+        if (e.getKeyCode() == KeyEvent.VK_UP)
+            canvas.moveRequest(1);
+        if (e.getKeyCode() == KeyEvent.VK_DOWN)
+            canvas.moveRequest(3);
+        if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            canvas.moveRequest(4);
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            canvas.moveRequest(2);
 
         pressingCtrl = e.isControlDown();
         pressingShift = e.isShiftDown();

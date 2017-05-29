@@ -25,9 +25,8 @@ public abstract class SidePanel extends JPanel implements Resizable {
     protected final int height;
 
     protected final int startX;
-    protected final int startY;
 
-    public static boolean drawMarker;
+    public static boolean drawMarker = true;
     protected static MarkerImage marker;
 
     public SidePanel(String text, Font font, int x, int y, int width, int height) {
@@ -37,7 +36,6 @@ public abstract class SidePanel extends JPanel implements Resizable {
         this.height = height;
 
         this.startX = x;
-        this.startY = y;
 
         marker = new MarkerImage();
 

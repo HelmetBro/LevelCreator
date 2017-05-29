@@ -41,12 +41,16 @@ public class Canvas extends JPanel implements Resizable {
     private static final float ZOOM_INTERVAL = 0.05f;
     private static final float ZOOM_MAX = 8f;
     private static final float ZOOM_MIN = ZOOM_INTERVAL;
-    private boolean translate = false;
+    private boolean zoomFlag = false;
 
     private float translateCoorX = 0;
     private float translateCoorY = 0;
 
     private RatioButton button;
+
+    private int translateDirection = 0;
+    private int translateIncrement = 10;
+
 
     public Canvas(int x, int y, int width, int height, RatioButton button) {
         this.width = width;
@@ -64,10 +68,47 @@ public class Canvas extends JPanel implements Resizable {
         addMouseMotionListener(new CustomMouseMoveListener(this));
     }
 
+    public void moveRequest(int direction) {
+        translateDirection = direction;
+        repaint();
+    }
+
+    private void move() {
+
+        //making translate increment relative to zoom level
+        float translate = translateIncrement / currentZoom;
+
+        //applying changes
+        switch (translateDirection) {
+
+            case 1: //up
+                translateCoorY += translate;
+                break;
+            case 2: //right
+                translateCoorX -= translate;
+                break;
+
+            case 3: //down
+                translateCoorY -= translate;
+                break;
+
+            case 4: //left
+                translateCoorX += translate;
+                break;
+
+            default:
+                break;
+        }
+
+        //resetting flag
+        translateDirection = 0;
+
+    }
+
     public void zoomInRequest() {
         if (currentZoom < ZOOM_MAX) {
             currentZoom += ZOOM_INTERVAL;
-            translate = true;
+            zoomFlag = true;
         }
 
         repaint();
@@ -76,7 +117,7 @@ public class Canvas extends JPanel implements Resizable {
     public void zoomOutRequest() {
         if (currentZoom > ZOOM_MIN) {
             currentZoom += -ZOOM_INTERVAL;
-            translate = true;
+            zoomFlag = true;
         }
 
         repaint();
@@ -84,7 +125,7 @@ public class Canvas extends JPanel implements Resizable {
 
     private void zoom(Graphics2D g2d) {
 
-        if (translate) {
+        if (zoomFlag) {
 
             float xOff = (width - width * currentZoom);
             float yOff = (height - height * currentZoom);
@@ -94,10 +135,10 @@ public class Canvas extends JPanel implements Resizable {
             button.displayZoom(currentZoom);
 
             //resetting flag
-            translate = false;
+            zoomFlag = false;
         }
 
-        //scale/translate it
+        //scale/zoomFlag it
         g2d.scale(currentZoom, currentZoom);
         g2d.translate(translateCoorX, translateCoorY);
 
@@ -116,6 +157,9 @@ public class Canvas extends JPanel implements Resizable {
             g2d.setRenderingHint(
                     RenderingHints.KEY_ANTIALIASING,
                     RenderingHints.VALUE_ANTIALIAS_ON);
+
+        if (translateDirection != 0)
+            move();
 
         zoom(g2d);
 
