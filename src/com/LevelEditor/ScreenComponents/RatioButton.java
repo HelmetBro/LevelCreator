@@ -39,12 +39,12 @@ public class RatioButton extends JButton implements Resizable {
         addActionListener(e -> incrementBackground());
     }
 
-    public void displayZoom(float level){
+    public void displayZoom(float level) {
 
         //rounding to 1 decimal
         float zoom = Math.round(level * 100) / 100f;
 
-        if (zooming){
+        if (zooming) {
             duration = 0;
             zoomText = "x" + zoom;
             return;
@@ -61,7 +61,8 @@ public class RatioButton extends JButton implements Resizable {
                 //wait 5 mills
                 try {
                     Thread.sleep(5);
-                } catch (InterruptedException ignore) {}
+                } catch (InterruptedException ignore) {
+                }
 
                 duration += 0.005;
             }

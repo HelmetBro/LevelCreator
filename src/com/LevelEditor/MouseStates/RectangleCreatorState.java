@@ -103,7 +103,7 @@ public class RectangleCreatorState extends MouseState {
                 initialP = new Point(currentClickX, currentClickY);
 
             currentRect.setTopLeft(initialP);
-        } else if (SwingUtilities.isRightMouseButton(e)){
+        } else if (SwingUtilities.isRightMouseButton(e)) {
             select();
         }
 

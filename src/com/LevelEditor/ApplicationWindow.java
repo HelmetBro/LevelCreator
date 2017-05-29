@@ -1,7 +1,7 @@
 package com.LevelEditor;
 
-import com.LevelEditor.ScreenComponents.Canvas.CanvasHolder;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
+import com.LevelEditor.ScreenComponents.Canvas.CanvasHolder;
 import com.LevelEditor.ScreenComponents.Canvas.ScrollHolder;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
 import com.LevelEditor.ScreenComponents.InfoPanels.RightPanel.BackRightYPanel;

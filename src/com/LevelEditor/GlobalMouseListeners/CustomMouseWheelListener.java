@@ -45,7 +45,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
     public void mouseWheelMoved(MouseWheelEvent e) {
 
         //up/down mouse scroll
-        if (e.getWheelRotation() < 0){
+        if (e.getWheelRotation() < 0) {
 
             if (CustomKeyboardListener.isPressingCtrl())
                 canvas.zoomInRequest();
@@ -57,7 +57,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
             if (CustomKeyboardListener.isPressingCtrl())
                 canvas.zoomOutRequest();
             else
-            incrementEnumState();
+                incrementEnumState();
 
         }
 

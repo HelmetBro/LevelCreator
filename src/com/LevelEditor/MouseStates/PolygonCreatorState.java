@@ -98,7 +98,7 @@ public class PolygonCreatorState extends MouseState {
 
         if (SwingUtilities.isLeftMouseButton(e))
             addPointCurrentPoly();
-        else if (SwingUtilities.isRightMouseButton(e)){
+        else if (SwingUtilities.isRightMouseButton(e)) {
 
             if (currentPoly.isEmpty())
                 select();

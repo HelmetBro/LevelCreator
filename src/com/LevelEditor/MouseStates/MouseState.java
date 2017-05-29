@@ -6,7 +6,8 @@ import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
-import com.LevelEditor.Shapes.*;
+import com.LevelEditor.Shapes.Circle;
+import com.LevelEditor.Shapes.Ellipse;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -61,7 +62,7 @@ public abstract class MouseState {
 
     }
 
-    public void select(){
+    public void select() {
 
         //if not pressing shift or ctrl, then remove all selections
         if (!CustomKeyboardListener.isPressingCtrl() && !CustomKeyboardListener.isPressingShift())

@@ -90,7 +90,7 @@ public class CircleCreatorState extends MouseState {
                 initialP = new Point(currentClickX, currentClickY);
 
             currentCircle.setTopLeft(initialP);
-        } else if (SwingUtilities.isRightMouseButton(e) && initialP == null){
+        } else if (SwingUtilities.isRightMouseButton(e) && initialP == null) {
             select();
         }
 

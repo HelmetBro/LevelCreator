@@ -60,12 +60,12 @@ public class Canvas extends JPanel implements Resizable {
 
         addMouseListener(new CustomMouseListener());
         addMouseWheelListener(new CustomMouseWheelListener(this));
-        addKeyListener(new CustomKeyboardListener());
+        addKeyListener(new CustomKeyboardListener(this));
         addMouseMotionListener(new CustomMouseMoveListener(this));
     }
 
-    public void zoomInRequest(){
-        if (currentZoom < ZOOM_MAX){
+    public void zoomInRequest() {
+        if (currentZoom < ZOOM_MAX) {
             currentZoom += ZOOM_INTERVAL;
             translate = true;
         }
@@ -73,8 +73,8 @@ public class Canvas extends JPanel implements Resizable {
         repaint();
     }
 
-    public void zoomOutRequest(){
-        if (currentZoom > ZOOM_MIN){
+    public void zoomOutRequest() {
+        if (currentZoom > ZOOM_MIN) {
             currentZoom += -ZOOM_INTERVAL;
             translate = true;
         }
@@ -82,14 +82,14 @@ public class Canvas extends JPanel implements Resizable {
         repaint();
     }
 
-    private void zoom(Graphics2D g2d){
+    private void zoom(Graphics2D g2d) {
 
-        if (translate){
+        if (translate) {
 
             float xOff = (width - width * currentZoom);
             float yOff = (height - height * currentZoom);
-            translateCoorX = xOff * CustomMouseMoveListener.getX() / (float)width / currentZoom;
-            translateCoorY = yOff * CustomMouseMoveListener.getY() / (float)height / currentZoom;
+            translateCoorX = xOff * CustomMouseMoveListener.getX() / (float) width / currentZoom;
+            translateCoorY = yOff * CustomMouseMoveListener.getY() / (float) height / currentZoom;
 
             button.displayZoom(currentZoom);
 

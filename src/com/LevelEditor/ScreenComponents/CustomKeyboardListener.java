@@ -2,6 +2,7 @@ package com.LevelEditor.ScreenComponents;
 
 import com.LevelEditor.LoggingManager;
 import com.LevelEditor.ManageLevelArrayLists;
+import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.UpdatePaint;
 
@@ -14,12 +15,24 @@ public class CustomKeyboardListener implements KeyListener {
     private static boolean pressingCtrl;
     private static boolean pressingShift;
 
+    private Canvas canvas;
+
+    public CustomKeyboardListener(Canvas canvas){
+        this.canvas = canvas;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+        //checking for arrow keys
+        if (e.getKeyCode() == KeyEvent.VK_UP)asdfgasdfg
+
+                //ADD ARROW KEYS FOR MOVING CANVAS
+
 
         pressingCtrl = e.isControlDown();
         pressingShift = e.isShiftDown();

@@ -104,7 +104,7 @@ public class EllipseCreatorState extends MouseState {
                 initialP = new Point(currentClickX, currentClickY);
 
             currentEllipse.setTopLeft(initialP);
-        } else if (SwingUtilities.isRightMouseButton(e) && initialP == null){
+        } else if (SwingUtilities.isRightMouseButton(e) && initialP == null) {
             select();
         }
 

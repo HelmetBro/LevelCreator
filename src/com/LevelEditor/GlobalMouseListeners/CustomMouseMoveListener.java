@@ -42,7 +42,8 @@ public class CustomMouseMoveListener implements MouseMotionListener {
             else
                 y = canvas.getMousePosition().y;
 
-        } catch (Exception ignore) {}
+        } catch (Exception ignore) {
+        }
 
     }
 

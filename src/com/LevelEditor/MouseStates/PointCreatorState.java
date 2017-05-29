@@ -38,7 +38,7 @@ public class PointCreatorState extends MouseState {
         if (SwingUtilities.isLeftMouseButton(e)) {
             ManageLevelArrayLists.addPoint(point, true);
             point = new Point(currentClickX, currentClickY);
-        } else if (SwingUtilities.isRightMouseButton(e)){
+        } else if (SwingUtilities.isRightMouseButton(e)) {
             select();
         }
 
