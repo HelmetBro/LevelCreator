@@ -56,6 +56,11 @@ public class ScrollHolder extends JScrollPane implements Resizable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.applicationWindow.forceWindowResize(startWidth, startHeight);
+
+                //resetting zoom level
+                Canvas.currentZoom = 1f;
+                Canvas.translateCoorX = 0;
+                Canvas.translateCoorY = 0;
             }
 
         }//resizer

@@ -37,14 +37,14 @@ public class Canvas extends JPanel implements Resizable {
     public static int snappedY = 0;
 
     //zooming properties
-    private float currentZoom = 1f;
+    static float currentZoom = 1f;
     private static final float ZOOM_INTERVAL = 0.05f;
     private static final float ZOOM_MAX = 8f;
     private static final float ZOOM_MIN = ZOOM_INTERVAL;
     private boolean zoomFlag = false;
 
-    private float translateCoorX = 0;
-    private float translateCoorY = 0;
+    static float translateCoorX = 0;
+    static float translateCoorY = 0;
 
     private RatioButton button;
 
