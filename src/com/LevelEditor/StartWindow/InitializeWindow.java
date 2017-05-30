@@ -32,7 +32,7 @@ import static com.LevelEditor.ApplicationWindow.lightColor;
 
 public class InitializeWindow extends JFrame {
 
-    private static final String TITLE = "Level Creator PROTOTYPE v1.2";
+    private static final String TITLE = "Level Creator Prototype v1.5";
 
     public static String filePath;
     public static boolean isFileLoaded;
@@ -47,10 +47,10 @@ public class InitializeWindow extends JFrame {
 
     private static DarkProgressBar progressBar;
 
-    private static final Font bigFont = new Font("Consolas", Font.TRUETYPE_FONT, 24);
-    private static final Font normalFont = new Font("Consolas", Font.TRUETYPE_FONT, 14);
-    private static final Font smallFont = new Font("Consolas", Font.TRUETYPE_FONT, 12);
-    private static final Font startFont = new Font("Consolas", Font.TRUETYPE_FONT, 17);
+    private static final Font bigFont = new Font("Consolas", Font.PLAIN, 24);
+    private static final Font normalFont = new Font("Consolas", Font.PLAIN, 14);
+    private static final Font smallFont = new Font("Consolas", Font.PLAIN, 12);
+    private static final Font startFont = new Font("Consolas", Font.PLAIN, 17);
     private static final Color infoBoxColor = new Color(
             lightColor.getRed(),
             lightColor.getGreen(),

@@ -62,4 +62,13 @@ public class Circle extends Shape {
         return this.center;
     }
 
+    @Override
+    public Circle copyFlip() {
+        Circle copy = new Circle();
+
+        copy.center = copy.center.copyFlip();
+        copy.topLeft = copy.topLeft.copyFlip();
+
+        return copy;
+    }
 }

@@ -30,6 +30,9 @@ public class Level {
     @XmlElement(name = "Rectangles")
     public ArrayList<Rectangle> rectangles;
 
+    public Level() {
+    }
+
     public Level(int width, int height) {
 
         this.width = width;
@@ -66,6 +69,34 @@ public class Level {
         for (Rectangle r : safeRectangles)
             r.drawRectangle(g);
 
+    }
+
+    public Level flipYBeforeWrite() {
+
+        Level flipLevel = new Level(this.width, this.height);
+
+        CopyOnWriteArrayList<Circle> safeCircles = new CopyOnWriteArrayList<>(circles);
+        CopyOnWriteArrayList<Ellipse> safeEllipses = new CopyOnWriteArrayList<>(ellipses);
+        CopyOnWriteArrayList<Point> safePoints = new CopyOnWriteArrayList<>(points);
+        CopyOnWriteArrayList<Polygon> safePolygons = new CopyOnWriteArrayList<>(polygons);
+        CopyOnWriteArrayList<Rectangle> safeRectangles = new CopyOnWriteArrayList<>(rectangles);
+
+        for (Circle c : safeCircles)
+            flipLevel.circles.add(c.copyFlip());
+
+        for (Ellipse e : safeEllipses)
+            flipLevel.ellipses.add(e.copyFlip());
+
+        for (Point p : safePoints)
+            flipLevel.points.add(p.copyFlip());
+
+        for (Polygon p : safePolygons)
+            flipLevel.polygons.add(p.copyFlip());
+
+        for (Rectangle r : safeRectangles)
+            flipLevel.rectangles.add(r.copyFlip());
+
+        return flipLevel;
     }
 
 }

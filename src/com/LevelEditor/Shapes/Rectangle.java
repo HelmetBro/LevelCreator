@@ -77,4 +77,17 @@ public class Rectangle extends Shape {
     public boolean hasSize() {
         return width != 0 && height != 0;
     }
+
+    @Override
+    public Rectangle copyFlip() {
+        Rectangle copy = new Rectangle();
+
+        copy.width = this.width;
+        copy.height = this.height;
+
+        copy.center = copy.getCenter().copyFlip();
+        copy.topLeft = copy.getTopLeft().copyFlip();
+
+        return null;
+    }
 }

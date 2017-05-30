@@ -1,12 +1,14 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels;
 
 
+import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkTree.CustomTreeNode;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkTree.DarkTreeCellRenderer;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ObjectsListeners.CustomTreeKeyListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ObjectsListeners.CustomTreeMouseListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ObjectsListeners.CustomTreeSelectionListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.Shapes.*;
 
 import javax.swing.*;
@@ -104,12 +106,17 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             DefaultMutableTreeNode radiusNode = new DefaultMutableTreeNode("Radius: " + circle.radius);
             radiusNode.setAllowsChildren(false);
 
+            int positionY = circle.getCenter().getY();
+
+            if (FlipYListener.flipY)
+                positionY = ApplicationWindow.settings.getLvlMakerHeight() - circle.getCenter().getY();
+
             //root node
             DefaultMutableTreeNode locationXNode = new DefaultMutableTreeNode("X: " + circle.getCenter().getX());
             locationXNode.setAllowsChildren(false);
 
             //root node
-            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + circle.getCenter().getY());
+            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + positionY);
             locationYNode.setAllowsChildren(false);
 
             circleNode.add(locationXNode);
@@ -145,8 +152,12 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             DefaultMutableTreeNode locationXNode = new DefaultMutableTreeNode("X: " + ellipse.getCenter().getX());
             locationXNode.setAllowsChildren(false);
 
+            int positionY = ellipse.getCenter().getY();
+            if (FlipYListener.flipY)
+                positionY = ApplicationWindow.settings.getLvlMakerHeight() - ellipse.getCenter().getY();
+
             //root node
-            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + ellipse.getCenter().getY());
+            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + positionY);
             locationYNode.setAllowsChildren(false);
 
             ellipseNode.add(locationXNode);
@@ -174,8 +185,12 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             DefaultMutableTreeNode locationXNode = new DefaultMutableTreeNode("X: " + point.getX());
             locationXNode.setAllowsChildren(false);
 
+            int positionY = point.getY();
+            if (FlipYListener.flipY)
+                positionY = ApplicationWindow.settings.getLvlMakerHeight() - point.getY();
+
             //root node
-            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + point.getY());
+            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + positionY);
             locationYNode.setAllowsChildren(false);
 
             pointNode.add(locationXNode);
@@ -199,8 +214,13 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             Stack<Point> polyPoints = poly.getPoints();
 
             for (Point polyPoint : polyPoints) {
+
+                int positionY = polyPoint.getY();
+                if (FlipYListener.flipY)
+                    positionY = ApplicationWindow.settings.getLvlMakerHeight() - polyPoint.getY();
+
                 //root node
-                DefaultMutableTreeNode point = new DefaultMutableTreeNode("(" + polyPoint.getX() + ", " + polyPoint.getY() + ")");
+                DefaultMutableTreeNode point = new DefaultMutableTreeNode("(" + polyPoint.getX() + ", " + positionY + ")");
                 point.setAllowsChildren(false);
 
                 polygonNode.add(point);
@@ -226,8 +246,12 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             DefaultMutableTreeNode locationXNode = new DefaultMutableTreeNode("X: " + rectangle.getCenter().getX());
             locationXNode.setAllowsChildren(false);
 
+            int positionY = rectangle.getCenter().getY();
+            if (FlipYListener.flipY)
+                positionY = ApplicationWindow.settings.getLvlMakerHeight() - rectangle.getCenter().getY();
+
             //root node Y
-            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + rectangle.getCenter().getY());
+            DefaultMutableTreeNode locationYNode = new DefaultMutableTreeNode("Y: " + positionY);
             locationYNode.setAllowsChildren(false);
 
             //root node startWidth

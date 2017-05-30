@@ -202,6 +202,6 @@ public class ApplicationWindow extends JFrame {
         //adding menu bar to JFrame
         setJMenuBar(menuBar);
 
-    }//createMenuBar
+    }
 
 }

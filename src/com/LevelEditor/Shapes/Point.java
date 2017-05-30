@@ -127,4 +127,11 @@ public class Point extends Shape {
         this.y = y;
     }
 
+    @Override
+    public Point copyFlip() {
+        Point copy = new Point(this);
+        copy.y = ApplicationWindow.settings.getLvlMakerHeight() - copy.y;
+
+        return copy;
+    }
 }

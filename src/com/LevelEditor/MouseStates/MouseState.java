@@ -5,6 +5,7 @@ import com.LevelEditor.*;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.Shapes.Circle;
 import com.LevelEditor.Shapes.Ellipse;
@@ -58,8 +59,11 @@ public abstract class MouseState {
             currentClickY = CustomMouseMoveListener.getY();
         }
 
-        Main.applicationWindow.setTitle("Mouse Location: (" + currentClickX + ", " + currentClickY + ")");
+        int showY = currentClickY;
+        if (FlipYListener.flipY)
+            showY = ApplicationWindow.settings.getLvlMakerHeight() - currentClickY;
 
+        Main.applicationWindow.setTitle("Mouse Location: (" + currentClickX + ", " + showY + ")");
     }
 
     public void select() {
@@ -67,7 +71,6 @@ public abstract class MouseState {
         //if not pressing shift or ctrl, then remove all selections
         if (!CustomKeyboardListener.isPressingCtrl() && !CustomKeyboardListener.isPressingShift())
             ManageLevelArrayLists.removeAllSelections();
-
 
         for (Circle c : Main.currentLevel.circles)
             if (Utilities.circleCollide(c.getCenter(), c.radius, currentClickX, currentClickY) && !c.isSelected)

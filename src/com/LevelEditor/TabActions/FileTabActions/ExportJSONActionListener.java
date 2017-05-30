@@ -1,8 +1,10 @@
 package com.LevelEditor.TabActions.FileTabActions;
 
 
+import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -40,7 +42,12 @@ public class ExportJSONActionListener extends ExportAction {
         //creating writer and writing level to GSON file
         try (Writer writer = new FileWriter(path)) {
 
-            String fileContents = gson.toJson(Main.currentLevel);
+            Level level = Main.currentLevel;
+
+            if (FlipYListener.flipY)
+                level = Main.currentLevel.flipYBeforeWrite();
+
+            String fileContents = gson.toJson(level);
             fileContents = fileContents.replace("\\n", System.getProperty("line.separator"));
 
             writer.write(fileContents);

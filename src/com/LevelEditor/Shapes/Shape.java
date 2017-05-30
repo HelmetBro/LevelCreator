@@ -18,7 +18,8 @@ public abstract class Shape {
     @XmlElement
     public String name;
 
-    //public abstract void flipY();
+    //returns a copy of this object with flipped Y values
+    public abstract Shape copyFlip();
 
     public ArrayList<Property> getProperties() {
         return this.properties;

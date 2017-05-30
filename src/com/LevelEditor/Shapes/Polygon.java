@@ -138,4 +138,14 @@ public class Polygon extends Shape {
         isConvex = isConvex();
     }
 
+    @Override
+    public Polygon copyFlip() {
+        Polygon copy = new Polygon();
+        copy.numPoints = this.numPoints;
+
+        for (Point p : points)
+            copy.addPoint(p.copyFlip());
+
+        return copy;
+    }
 }

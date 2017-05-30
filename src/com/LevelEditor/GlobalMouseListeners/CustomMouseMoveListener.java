@@ -1,8 +1,6 @@
 package com.LevelEditor.GlobalMouseListeners;
 
-import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.UpdatePaint;
 
 import java.awt.event.MouseEvent;
@@ -32,19 +30,11 @@ public class CustomMouseMoveListener implements MouseMotionListener {
     }
 
     private void updateMousePosition() {
-
         try {
-
             x = canvas.getMousePosition().x;
-
-            if (FlipYListener.flipY)
-                y = Main.applicationWindow.getHeight() - canvas.getMousePosition().y;
-            else
-                y = canvas.getMousePosition().y;
-
+            y = canvas.getMousePosition().y;
         } catch (Exception ignore) {
         }
-
     }
 
     public static int getX() {

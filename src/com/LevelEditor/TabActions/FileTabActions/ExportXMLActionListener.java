@@ -4,6 +4,7 @@ package com.LevelEditor.TabActions.FileTabActions;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -38,7 +39,10 @@ public class ExportXMLActionListener extends ExportAction {
             if (prettyPrint)
                 jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(Main.currentLevel, file);
+            if (FlipYListener.flipY)
+                jaxbMarshaller.marshal(Main.currentLevel.flipYBeforeWrite(), file);
+            else
+                jaxbMarshaller.marshal(Main.currentLevel, file);
 
             InfoLabelButton.updateLabelText("Exported. ( ͡° ͜ʖ ͡°)");
 

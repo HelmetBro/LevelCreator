@@ -63,4 +63,14 @@ public class Ellipse extends Shape {
         return this.center;
     }
 
+    @Override
+    public Ellipse copyFlip() {
+        Ellipse copy = new Ellipse();
+
+        copy.center = copy.center.copyFlip();
+        copy.topLeft = copy.topLeft.copyFlip();
+
+        return copy;
+    }
+
 }

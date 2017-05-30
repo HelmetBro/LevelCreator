@@ -1,5 +1,7 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
+import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,11 +18,7 @@ public class FlipYListener implements ActionListener {
 
         flipY = abstractButton.getModel().isSelected();
 
-        //flip mouse thing
-
-        //flip coordinates of all shapes
-
-
+        ScrollPaneHandler.objSP.updateList();
     }
 
 }
