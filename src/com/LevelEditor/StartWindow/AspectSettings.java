@@ -8,7 +8,7 @@ import java.awt.*;
 public class AspectSettings {
 
     //level creator multiplier
-    private int multiplier; // 80
+    private int multiplier;
 
     //16:9
     private int aspectRatioX;

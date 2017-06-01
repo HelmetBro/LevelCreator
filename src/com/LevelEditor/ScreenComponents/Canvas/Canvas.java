@@ -51,7 +51,6 @@ public class Canvas extends JPanel implements Resizable {
     private int translateDirection = 0;
     private int translateIncrement = 10;
 
-
     public Canvas(int x, int y, int width, int height, RatioButton button) {
         this.width = width;
         this.height = height;
@@ -239,6 +238,12 @@ public class Canvas extends JPanel implements Resizable {
     public void moveComponent(int windowWidth, int windowHeight) {
         int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX) / 2;
         int moveDistanceY = (windowHeight - ApplicationWindow.settings.getLvlMakerHeight()) / 2;
+
+        if (moveDistanceX < 0)
+            moveDistanceX = 0;
+        if (moveDistanceY < 0)
+            moveDistanceY = 0;
+
         setLocation(moveDistanceX, moveDistanceY - Resizable.YOffset);
     }
 
