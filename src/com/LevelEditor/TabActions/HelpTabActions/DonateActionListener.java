@@ -11,10 +11,6 @@ import static com.LevelEditor.ApplicationWindow.lightColor;
 
 public class DonateActionListener implements ActionListener {
 
-    //PAYPAL and GMAIL
-    //private static final String username = "LevelCreatorETP@gmail.com";
-    //private static final String password = "MM_19%Qe@w1b+TnRaIzc";
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
