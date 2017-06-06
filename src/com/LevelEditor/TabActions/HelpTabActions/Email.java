@@ -1,14 +1,16 @@
 package com.LevelEditor.TabActions.HelpTabActions;
 
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
-
 import com.sun.mail.smtp.SMTPTransport;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.security.Security;
 import java.util.Date;
 import java.util.Properties;
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class Email {
 
@@ -20,7 +22,7 @@ public class Email {
 
     private Session session;
 
-    public Email(String subject, String body){
+    public Email(String subject, String body) {
 
         this.subject = subject;
         this.body = body;
@@ -45,33 +47,39 @@ public class Email {
 
     public void send() {
 
-        if (body == null){
+        if (body == null) {
             InfoLabelButton.updateLabelText("Canceled.");
             return;
         }
 
-        try {
+        InfoLabelButton.updateLabelText("Sending...");
 
-            final MimeMessage msg = new MimeMessage(session);
+        new Thread(() -> {
 
-            msg.setFrom(new InternetAddress(from));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
+            try {
 
-            msg.setSubject(subject);
-            msg.setText(body, "utf-8");
-            msg.setSentDate(new Date());
+                final MimeMessage msg = new MimeMessage(session);
 
-            SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+                msg.setFrom(new InternetAddress(from));
+                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
 
-            t.connect("smtp.gmail.com", from, "MDcjanf#^#$(VasFMF(@)$m2");
-            t.sendMessage(msg, msg.getAllRecipients());
-            t.close();
+                msg.setSubject(subject);
+                msg.setText(body, "utf-8");
+                msg.setSentDate(new Date());
 
-            InfoLabelButton.updateLabelText("Sent. Thanks!");
+                SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
 
-        } catch (MessagingException e) {
-            InfoLabelButton.updateLabelText("Can't Send!");
-        }
+                t.connect("smtp.gmail.com", from, "MDcjanf#^#$(VasFMF(@)$m2");
+                t.sendMessage(msg, msg.getAllRecipients());
+                t.close();
+
+                InfoLabelButton.updateLabelText("Sent - Thanks!");
+
+            } catch (MessagingException e) {
+                InfoLabelButton.updateLabelText("Can't Send!");
+            }
+
+        }).start();
 
     }
 
