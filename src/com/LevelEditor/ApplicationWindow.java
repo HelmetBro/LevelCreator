@@ -17,6 +17,7 @@ import com.LevelEditor.TabActions.FileTabActions.SaveActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.DonateActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.HowToUseActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.ReportBugActionListener;
+import com.LevelEditor.TabActions.HelpTabActions.SuggestionActionListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,11 +76,8 @@ public class ApplicationWindow extends JFrame {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
-        try {
-            ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
-            setIconImage(img.getImage());
-        } catch (NullPointerException ignore) {
-        }
+        ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
+        setIconImage(img.getImage());
 
         //mandatory settings
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -191,8 +189,13 @@ public class ApplicationWindow extends JFrame {
         bugTab.setMnemonic(KeyEvent.VK_R);
         bugTab.addActionListener(new ReportBugActionListener());
 
+        JMenuItem suggestTab = new JMenuItem("Make a request");
+        suggestTab.setMnemonic(KeyEvent.VK_M);
+        suggestTab.addActionListener(new SuggestionActionListener());
+
         helpTab.add(howTab);
         helpTab.add(bugTab);
+        helpTab.add(suggestTab);
         helpTab.add(donateTab);
 
         //adding file tab bar to menu bar
