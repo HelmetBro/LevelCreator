@@ -62,19 +62,37 @@ public class AspectSettings {
     }
 
     public void changeAspectX(int value) {
+
+        int width = value * multiplier;
+
+        if (width <= 0)
+            return;
+
         this.aspectRatioX = value;
-        this.lvlMakerWidth = aspectRatioX * multiplier;
+        this.lvlMakerWidth = width;
     }
 
     public void changeAspectY(int value) {
+
+        int height = value * multiplier;
+
+        if (height <= 0)
+            return;
+
         this.aspectRatioY = value;
-        this.lvlMakerHeight = aspectRatioY * multiplier;
+        this.lvlMakerHeight = height;
     }
 
     public void changeMultiplier(int value) {
+        int width = aspectRatioX * value;
+        int height = aspectRatioY * value;
+
+        if (width <= 0 || height <= 0)
+            return;
+
         this.multiplier = value;
-        this.lvlMakerWidth = aspectRatioX * multiplier;
-        this.lvlMakerHeight = aspectRatioY * multiplier;
+        this.lvlMakerWidth = width;
+        this.lvlMakerHeight = height;
     }
 
     public void changeWidth(int value) {

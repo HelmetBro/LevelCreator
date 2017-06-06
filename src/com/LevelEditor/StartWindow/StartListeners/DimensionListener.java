@@ -52,7 +52,7 @@ public class DimensionListener extends ValueDocumentListener {
 
             value = textToValue(e);
 
-            if (value == -1)
+            if (value <= 0)
                 return;
 
         } catch (Exception e1) {
