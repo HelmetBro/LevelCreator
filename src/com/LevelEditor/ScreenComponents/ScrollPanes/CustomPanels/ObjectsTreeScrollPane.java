@@ -8,7 +8,6 @@ import com.LevelEditor.ScreenComponents.DarkComponents.DarkTree.DarkTreeCellRend
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ObjectsListeners.CustomTreeKeyListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ObjectsListeners.CustomTreeMouseListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ObjectsListeners.CustomTreeSelectionListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.Shapes.*;
 
 import javax.swing.*;

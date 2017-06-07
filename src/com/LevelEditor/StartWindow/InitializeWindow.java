@@ -225,10 +225,8 @@ public class InitializeWindow extends JFrame {
         ch1TextField.setBorder(border);
         ch1TextField.setText("" + settings.getLvlMakerWidth());
 
-
         absoluteWidth = ch1TextField;
         absoluteWidth.getDocument().addDocumentListener(new AbsolutePixelListener(this, settings, AbsolutePixelListener.Dimension.WIDTH));
-
 
         //choice 2 label
         JLabel ch2 = new JLabel("Height in Pixels: ", SwingConstants.CENTER);
@@ -248,10 +246,8 @@ public class InitializeWindow extends JFrame {
         ch2TextField.setBorder(border);
         ch2TextField.setText("" + settings.getLvlMakerHeight());
 
-
         absoluteHeight = ch2TextField;
         absoluteHeight.getDocument().addDocumentListener(new AbsolutePixelListener(this, settings, AbsolutePixelListener.Dimension.HEIGHT));
-
 
         //container for holding options
         Container optionContainer = new Container();

@@ -4,7 +4,6 @@ package com.LevelEditor.TabActions.FileTabActions;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

@@ -3,7 +3,6 @@ package com.LevelEditor.TabActions.FileTabActions;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.StartWindow.InitializeWindow;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

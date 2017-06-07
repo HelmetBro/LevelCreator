@@ -1,14 +1,14 @@
 package com.LevelEditor.MouseStates;
 
-
 import com.LevelEditor.*;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
-import com.LevelEditor.Shapes.Circle;
-import com.LevelEditor.Shapes.Ellipse;
+import com.LevelEditor.Shapes.*;
+import com.LevelEditor.Shapes.Point;
+import com.LevelEditor.Shapes.Polygon;
+import com.LevelEditor.Shapes.Rectangle;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -80,18 +80,18 @@ public abstract class MouseState {
             if (Utilities.ellipseCollide(e1.getCenter(), e1.width, e1.height, currentClickX, currentClickY) && !e1.isSelected)
                 e1.isSelected = true;
 
-        for (com.LevelEditor.Shapes.Point p : Main.currentLevel.points)
+        for (Point p : Main.currentLevel.points)
             if (Utilities.rectangleCollide(
-                    new com.LevelEditor.Shapes.Rectangle(new com.LevelEditor.Shapes.Point(p.getX() - com.LevelEditor.Shapes.Point.pointSize, p.getY() - com.LevelEditor.Shapes.Point.pointSize),
-                            com.LevelEditor.Shapes.Point.pointSize * 2, com.LevelEditor.Shapes.Point.pointSize * 2), currentClickX, currentClickY)
+                    new Rectangle(new Point(p.getX() - Point.pointSize, p.getY() - Point.pointSize),
+                            Point.pointSize * 2, Point.pointSize * 2), currentClickX, currentClickY)
                     && !p.isSelected)
                 p.isSelected = true;
 
-        for (com.LevelEditor.Shapes.Polygon p : Main.currentLevel.polygons)
+        for (Polygon p : Main.currentLevel.polygons)
             if (Utilities.polyCollide(p.getNumPoints(), p.arrayOfXPoints(), p.arrayOfYPoints(), currentClickX, currentClickY) && !p.isSelected)
                 p.isSelected = true;
 
-        for (com.LevelEditor.Shapes.Rectangle r : Main.currentLevel.rectangles)
+        for (Rectangle r : Main.currentLevel.rectangles)
             if (Utilities.rectangleCollide(r, currentClickX, currentClickY) && !r.isSelected)
                 r.isSelected = true;
 

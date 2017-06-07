@@ -9,9 +9,6 @@ import java.awt.*;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_HEIGHT;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
-/**
- * Created by eric on 4/8/2017.
- */
 public class BackRightYPanel extends BackPanel {
 
     private RightYPanel rightYPanel;

@@ -3,10 +3,7 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 
 import java.awt.*;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
-import java.awt.image.BufferedImage;
 
 public class Point extends Shape {
 

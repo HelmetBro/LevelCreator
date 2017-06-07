@@ -6,9 +6,6 @@ import com.LevelEditor.Resizable;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by eric on 4/8/2017.
- */
 public abstract class BackPanel extends JPanel implements Resizable {
 
     protected static final Color FADE_BACKGROUND_COLOR = ApplicationWindow.backgroundShadedColor.brighter().brighter().brighter();

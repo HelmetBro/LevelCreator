@@ -7,9 +7,6 @@ import com.LevelEditor.Shapes.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by eric on 2/19/2017.
- */
 public class DeletePropertyListener implements ActionListener {
 
     private Property p;

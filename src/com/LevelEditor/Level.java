@@ -33,7 +33,8 @@ public class Level {
     @XmlElement(name = "Rectangles")
     public ArrayList<Rectangle> rectangles;
 
-    public Level() {}
+    public Level() {
+    }
 
     public Level(int width, int height) {
 
