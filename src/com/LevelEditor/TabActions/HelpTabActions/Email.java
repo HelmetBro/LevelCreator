@@ -81,7 +81,6 @@ public class Email {
 
         }).start();
 
-    }
+    }//send
 
-
-}
+}//Email class
