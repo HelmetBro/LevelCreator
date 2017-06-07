@@ -108,7 +108,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
 
             int positionY = circle.getCenter().getY();
 
-            if (FlipYListener.flipY)
+            if (Main.currentLevel.flipY)
                 positionY = ApplicationWindow.settings.getLvlMakerHeight() - circle.getCenter().getY();
 
             //root node
@@ -153,7 +153,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             locationXNode.setAllowsChildren(false);
 
             int positionY = ellipse.getCenter().getY();
-            if (FlipYListener.flipY)
+            if (Main.currentLevel.flipY)
                 positionY = ApplicationWindow.settings.getLvlMakerHeight() - ellipse.getCenter().getY();
 
             //root node
@@ -186,7 +186,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             locationXNode.setAllowsChildren(false);
 
             int positionY = point.getY();
-            if (FlipYListener.flipY)
+            if (Main.currentLevel.flipY)
                 positionY = ApplicationWindow.settings.getLvlMakerHeight() - point.getY();
 
             //root node
@@ -216,7 +216,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             for (Point polyPoint : polyPoints) {
 
                 int positionY = polyPoint.getY();
-                if (FlipYListener.flipY)
+                if (Main.currentLevel.flipY)
                     positionY = ApplicationWindow.settings.getLvlMakerHeight() - polyPoint.getY();
 
                 //root node
@@ -247,7 +247,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             locationXNode.setAllowsChildren(false);
 
             int positionY = rectangle.getCenter().getY();
-            if (FlipYListener.flipY)
+            if (Main.currentLevel.flipY)
                 positionY = ApplicationWindow.settings.getLvlMakerHeight() - rectangle.getCenter().getY();
 
             //root node Y

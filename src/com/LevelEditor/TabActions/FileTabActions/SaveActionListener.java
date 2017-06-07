@@ -67,8 +67,8 @@ public class SaveActionListener implements ActionListener {
 
                 Level level = Main.currentLevel;
 
-                if (FlipYListener.flipY)
-                    level = Main.currentLevel.flipYBeforeWrite();
+                if (Main.currentLevel.flipY)
+                    level = Main.currentLevel.flipYCopy();
 
                 String fileContents = gson.toJson(level);
                 fileContents = fileContents.replace("\\n", System.getProperty("line.separator"));
@@ -91,8 +91,8 @@ public class SaveActionListener implements ActionListener {
                 if (ExportAction.prettyPrint)
                     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-                if (FlipYListener.flipY)
-                    jaxbMarshaller.marshal(Main.currentLevel.flipYBeforeWrite(), file);
+                if (Main.currentLevel.flipY)
+                    jaxbMarshaller.marshal(Main.currentLevel.flipYCopy(), file);
                 else
                     jaxbMarshaller.marshal(Main.currentLevel, file);
 

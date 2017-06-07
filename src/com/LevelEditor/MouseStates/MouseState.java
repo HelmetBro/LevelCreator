@@ -60,7 +60,7 @@ public abstract class MouseState {
         }
 
         int showY = currentClickY;
-        if (FlipYListener.flipY)
+        if (Main.currentLevel.flipY)
             showY = ApplicationWindow.settings.getLvlMakerHeight() - currentClickY;
 
         Main.applicationWindow.setTitle("Mouse Location: (" + currentClickX + ", " + showY + ")");

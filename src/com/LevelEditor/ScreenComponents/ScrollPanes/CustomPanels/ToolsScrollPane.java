@@ -1,6 +1,7 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels;
 
 
+import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkCheckBox.DarkerCheckBox;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkRadioButton.DarkerRadioButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.DarkSlider;
@@ -145,7 +146,7 @@ public class ToolsScrollPane extends CustomScrollPane {
 
     private Container createExportBoxes(int width) {
 
-        int numItems = 1;
+        int numItems = 2;
 
         Container p = new Container();
         p.setLayout(new GridLayout(numItems + 1, 1));
@@ -164,7 +165,14 @@ public class ToolsScrollPane extends CustomScrollPane {
         prettyPrint.setToolTipText("Writes contents of JSON and XML file with organized layout");
         prettyPrint.addActionListener(new ExportListener());
 
+        //flipY
+        DarkerCheckBox flipY = new DarkerCheckBox("Flip Y-axis", basicFont);
+        flipY.setToolTipText("Flips y-axis. Changes vertices of all shapes");
+        flipY.addActionListener(new FlipYListener());
+        flipY.setSelected(Main.currentLevel.flipY);
+
         p.add(editorLabel);
+        p.add(flipY);
         p.add(prettyPrint);
 
         return p;
@@ -172,7 +180,7 @@ public class ToolsScrollPane extends CustomScrollPane {
 
     private Container createEditorCheckBoxes(int width) {
 
-        int numItems = 7;
+        int numItems = 6;
 
         Container p = new Container();
         p.setLayout(new GridLayout(numItems + 1, 1));
@@ -220,11 +228,6 @@ public class ToolsScrollPane extends CustomScrollPane {
         shapeFill.setSelected(true);
         shapeFill.addActionListener(new ShapeFillListener());
 
-        //flipY
-        DarkerCheckBox flipY = new DarkerCheckBox("Flip Y-axis", basicFont);
-        flipY.setToolTipText("Flips y-axis. Changes vertices of all shapes");
-        flipY.addActionListener(new FlipYListener());
-
         //adding components
         p.add(editorLabel);
         p.add(precision);
@@ -233,7 +236,6 @@ public class ToolsScrollPane extends CustomScrollPane {
         p.add(snap);
         p.add(antiA);
         p.add(shapeFill);
-        p.add(flipY);
 
         return p;
     }

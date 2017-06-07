@@ -44,8 +44,8 @@ public class ExportJSONActionListener extends ExportAction {
 
             Level level = Main.currentLevel;
 
-            if (FlipYListener.flipY)
-                level = Main.currentLevel.flipYBeforeWrite();
+            if (Main.currentLevel.flipY)
+                level = Main.currentLevel.flipYCopy();
 
             String fileContents = gson.toJson(level);
             fileContents = fileContents.replace("\\n", System.getProperty("line.separator"));

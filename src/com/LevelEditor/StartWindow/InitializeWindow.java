@@ -90,13 +90,10 @@ public class InitializeWindow extends JFrame {
 
         updateRatioText();
 
-        //very last
+        //very last, setting icon
         ClassLoader classLoader = getClass().getClassLoader();
-        try {
-            ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
-            setIconImage(img.getImage());
-        } catch (NullPointerException ignore) {
-        }
+        ImageIcon img = new ImageIcon(classLoader.getResource("LevelEditorIcon.png"));
+        setIconImage(img.getImage());
 
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -541,6 +538,7 @@ public class InitializeWindow extends JFrame {
                 //read contents of that file, see if it can be loaded
                 if (!loadFile()) {
                     progressBar.setVisible(false);
+
                     return;
                 }
 
@@ -556,6 +554,9 @@ public class InitializeWindow extends JFrame {
 
             //creating application
             Main.applicationWindow = new ApplicationWindow(settings);
+
+            if (Main.currentLevel.flipY)
+                Main.currentLevel = Main.currentLevel.flipYCopy();
 
             InitializeWindow.updateProgressBar(100);
 

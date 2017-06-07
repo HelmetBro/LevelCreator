@@ -14,6 +14,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @XmlRootElement(name = "Level")
 public class Level {
 
+    @XmlElement(name = "FlipY")
+    public boolean flipY;
+
     @XmlElement(name = "Width")
     public int width;
     @XmlElement(name = "Height")
@@ -30,8 +33,7 @@ public class Level {
     @XmlElement(name = "Rectangles")
     public ArrayList<Rectangle> rectangles;
 
-    public Level() {
-    }
+    public Level() {}
 
     public Level(int width, int height) {
 
@@ -71,9 +73,11 @@ public class Level {
 
     }
 
-    public Level flipYBeforeWrite() {
+    public Level flipYCopy() {
 
         Level flipLevel = new Level(this.width, this.height);
+
+        flipLevel.flipY = this.flipY;
 
         CopyOnWriteArrayList<Circle> safeCircles = new CopyOnWriteArrayList<>(circles);
         CopyOnWriteArrayList<Ellipse> safeEllipses = new CopyOnWriteArrayList<>(ellipses);

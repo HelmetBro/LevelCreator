@@ -39,8 +39,8 @@ public class ExportXMLActionListener extends ExportAction {
             if (prettyPrint)
                 jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            if (FlipYListener.flipY)
-                jaxbMarshaller.marshal(Main.currentLevel.flipYBeforeWrite(), file);
+            if (Main.currentLevel.flipY)
+                jaxbMarshaller.marshal(Main.currentLevel.flipYCopy(), file);
             else
                 jaxbMarshaller.marshal(Main.currentLevel, file);
 
