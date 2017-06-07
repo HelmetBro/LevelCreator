@@ -68,48 +68,48 @@ public class Point extends Shape {
 
     }
 
-    private static BufferedImage realCircle() {
+//    private static BufferedImage realCircle() {
+//
+//        int diameter = pointSize + pointSize;
+//
+//        BufferedImage image = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
+//        Graphics g = image.getGraphics();
+//
+//        Point center = new Point(pointSize, pointSize);
+//
+//        for (int i = 0; i < diameter; i++) {
+//            for (int j = 0; j < diameter; j++) {
+//
+//                Point drawP = new Point(i, j);
+//
+//                System.out.println(Math.sqrt(drawP.dst2(center)));
+//
+//                if (Math.sqrt(drawP.dst2(center)) <= pointSize)
+//                    g.fillRect(i, j, 1, 1);
+//
+//            }
+//        }
+//
+//        return image;
+//
+//    }
 
-        int diameter = pointSize + pointSize;
-
-        BufferedImage image = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
-        Graphics g = image.getGraphics();
-
-        Point center = new Point(pointSize, pointSize);
-
-        for (int i = 0; i < diameter; i++) {
-            for (int j = 0; j < diameter; j++) {
-
-                Point drawP = new Point(i, j);
-
-                System.out.println(Math.sqrt(drawP.dst2(center)));
-
-                if (Math.sqrt(drawP.dst2(center)) <= pointSize)
-                    g.fillRect(i, j, 1, 1);
-
-            }
-        }
-
-        return image;
-
-    }
-
-    private static java.awt.Shape createRingShape(
-            float centerX, float centerY, float outerRadius, float thickness) {
-        Ellipse2D outer = new Ellipse2D.Double(
-                centerX - outerRadius,
-                centerY - outerRadius,
-                outerRadius + outerRadius,
-                outerRadius + outerRadius);
-        Ellipse2D inner = new Ellipse2D.Double(
-                centerX - outerRadius + thickness,
-                centerY - outerRadius + thickness,
-                outerRadius + outerRadius - thickness - thickness,
-                outerRadius + outerRadius - thickness - thickness);
-        Area area = new Area(outer);
-        area.subtract(new Area(inner));
-        return area;
-    }
+//    private static java.awt.Shape createRingShape(
+//            float centerX, float centerY, float outerRadius, float thickness) {
+//        Ellipse2D outer = new Ellipse2D.Double(
+//                centerX - outerRadius,
+//                centerY - outerRadius,
+//                outerRadius + outerRadius,
+//                outerRadius + outerRadius);
+//        Ellipse2D inner = new Ellipse2D.Double(
+//                centerX - outerRadius + thickness,
+//                centerY - outerRadius + thickness,
+//                outerRadius + outerRadius - thickness - thickness,
+//                outerRadius + outerRadius - thickness - thickness);
+//        Area area = new Area(outer);
+//        area.subtract(new Area(inner));
+//        return area;
+//    }
 
     public int getX() {
         return x;

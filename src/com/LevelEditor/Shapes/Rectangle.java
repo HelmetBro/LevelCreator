@@ -85,9 +85,10 @@ public class Rectangle extends Shape {
         copy.width = this.width;
         copy.height = this.height;
 
-        copy.center = copy.getCenter().copyFlip();
-        copy.topLeft = copy.getTopLeft().copyFlip();
+        copy.center = this.getCenter().copyFlip();
+        copy.topLeft = this.getTopLeft().copyFlip();
+        copy.topLeft.y = copy.topLeft.y - copy.height;
 
-        return null;
+        return copy;
     }
 }

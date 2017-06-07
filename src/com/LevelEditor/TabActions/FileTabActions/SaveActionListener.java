@@ -3,6 +3,7 @@ package com.LevelEditor.TabActions.FileTabActions;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.FlipYListener;
 import com.LevelEditor.StartWindow.InitializeWindow;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -64,7 +65,12 @@ public class SaveActionListener implements ActionListener {
             //creating writer and writing level to GSON file
             try (Writer writer = new FileWriter(InitializeWindow.filePath)) {
 
-                String fileContents = gson.toJson(Main.currentLevel);
+                Level level = Main.currentLevel;
+
+                if (FlipYListener.flipY)
+                    level = Main.currentLevel.flipYBeforeWrite();
+
+                String fileContents = gson.toJson(level);
                 fileContents = fileContents.replace("\\n", System.getProperty("line.separator"));
 
                 writer.write(fileContents);
@@ -85,7 +91,11 @@ public class SaveActionListener implements ActionListener {
                 if (ExportAction.prettyPrint)
                     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-                jaxbMarshaller.marshal(Main.currentLevel, file);
+                if (FlipYListener.flipY)
+                    jaxbMarshaller.marshal(Main.currentLevel.flipYBeforeWrite(), file);
+                else
+                    jaxbMarshaller.marshal(Main.currentLevel, file);
+
             } catch (JAXBException e1) {
                 e1.printStackTrace();
                 InfoLabelButton.updateLabelText("ERROR! Can't Save");

@@ -55,22 +55,22 @@ public class Polygon extends Shape {
     }
 
     //also maybe calculate centroid. FOR LATER USE?
-    private float calculateLongestDistance() {
-
-        if (numPoints < 4)
-            return 0;
-
-        float current, longest = 0f;
-
-        for (int i = 0; i < numPoints - 2; i++)
-            for (int j = i + 1; j <= numPoints - 1 - i; j++) {
-                current = points.get(i).dst2(points.get(j));
-                if (current > longest)
-                    longest = current;
-            }
-
-        return (float) Math.sqrt(longest);
-    }
+//    private float calculateLongestDistance() {
+//
+//        if (numPoints < 4)
+//            return 0;
+//
+//        float current, longest = 0f;
+//
+//        for (int i = 0; i < numPoints - 2; i++)
+//            for (int j = i + 1; j <= numPoints - 1 - i; j++) {
+//                current = points.get(i).dst2(points.get(j));
+//                if (current > longest)
+//                    longest = current;
+//            }
+//
+//        return (float) Math.sqrt(longest);
+//    }
 
     public int[] arrayOfXPoints() {
         ArrayList<Integer> xPoints = new ArrayList<>();
@@ -141,8 +141,9 @@ public class Polygon extends Shape {
     @Override
     public Polygon copyFlip() {
         Polygon copy = new Polygon();
-        copy.numPoints = this.numPoints;
+        copy.isConvex = this.isConvex;
 
+        //adding points sets numPoints accordingly
         for (Point p : points)
             copy.addPoint(p.copyFlip());
 

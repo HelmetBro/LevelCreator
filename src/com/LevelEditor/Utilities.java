@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class Utilities {
 
+    //jordan curve theorem
     public static boolean polyCollide(int numVertices, int[] xVertices, int[] yVertices, int inputX, int inputY) {
         int i, j;
         boolean result = false;

@@ -67,8 +67,12 @@ public class Ellipse extends Shape {
     public Ellipse copyFlip() {
         Ellipse copy = new Ellipse();
 
-        copy.center = copy.center.copyFlip();
-        copy.topLeft = copy.topLeft.copyFlip();
+        copy.width = this.width;
+        copy.height = this.height;
+
+        copy.center = this.center.copyFlip();
+        copy.topLeft = this.topLeft.copyFlip();
+        copy.topLeft.y = copy.topLeft.y - copy.height;
 
         return copy;
     }
