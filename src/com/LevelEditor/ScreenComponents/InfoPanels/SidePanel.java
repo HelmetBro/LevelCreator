@@ -12,22 +12,17 @@ public abstract class SidePanel extends JPanel implements Resizable {
 
     protected static final Color bigLineColor = new Color(145, 145, 142);
     protected static final Color smallLineColor = new Color(104, 104, 101);
-
+    protected static final int bigLineSize = 10;
+    protected static final int smallLineSize = 5;
+    public static boolean drawMarker = true;
     protected static int bigLineIncrementX = GridListener.gridSizeX;
     protected static int bigLineIncrementY = GridListener.gridSizeY;
-    protected static final int bigLineSize = 10;
-
     protected static int smallLineIncrementX;
     protected static int smallLineIncrementY;
-    protected static final int smallLineSize = 5;
-
+    protected static MarkerImage marker;
     protected final int width;
     protected final int height;
-
     protected final int startX;
-
-    public static boolean drawMarker = true;
-    protected static MarkerImage marker;
 
     public SidePanel(String text, Font font, int x, int y, int width, int height) {
         super();

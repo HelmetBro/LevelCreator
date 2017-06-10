@@ -12,12 +12,10 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 public class ToolBarButton extends JButton implements Resizable {
 
     private static final State defaultState = State.TOOLS;
-    private static State currentState = defaultState;
-
-    private int startX;
-
     //Properties
     private static final String[] labels = new String[]{"Tools", "Properties", "Objects"};
+    private static State currentState = defaultState;
+    private int startX;
 
     public ToolBarButton(Font font, int x, int y, int width, int height) {
         super(labels[defaultState.numVal]);

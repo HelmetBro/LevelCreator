@@ -68,17 +68,13 @@ import static com.LevelEditor.ApplicationWindow.*;
  *         attack shark (see license agreement above) at which point I relented.
  */
 
-
 public class Main implements Serializable {
 
-    private static final long serialVersionUID = 90210L;
-
-    public static ApplicationWindow applicationWindow;
-
-    public static Level currentLevel;
-
-    private static final float mediumFontSize = 13f;
     public static final float smallFontSize = 12f;
+    private static final long serialVersionUID = 90210L;
+    private static final float mediumFontSize = 13f;
+    public static ApplicationWindow applicationWindow;
+    public static Level currentLevel;
 
     public static void main(String[] args) {
         changeUI();

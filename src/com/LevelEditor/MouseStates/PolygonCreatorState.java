@@ -26,6 +26,13 @@ public class PolygonCreatorState extends MouseState {
         currentPoly = new Polygon();
     }
 
+    public static void removePointCurrentPoly() {
+        if (!currentPoly.isEmpty())
+            currentPoly.removePoint(currentPoly.getNumPoints() - 1);
+        else
+            System.out.println("ERROR - Tried to remove point that doesn't exist.");
+    }
+
     @Override
     public void updateLayer(Graphics2D g) {
         super.updateLayer(g);
@@ -52,13 +59,6 @@ public class PolygonCreatorState extends MouseState {
 
         }//for
 
-    }
-
-    public static void removePointCurrentPoly() {
-        if (!currentPoly.isEmpty())
-            currentPoly.removePoint(currentPoly.getNumPoints() - 1);
-        else
-            System.out.println("ERROR - Tried to remove point that doesn't exist.");
     }
 
     private void addPointCurrentPoly() {

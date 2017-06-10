@@ -17,6 +17,14 @@ public class CustomMouseMoveListener implements MouseMotionListener {
         this.canvas = canvas;
     }
 
+    public static int getX() {
+        return x;
+    }
+
+    public static int getY() {
+        return y;
+    }
+
     @Override
     public void mouseDragged(MouseEvent e) {
         UpdatePaint.remakeAll();
@@ -35,14 +43,6 @@ public class CustomMouseMoveListener implements MouseMotionListener {
             y = canvas.getMousePosition().y;
         } catch (Exception ignore) {
         }
-    }
-
-    public static int getX() {
-        return x;
-    }
-
-    public static int getY() {
-        return y;
     }
 
 }

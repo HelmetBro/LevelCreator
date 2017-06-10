@@ -7,16 +7,13 @@ import java.awt.*;
 
 public class Ellipse extends Shape {
 
-    public transient static boolean isHidden;
-
     public static final String logMessage = "Level - added ellipse";
     public static final String logMessageDelete = "Level - removed ellipse";
-
-    private Point topLeft;
-    private Point center;
-
+    public transient static boolean isHidden;
     public int width;
     public int height;
+    private Point topLeft;
+    private Point center;
 
     public Ellipse() {
         this(new Point(0, 0), 0, 0);
@@ -45,9 +42,8 @@ public class Ellipse extends Shape {
             g.drawOval(topLeft.x, topLeft.y, width, height);
     }
 
-    public void setCenter(Point p) {
-        this.center = p;
-        this.topLeft = new Point(center.x - width / 2, center.y - height / 2);
+    public Point getTopLeft() {
+        return this.topLeft;
     }
 
     public void setTopLeft(Point p) {
@@ -55,12 +51,13 @@ public class Ellipse extends Shape {
         this.center = new Point(topLeft.x + width / 2, topLeft.y + height / 2);
     }
 
-    public Point getTopLeft() {
-        return this.topLeft;
-    }
-
     public Point getCenter() {
         return this.center;
+    }
+
+    public void setCenter(Point p) {
+        this.center = p;
+        this.topLeft = new Point(center.x - width / 2, center.y - height / 2);
     }
 
     @Override

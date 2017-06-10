@@ -21,31 +21,26 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class Canvas extends JPanel implements Resizable {
 
+    public static final byte numOfBackStates = 5;
+    private static final float ZOOM_INTERVAL = 0.05f;
+    private static final float ZOOM_MAX = 8f;
+    private static final float ZOOM_MIN = ZOOM_INTERVAL;
     //default values
     public static boolean drawPrecision;
     public static boolean drawGrid;
     public static boolean snapToGrid;
     public static boolean antiAlias = true;
-
-    private static BackgroundColorState colorState = BackgroundColorState.LIGHT_BLACK;
-    public static final byte numOfBackStates = 5;
-
-    private final int width;
-    private final int height;
-
     public static int snappedX = 0;
     public static int snappedY = 0;
 
     //zooming properties
     static float currentZoom = 1f;
-    private static final float ZOOM_INTERVAL = 0.05f;
-    private static final float ZOOM_MAX = 8f;
-    private static final float ZOOM_MIN = ZOOM_INTERVAL;
-    private boolean zoomFlag = false;
-
     static float translateCoorX = 0;
     static float translateCoorY = 0;
-
+    private static BackgroundColorState colorState = BackgroundColorState.LIGHT_BLACK;
+    private final int width;
+    private final int height;
+    private boolean zoomFlag = false;
     private RatioButton button;
 
     private int translateDirection = 0;
@@ -65,6 +60,10 @@ public class Canvas extends JPanel implements Resizable {
         addMouseWheelListener(new CustomMouseWheelListener(this));
         addKeyListener(new CustomKeyboardListener(this));
         addMouseMotionListener(new CustomMouseMoveListener(this));
+    }
+
+    public static BackgroundColorState getColorState() {
+        return colorState;
     }
 
     public void moveRequest(int direction) {
@@ -228,10 +227,6 @@ public class Canvas extends JPanel implements Resizable {
 
     public void setColor(BackgroundColorState state) {
         setBackground(new Color(state.red, state.green, state.blue));
-    }
-
-    public static BackgroundColorState getColorState() {
-        return colorState;
     }
 
     @Override

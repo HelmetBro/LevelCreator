@@ -10,10 +10,9 @@ import java.awt.event.ActionListener;
 
 public class GridListener implements ActionListener {
 
+    public static final Color gridColor = Color.gray;
     public static int gridSizeX = 20;
     public static int gridSizeY = 20;
-
-    public static final Color gridColor = Color.gray;
 
     @Override
     public void actionPerformed(ActionEvent e) {

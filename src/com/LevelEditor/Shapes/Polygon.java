@@ -11,16 +11,12 @@ import java.util.Stack;
 
 public class Polygon extends Shape {
 
-    public transient static boolean isHidden;
-
     public static final String logMessage = "Level - added polygon";
     public static final String logMessageDelete = "Level - removed polygon";
-
+    public transient static boolean isHidden;
+    private static Color concaveColor = new Color(175, 95, 0, 180);
     private boolean isConvex;
     private int numPoints;
-
-    private static Color concaveColor = new Color(175, 95, 0, 180);
-
     @XmlElement
     private Stack<Point> points;
 

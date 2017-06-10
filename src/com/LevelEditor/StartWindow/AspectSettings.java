@@ -7,27 +7,22 @@ import java.awt.*;
 
 public class AspectSettings {
 
-    //level creator multiplier
-    private int multiplier;
-
-    //16:9
-    private int aspectRatioX;
-    private int aspectRatioY;
-
-    //size of the window
-    private int windowWidth;
-    private int windowHeight;
-
-    //size of the creation screen
-    private int lvlMakerWidth;
-    private int lvlMakerHeight;
-
     //difference between initial window and creation screen
     public static final int RULER_WIDTH = 65;
     public static final int RULER_HEIGHT = 40;
-
     //extra startWidth for tools window (in pixels)
     public final int toolsWindowSizeX = 180;
+    //level creator multiplier
+    private int multiplier;
+    //16:9
+    private int aspectRatioX;
+    private int aspectRatioY;
+    //size of the window
+    private int windowWidth;
+    private int windowHeight;
+    //size of the creation screen
+    private int lvlMakerWidth;
+    private int lvlMakerHeight;
 
     AspectSettings() {
         autoScale();

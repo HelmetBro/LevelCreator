@@ -8,15 +8,13 @@ import java.util.ArrayList;
 
 public abstract class Shape {
 
+    public transient static boolean isFilled = true;
     //values used for editor
     public transient boolean isSelected;
-    public transient static boolean isFilled = true;
-
-    @XmlElement
-    private ArrayList<Property> properties = new ArrayList<>();
-
     @XmlElement
     public String name;
+    @XmlElement
+    private ArrayList<Property> properties = new ArrayList<>();
 
     //returns a copy of this object with flipped Y values
     public abstract Shape copyFlip();

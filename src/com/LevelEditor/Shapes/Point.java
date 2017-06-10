@@ -7,17 +7,14 @@ import java.awt.geom.Line2D;
 
 public class Point extends Shape {
 
-    public transient static boolean isHidden;
-
     public static final String logMessage = "Level - added point";
     public static final String logMessageDelete = "Level - removed point";
-
-    protected int x;
-    protected int y;
-
+    public static final int pointSize = 7;
     //drawing properties
     private static final int pointLineWidth = 3;
-    public static final int pointSize = 7;
+    public transient static boolean isHidden;
+    protected int x;
+    protected int y;
 
     public Point() {
         this(0, 0);
@@ -112,12 +109,12 @@ public class Point extends Shape {
         return x;
     }
 
-    public int getY() {
-        return y;
-    }
-
     public void setX(int x) {
         this.x = x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public void setY(int y) {

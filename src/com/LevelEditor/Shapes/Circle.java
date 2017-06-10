@@ -7,14 +7,12 @@ import java.awt.*;
 
 public class Circle extends Shape {
 
-    public transient static boolean isHidden;
-
     public static final String logMessage = "Level - added circle";
     public static final String logMessageDelete = "Level - removed circle";
-
+    public transient static boolean isHidden;
+    public int radius;
     private Point topLeft;
     private Point center;
-    public int radius;
 
     public Circle() {
         this(new Point(0, 0), 0);
@@ -44,9 +42,8 @@ public class Circle extends Shape {
 
     }
 
-    public void setCenter(Point p) {
-        this.center = p;
-        this.topLeft = new Point(center.x - radius, center.y - radius);
+    public Point getTopLeft() {
+        return this.topLeft;
     }
 
     public void setTopLeft(Point p) {
@@ -54,12 +51,13 @@ public class Circle extends Shape {
         this.center = new Point(topLeft.x + radius, topLeft.y + radius);
     }
 
-    public Point getTopLeft() {
-        return this.topLeft;
-    }
-
     public Point getCenter() {
         return this.center;
+    }
+
+    public void setCenter(Point p) {
+        this.center = p;
+        this.topLeft = new Point(center.x - radius, center.y - radius);
     }
 
     @Override

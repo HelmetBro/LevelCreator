@@ -20,16 +20,13 @@ import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
 
 public class ObjectsTreeScrollPane extends CustomScrollPane {
 
+    public static JTree listOfShapes;
     private DefaultMutableTreeNode allShapeNodes;
-
     private DefaultMutableTreeNode circleNodes;
     private DefaultMutableTreeNode ellipseNodes;
     private DefaultMutableTreeNode pointNodes;
     private DefaultMutableTreeNode polygonNodes;
     private DefaultMutableTreeNode rectangleNodes;
-
-    public static JTree listOfShapes;
-
     private DefaultTreeModel model;
 
     public ObjectsTreeScrollPane() {

@@ -8,14 +8,6 @@ import javax.swing.event.DocumentEvent;
 
 public class DimensionListener extends ValueDocumentListener {
 
-    public enum DimensionFields {
-        X,
-        Y,
-        WIDTH,
-        HEIGHT,
-        MULTIPLIER,
-    }
-
     private final DimensionFields field;
 
     public DimensionListener(InitializeWindow window, AspectSettings settings, DimensionFields field) {
@@ -86,6 +78,14 @@ public class DimensionListener extends ValueDocumentListener {
         return InitializeWindow.selectionChoice == RadioListener.StartOptions.AUTO ||
                 InitializeWindow.selectionChoice == RadioListener.StartOptions.LOAD ||
                 InitializeWindow.selectionChoice == RadioListener.StartOptions.CUSTOM_AB;
+    }
+
+    public enum DimensionFields {
+        X,
+        Y,
+        WIDTH,
+        HEIGHT,
+        MULTIPLIER,
     }
 
 }

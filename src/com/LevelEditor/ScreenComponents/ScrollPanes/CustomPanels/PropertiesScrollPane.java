@@ -20,22 +20,18 @@ import static com.LevelEditor.Main.smallFontSize;
 
 public class PropertiesScrollPane extends CustomScrollPane {
 
+    public static final String defaultBoxValue = "value";
+    public static final String defaultBoxName = "name";
     private static final Color infoBoxColor = new Color(
             lightColor.getRed(),
             lightColor.getGreen(),
             lightColor.getBlue(),
             Math.abs(lightColor.getAlpha() - 200));
-
     private static final int propBoxHeight = 22;
     private static final int titleBoxHeight = 20;
-
     private JLabel infoTip;
-
     private int windowHeight;
     private int width;
-
-    public static final String defaultBoxValue = "value";
-    public static final String defaultBoxName = "name";
 
     public PropertiesScrollPane(int width, int windowHeight) {
         setFocusable(false);
@@ -46,6 +42,77 @@ public class PropertiesScrollPane extends CustomScrollPane {
         scrollPanel.add(infoTip);
 
         setViewportView(scrollPanel);
+    }
+
+    private static Container createPropertyBox(int y, Property p, int width, Shape shape) {
+
+        Container c = new Container();
+        //FlowLayout flowLayout = new FlowLayout(0);
+        c.setLayout(new BorderLayout(0, 0));
+        c.setBounds(-1, y, width + 1, propBoxHeight);
+
+        //SUBTRACT BUTTON
+        JButton delete = new JButton();
+        delete.setFocusPainted(false);
+        delete.setContentAreaFilled(false);
+        delete.setPreferredSize(new Dimension(20, 20));
+        delete.setBorder(BorderFactory.createEmptyBorder());
+        delete.setFocusable(false);
+        delete.setBackground(backgroundColor);
+        delete.setForeground(lightColor);
+        delete.setFont(basicFont.deriveFont(16f));
+        delete.setText("x");
+        delete.setToolTipText("Click to delete this property");
+        delete.addActionListener(new DeletePropertyListener(p, shape));
+
+        Container nameValueContainer = new Container();
+        nameValueContainer.setLayout(new GridBagLayout());
+
+        //NAME
+        JTextField name = new JTextField(p.name);
+        name.setFont(basicFont.deriveFont(smallFontSize));
+        name.setForeground(lightColor);
+        name.setBackground(backgroundColor);
+        name.setBorder(BorderFactory.createMatteBorder(
+                0, 0, 1, 1, lightColor));
+        name.setHorizontalAlignment(JTextField.CENTER);
+        name.getDocument().addDocumentListener(new EditPropertyNameListener(p));
+        name.setToolTipText("Name of the property [String]");
+
+        //VALUE
+        JTextField value;
+        if (p.data == null)
+            value = new JTextField(defaultBoxValue);
+        else
+            value = new JTextField(p.data);
+        value.setFont(basicFont.deriveFont(smallFontSize));
+        value.setForeground(lightColor);
+        value.setBackground(backgroundColor);
+        value.setBorder(BorderFactory.createMatteBorder(
+                0, 0, 1, 1, lightColor));
+        value.setHorizontalAlignment(JTextField.CENTER);
+        value.getDocument().addDocumentListener(new ConfirmPropertyValueListener(p));
+        value.setToolTipText("Value that the property holds [String]");
+
+        //editing constraints
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.35f;
+        gridBagConstraints.weighty = 0.5f;
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        nameValueContainer.add(name, gridBagConstraints);
+
+        gridBagConstraints.weightx = 0.65f;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        nameValueContainer.add(value, gridBagConstraints);
+
+        c.add(nameValueContainer, BorderLayout.CENTER);
+        c.add(delete, BorderLayout.EAST);
+
+        return c;
     }
 
     public void updatePropertyEditor() {
@@ -122,77 +189,6 @@ public class PropertiesScrollPane extends CustomScrollPane {
         repaint();
     }
 
-    private static Container createPropertyBox(int y, Property p, int width, Shape shape) {
-
-        Container c = new Container();
-        //FlowLayout flowLayout = new FlowLayout(0);
-        c.setLayout(new BorderLayout(0, 0));
-        c.setBounds(-1, y, width + 1, propBoxHeight);
-
-        //SUBTRACT BUTTON
-        JButton delete = new JButton();
-        delete.setFocusPainted(false);
-        delete.setContentAreaFilled(false);
-        delete.setPreferredSize(new Dimension(20, 20));
-        delete.setBorder(BorderFactory.createEmptyBorder());
-        delete.setFocusable(false);
-        delete.setBackground(backgroundColor);
-        delete.setForeground(lightColor);
-        delete.setFont(basicFont.deriveFont(16f));
-        delete.setText("x");
-        delete.setToolTipText("Click to delete this property");
-        delete.addActionListener(new DeletePropertyListener(p, shape));
-
-        Container nameValueContainer = new Container();
-        nameValueContainer.setLayout(new GridBagLayout());
-
-        //NAME
-        JTextField name = new JTextField(p.name);
-        name.setFont(basicFont.deriveFont(smallFontSize));
-        name.setForeground(lightColor);
-        name.setBackground(backgroundColor);
-        name.setBorder(BorderFactory.createMatteBorder(
-                0, 0, 1, 1, lightColor));
-        name.setHorizontalAlignment(JTextField.CENTER);
-        name.getDocument().addDocumentListener(new EditPropertyNameListener(p));
-        name.setToolTipText("Name of the property [String]");
-
-        //VALUE
-        JTextField value;
-        if (p.data == null)
-            value = new JTextField(defaultBoxValue);
-        else
-            value = new JTextField(p.data);
-        value.setFont(basicFont.deriveFont(smallFontSize));
-        value.setForeground(lightColor);
-        value.setBackground(backgroundColor);
-        value.setBorder(BorderFactory.createMatteBorder(
-                0, 0, 1, 1, lightColor));
-        value.setHorizontalAlignment(JTextField.CENTER);
-        value.getDocument().addDocumentListener(new ConfirmPropertyValueListener(p));
-        value.setToolTipText("Value that the property holds [String]");
-
-        //editing constraints
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.fill = GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.35f;
-        gridBagConstraints.weighty = 0.5f;
-
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        nameValueContainer.add(name, gridBagConstraints);
-
-        gridBagConstraints.weightx = 0.65f;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        nameValueContainer.add(value, gridBagConstraints);
-
-        c.add(nameValueContainer, BorderLayout.CENTER);
-        c.add(delete, BorderLayout.EAST);
-
-        return c;
-    }
-
     private void createInfoLabel() {
 
         int labelWidth = 150;
@@ -205,8 +201,7 @@ public class PropertiesScrollPane extends CustomScrollPane {
         infoTip.setFont(basicFont);
 
         infoTip.setForeground(infoBoxColor);
-        infoTip.setBorder(BorderFactory.createMatteBorder(
-                2, 7, 2, 7, infoBoxColor));
+        infoTip.setBorder(BorderFactory.createLineBorder(infoBoxColor));
         infoTip.setBackground(super.getBackground());
     }
 

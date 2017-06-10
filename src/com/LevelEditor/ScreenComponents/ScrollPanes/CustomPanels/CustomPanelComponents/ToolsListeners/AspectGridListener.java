@@ -9,10 +9,9 @@ import java.awt.event.ActionListener;
 
 public class AspectGridListener implements ActionListener {
 
-    public static boolean isSelected;
-
     /* What to multiply aspect ratio by, if y or x is less than 5 */
     private static final int MINI_MULTIPLIER = 5;
+    public static boolean isSelected;
 
     @Override
     public void actionPerformed(ActionEvent e) {

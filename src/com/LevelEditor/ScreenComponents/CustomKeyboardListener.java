@@ -21,6 +21,14 @@ public class CustomKeyboardListener implements KeyListener {
         this.canvas = canvas;
     }
 
+    public static boolean isPressingCtrl() {
+        return pressingCtrl;
+    }
+
+    public static boolean isPressingShift() {
+        return pressingShift;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -60,14 +68,6 @@ public class CustomKeyboardListener implements KeyListener {
     public void keyReleased(KeyEvent e) {
         pressingCtrl = e.isControlDown();
         pressingShift = e.isShiftDown();
-    }
-
-    public static boolean isPressingCtrl() {
-        return pressingCtrl;
-    }
-
-    public static boolean isPressingShift() {
-        return pressingShift;
     }
 
 }

@@ -8,16 +8,8 @@ import java.awt.event.ActionListener;
 
 public class RadioListener implements ActionListener {
 
-    public enum StartOptions {
-        LOAD,
-        AUTO,
-        CUSTOM_AR,
-        CUSTOM_AB
-    }
-
     private final StartOptions selection;
     private final InitializeWindow window;
-
     public RadioListener(StartOptions selection, InitializeWindow window) {
         this.selection = selection;
         this.window = window;
@@ -31,6 +23,13 @@ public class RadioListener implements ActionListener {
             InitializeWindow.getSettings().autoScale();
             window.updateRatioText();
         }
+    }
+
+    public enum StartOptions {
+        LOAD,
+        AUTO,
+        CUSTOM_AR,
+        CUSTOM_AB
     }
 
 }

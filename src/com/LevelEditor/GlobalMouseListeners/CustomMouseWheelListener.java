@@ -13,11 +13,9 @@ import java.awt.event.MouseWheelListener;
 
 public class CustomMouseWheelListener implements MouseWheelListener {
 
-    private static EMouseStates currentMouseEnumState = EMouseStates.SELECTION;
-
     public static String[] stateStrings = {"Polygon", "Selection", "Rectangle", "Ellipse", "Circle", "Point"};
-
     private static final int numOfMouseStates = stateStrings.length;
+    private static EMouseStates currentMouseEnumState = EMouseStates.SELECTION;
     private static MouseState polyState;
     private static MouseState normalState;
     private static MouseState rectState;

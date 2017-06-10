@@ -7,12 +7,10 @@ import java.awt.event.ActionListener;
 
 public abstract class ExportAction implements ActionListener {
 
-    private JFrame browser = new JFrame();
-
     public static final String JSONExtension = "json";
     public static final String XMLExtension = "xml";
-
     public static boolean prettyPrint;
+    private JFrame browser = new JFrame();
 
     protected String showSaveFileDialog(String fileChooserTitle) {
         JFileChooser fileChooser = new JFileChooser();

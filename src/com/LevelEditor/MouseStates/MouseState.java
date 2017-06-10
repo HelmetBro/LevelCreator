@@ -28,27 +28,6 @@ public abstract class MouseState {
     protected static int currentClickX = 0;
     protected static int currentClickY = 0;
 
-    public enum EMouseStates {
-
-        POLYGON(0),
-        SELECTION(1),
-        RECTANGLE(2),
-        ELLIPSE(3),
-        CIRCLE(4),
-        POINT(5);
-
-        private int index;
-
-        EMouseStates(int index) {
-            this.index = index;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-    }
-
     public void updateLayer(Graphics2D g) {
 
         if (Canvas.snapToGrid) {
@@ -108,5 +87,26 @@ public abstract class MouseState {
     public abstract void mouseEntered(MouseEvent e);
 
     public abstract void mouseExited(MouseEvent e);
+
+    public enum EMouseStates {
+
+        POLYGON(0),
+        SELECTION(1),
+        RECTANGLE(2),
+        ELLIPSE(3),
+        CIRCLE(4),
+        POINT(5);
+
+        private int index;
+
+        EMouseStates(int index) {
+            this.index = index;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+    }
 
 }

@@ -9,10 +9,9 @@ import javax.swing.event.ChangeListener;
 
 public class SliderListener implements ChangeListener {
 
-    private JLabel valueLabel;
-
     //start value is gridSizeX
     public static int sliderValue = GridListener.gridSizeX;
+    private JLabel valueLabel;
 
     public SliderListener(JLabel valueLabel) {
         this.valueLabel = valueLabel;

@@ -33,20 +33,8 @@ import static com.LevelEditor.ApplicationWindow.lightColor;
 public class InitializeWindow extends JFrame {
 
     private static final String TITLE = "Level Creator Prototype v1.5";
-
-    public static String filePath;
-    public static boolean isFileLoaded;
-    public static boolean isJSONNotXML;
-
-    public static RadioListener.StartOptions selectionChoice = RadioListener.StartOptions.AUTO;
-
-    private static AspectSettings settings;
-
     private static final int progressMaximum = 100;
     private static final int progressMinimum = 0;
-
-    private static DarkProgressBar progressBar;
-
     private static final Font bigFont = new Font("Consolas", Font.PLAIN, 24);
     private static final Font normalFont = new Font("Consolas", Font.PLAIN, 14);
     private static final Font smallFont = new Font("Consolas", Font.PLAIN, 12);
@@ -57,9 +45,15 @@ public class InitializeWindow extends JFrame {
             lightColor.getBlue(),
             Math.abs(lightColor.getAlpha() - 200));
     private static final Color startButtonColor = new Color(34, 34, 31);
-
+    private static final int initializeWindowWidth = 410;
+    private static final int initializeWindowHeight = 490;
+    public static String filePath;
+    public static boolean isFileLoaded;
+    public static boolean isJSONNotXML;
+    public static RadioListener.StartOptions selectionChoice = RadioListener.StartOptions.LOAD;
     public static JTextField pathField;
-
+    private static AspectSettings settings;
+    private static DarkProgressBar progressBar;
     private boolean changingDocuments;
     private JTextField multiplierField;
     private JTextField widthField;
@@ -68,9 +62,6 @@ public class InitializeWindow extends JFrame {
     private JTextField yField;
     private JTextField absoluteWidth;
     private JTextField absoluteHeight;
-
-    private static final int initializeWindowWidth = 410;
-    private static final int initializeWindowHeight = 490;
 
     public InitializeWindow() {
         setPreferredSize(new Dimension(initializeWindowWidth, initializeWindowHeight));
@@ -101,6 +92,14 @@ public class InitializeWindow extends JFrame {
         setVisible(true);
     }
 
+    public static void updateProgressBar(int value) {
+        SwingUtilities.invokeLater(() -> progressBar.setValue(value));
+    }
+
+    public static AspectSettings getSettings() {
+        return settings;
+    }
+
     private void title() {
         JLabel title = new JLabel(TITLE, SwingConstants.CENTER);
         title.setFocusable(false);
@@ -129,11 +128,11 @@ public class InitializeWindow extends JFrame {
         DarkerRadioButton load = new DarkerRadioButton("Load File", normalFont);
         load.setToolTipText("Loads up a JSON or XML file to resume editing");
         load.addActionListener(new RadioListener(RadioListener.StartOptions.LOAD, this));
+        load.setSelected(true);
 
         DarkerRadioButton auto = new DarkerRadioButton("Auto Scale", normalFont);
         auto.setToolTipText("Creates new level with dimensions that auto scale according to your monitor");
         auto.addActionListener(new RadioListener(RadioListener.StartOptions.AUTO, this));
-        auto.setSelected(true);
 
         DarkerRadioButton customAR = new DarkerRadioButton("Custom by Aspect Ratio", normalFont);
         customAR.setToolTipText("Creates new level with custom aspect ratio properties below");
@@ -518,49 +517,6 @@ public class InitializeWindow extends JFrame {
 
     }
 
-    public static void updateProgressBar(int value) {
-        SwingUtilities.invokeLater(() -> progressBar.setValue(value));
-    }
-
-    class BeginListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            progressBar.setVisible(true);
-            settings.windowSettings();
-
-            if (selectionChoice == RadioListener.StartOptions.LOAD) {
-
-                //read contents of that file, see if it can be loaded
-                if (!loadFile()) {
-                    progressBar.setVisible(false);
-
-                    return;
-                }
-
-                //if we get here, then we successfully loaded a file
-                isFileLoaded = true;
-
-            } else {
-                //creating a new level
-                Main.currentLevel = new Level(settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
-            }
-
-            InitializeWindow.updateProgressBar(50);
-
-            //creating application
-            Main.applicationWindow = new ApplicationWindow(settings);
-
-            if (Main.currentLevel.flipY)
-                Main.currentLevel = Main.currentLevel.flipYCopy();
-
-            InitializeWindow.updateProgressBar(100);
-
-            dispose();
-        }
-
-    }
-
     private boolean loadFile() {
 
         filePath = InitializeWindow.pathField.getText();
@@ -609,8 +565,43 @@ public class InitializeWindow extends JFrame {
 
     }
 
-    public static AspectSettings getSettings() {
-        return settings;
+    class BeginListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            progressBar.setVisible(true);
+            settings.windowSettings();
+
+            if (selectionChoice == RadioListener.StartOptions.LOAD) {
+
+                //read contents of that file, see if it can be loaded
+                if (!loadFile()) {
+                    progressBar.setVisible(false);
+
+                    return;
+                }
+
+                //if we get here, then we successfully loaded a file
+                isFileLoaded = true;
+
+            } else {
+                //creating a new level
+                Main.currentLevel = new Level(settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
+            }
+
+            InitializeWindow.updateProgressBar(50);
+
+            //creating application
+            Main.applicationWindow = new ApplicationWindow(settings);
+
+            if (Main.currentLevel.flipY)
+                Main.currentLevel = Main.currentLevel.flipYCopy();
+
+            InitializeWindow.updateProgressBar(100);
+
+            dispose();
+        }
+
     }
 
 }

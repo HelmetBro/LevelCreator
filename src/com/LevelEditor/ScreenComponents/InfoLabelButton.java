@@ -14,10 +14,9 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class InfoLabelButton extends JButton implements Resizable {
 
+    public static final int heightOfLabel = 30;
     private int startX;
     private int startY;
-
-    public static final int heightOfLabel = 30;
 
     public InfoLabelButton(int x, int y, int width) {
         this.startX = x;

@@ -24,11 +24,12 @@ public class UpdatePaint {
     }
 
     //artificial method to reduce delay
-    private static void delay(){
+    private static void delay() {
 
         try {
             Thread.sleep(2);
-        } catch (InterruptedException ignore) {}
+        } catch (InterruptedException ignore) {
+        }
 
     }
 

@@ -29,33 +29,25 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class ApplicationWindow extends JFrame {
 
+    public static final Color selectionColor = new Color(111, 59, 255, 100);
+    public static final Color shapeColor = new Color(0, 137, 153, 180);
+    public static final Color backgroundColor = new Color(34, 34, 31);
+    public static final Color backgroundShadedColor = new Color(24, 24, 21);
+    public static final Color lightColor = new Color(175, 175, 172);
+    public static final Color lightShadedColor = new Color(165, 165, 162);
+    public static final Color borderColor = lightShadedColor.darker().darker();
+    public static final Font basicFont = new Font("Consolas", Font.PLAIN, 14);
+    private static final Font fontOfLabels = new Font("monospaced", Font.BOLD, 14);
     public static AspectSettings settings;
-
     public static InfoLabelButton infoLabelButton;
     public static ScrollPaneHandler scrollPaneHandler;
     public static Canvas canvas;
     public static ScrollHolder scrollHolder;
     public static CanvasHolder panelHolder;
-
     static BackRightYPanel backRightYPanel;
     static BackTopXPanel backTopXPanel;
-
     static RatioButton ratioButton;
     static ToolBarButton toolBarButton;
-
-    public static final Color selectionColor = new Color(111, 59, 255, 100);
-    public static final Color shapeColor = new Color(0, 137, 153, 180);
-
-    public static final Color backgroundColor = new Color(34, 34, 31);
-    public static final Color backgroundShadedColor = new Color(24, 24, 21);
-
-    public static final Color lightColor = new Color(175, 175, 172);
-    public static final Color lightShadedColor = new Color(165, 165, 162);
-
-    public static final Color borderColor = lightShadedColor.darker().darker();
-
-    private static final Font fontOfLabels = new Font("monospaced", Font.BOLD, 14);
-    public static final Font basicFont = new Font("Consolas", Font.PLAIN, 14);
 
     public ApplicationWindow(AspectSettings settings) {
         ApplicationWindow.settings = settings;

@@ -12,12 +12,10 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class RatioButton extends JButton implements Resizable {
 
-    private int startX;
-
-    private final String text;
-
     //zoom properties
     private static float TIMER = 2f;
+    private final String text;
+    private int startX;
     private float duration = 0f;
     private boolean zooming = false;
     private String zoomText;

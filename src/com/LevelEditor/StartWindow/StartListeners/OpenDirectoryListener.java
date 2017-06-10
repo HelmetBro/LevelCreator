@@ -14,6 +14,17 @@ public class OpenDirectoryListener implements ActionListener {
 
     private JFrame browser = new JFrame();
 
+    public static String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 && i < s.length() - 1) {
+            ext = s.substring(i + 1).toLowerCase();
+        }
+        return ext;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -49,17 +60,6 @@ public class OpenDirectoryListener implements ActionListener {
             return fileChooser.getSelectedFile().getAbsoluteFile().toString();
 
         return null;
-    }
-
-    public static String getExtension(File f) {
-        String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-
-        if (i > 0 && i < s.length() - 1) {
-            ext = s.substring(i + 1).toLowerCase();
-        }
-        return ext;
     }
 
 }
