@@ -1,5 +1,7 @@
 package com.LevelEditor.TabActions.HelpTabActions;
 
+import com.LevelEditor.ApplicationWindow;
+
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import java.awt.*;
@@ -24,12 +26,12 @@ public class DonateActionListener implements ActionListener {
 
         // for copying style
         JLabel label = new JLabel();
-        Font font = label.getFont();
+        Font font = ApplicationWindow.basicFont;
 
         // create some css from the label's font
         StringBuilder style = new StringBuilder("font-family:" + font.getFamily() + ";");
         style.append("font-weight:").append("normal").append(";");
-        style.append("font-size:").append(font.getSize()).append("pt;");
+        style.append("font-size:").append(12).append("pt;"); //12 is font size
         style.append("color:").append(
                 "rgb(" + lightColor.getRed() + "," + lightColor.getGreen() + "," + lightColor.getBlue() + ")"
         ).append("pt;");
