@@ -1,4 +1,4 @@
-package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
+package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility;
 
 import com.LevelEditor.UpdatePaint;
 
@@ -6,19 +6,19 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+public class HidePathsListener implements ActionListener {
 
-public class ShapeFillListener implements ActionListener {
-
-    public static boolean isFilled = true;
+    public static boolean isHidden;
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         AbstractButton abstractButton = (AbstractButton) e.getSource();
 
-        isFilled = abstractButton.getModel().isSelected();
+        isHidden = abstractButton.getModel().isSelected();
 
         UpdatePaint.remakeAll();
+
     }
 
 }

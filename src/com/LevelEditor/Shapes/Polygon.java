@@ -2,6 +2,9 @@ package com.LevelEditor.Shapes;
 
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
 import com.LevelEditor.Utilities;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -14,7 +17,6 @@ public class Polygon extends Shape {
 
     public static final String logMessage = "Level - added polygon";
     public static final String logMessageDelete = "Level - removed polygon";
-    public transient static boolean isHidden;
     private static Color concaveColor = new Color(175, 95, 0, 180);
     private boolean isConvex;
     private int numPoints;
@@ -28,7 +30,7 @@ public class Polygon extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!showName || !hasUniqueName)
+        if (!hasUniqueName)
             return;
 
         Point centroid = compute2DPolygonCentroid();
@@ -42,16 +44,13 @@ public class Polygon extends Shape {
 
     @Override
     public void drawHitBox(Graphics2D g) {
-        if (!showHitBox)
+        if (HideHitBoxesListener.isHidden)
             return;
 
 
     }
 
     public void drawShape(Graphics2D g) {
-
-        if (isHidden)
-            return;
 
         java.awt.Polygon javaPoly = new java.awt.Polygon();
 
@@ -66,7 +65,7 @@ public class Polygon extends Shape {
             g.setColor(concaveColor);
 
 
-        if (isFilled)
+        if (ShapeFillListener.isFilled)
             g.fillPolygon(javaPoly);
         else
             g.drawPolygon(javaPoly);

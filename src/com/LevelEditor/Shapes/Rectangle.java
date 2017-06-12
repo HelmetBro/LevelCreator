@@ -2,6 +2,9 @@ package com.LevelEditor.Shapes;
 
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -10,7 +13,6 @@ public class Rectangle extends Shape {
 
     public static final String logMessage = "Level - added rectangle";
     public static final String logMessageDelete = "Level - removed rectangle";
-    public transient static boolean isHidden;
     public int width;
     public int height;
     private Point topLeft;
@@ -29,7 +31,7 @@ public class Rectangle extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!showName || !hasUniqueName)
+        if (!hasUniqueName)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -41,7 +43,7 @@ public class Rectangle extends Shape {
 
     @Override
     public void drawHitBox(Graphics2D g) {
-        if (!showHitBox)
+        if (HideHitBoxesListener.isHidden)
             return;
 
 
@@ -49,15 +51,12 @@ public class Rectangle extends Shape {
 
     public void drawShape(Graphics2D g) {
 
-        if (isHidden)
-            return;
-
         if (super.isSelected)
             g.setColor(ApplicationWindow.selectionColor);
         else
             g.setColor(ApplicationWindow.shapeColor);
 
-        if (isFilled)
+        if (ShapeFillListener.isFilled)
             g.fillRect(topLeft.x, topLeft.y, width, height);
         else
             g.drawRect(topLeft.x, topLeft.y, width, height);

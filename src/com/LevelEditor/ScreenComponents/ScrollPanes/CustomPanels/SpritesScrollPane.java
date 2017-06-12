@@ -4,7 +4,6 @@ import com.LevelEditor.ManageLevelArrayLists;
 import com.LevelEditor.Shapes.Shape;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.ArrayList;
 

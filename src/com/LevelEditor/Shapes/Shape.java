@@ -9,15 +9,8 @@ import java.util.ArrayList;
 
 public abstract class Shape {
 
-    //values used for editor
-    public transient static boolean isFilled = true;
-
     public transient boolean hasUniqueName;
-    public transient static boolean showName = true;
-
     public transient boolean hasHitBox;
-    public transient static boolean showHitBox = true;
-
     public transient boolean isSelected;
 
     @XmlElement

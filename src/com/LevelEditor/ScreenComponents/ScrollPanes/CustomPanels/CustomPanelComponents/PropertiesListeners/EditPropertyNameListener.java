@@ -25,8 +25,7 @@ public class EditPropertyNameListener implements DocumentListener {
 
         try {
             newName = e.getDocument().getText(0, e.getDocument().getLength());
-        } catch (BadLocationException ignored) {
-        }
+        } catch (BadLocationException ignored) {}
 
         p.name = newName;
     }

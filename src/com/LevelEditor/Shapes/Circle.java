@@ -2,6 +2,9 @@ package com.LevelEditor.Shapes;
 
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -10,7 +13,6 @@ public class Circle extends Shape {
 
     public static final String logMessage = "Level - added circle";
     public static final String logMessageDelete = "Level - removed circle";
-    public transient static boolean isHidden;
     public int radius;
     private Point topLeft;
     private Point center;
@@ -27,16 +29,13 @@ public class Circle extends Shape {
 
     public void drawShape(Graphics2D g) {
 
-        if (isHidden)
-            return;
-
         if (super.isSelected)
             g.setColor(ApplicationWindow.selectionColor);
         else
             g.setColor(ApplicationWindow.shapeColor);
 
 
-        if (isFilled)
+        if (ShapeFillListener.isFilled)
             g.fillOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
         else
             g.drawOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
@@ -45,7 +44,7 @@ public class Circle extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!showName || !hasUniqueName)
+        if (!hasUniqueName)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -57,7 +56,7 @@ public class Circle extends Shape {
 
     @Override
     public void drawHitBox(Graphics2D g) {
-        if (!showHitBox)
+        if (HideHitBoxesListener.isHidden)
             return;
 
 

@@ -7,7 +7,6 @@ import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComp
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners.DeletePropertyListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners.EditPropertyNameListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners.EditShapeNameListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.Shapes.Properties.Property;
 import com.LevelEditor.Shapes.Shape;
 

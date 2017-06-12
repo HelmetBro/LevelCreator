@@ -1,5 +1,8 @@
 package com.LevelEditor;
 
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideNamesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HidePointsListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
 import com.LevelEditor.Shapes.*;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Polygon;
@@ -10,8 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static com.LevelEditor.ApplicationWindow.basicFont;
 
 @XmlRootElement(name = "Level")
 public class Level {
@@ -76,17 +77,20 @@ public class Level {
         g.setFont(font);
         g.setColor(fontColor);
 
-        for (Circle c : safeCircles)
-            c.drawName(g, font);
-        for (Ellipse e : safeEllipses)
-            e.drawName(g, font);
-        for (Point p : safePoints)
-            p.drawName(g, font);
-        for (Polygon p : safePolygons)
-            p.drawName(g, font);
-        for (Rectangle r : safeRectangles)
-            r.drawName(g, font);
+        if (!HideShapesListener.isHidden && !HideNamesListener.isHidden){
+            for (Circle c : safeCircles)
+                c.drawName(g, font);
+            for (Ellipse e : safeEllipses)
+                e.drawName(g, font);
+            for (Polygon p : safePolygons)
+                p.drawName(g, font);
+            for (Rectangle r : safeRectangles)
+                r.drawName(g, font);
+        }
 
+        if (!HidePointsListener.isHidden && !HideNamesListener.isHidden)
+            for (Point p : safePoints)
+                p.drawName(g, font);
     }
 
     private void drawShapes(Graphics2D g,
@@ -96,17 +100,20 @@ public class Level {
                            CopyOnWriteArrayList<Polygon> safePolygons,
                            CopyOnWriteArrayList<Rectangle> safeRectangles){
 
-        for (Circle c : safeCircles)
-            c.drawShape(g);
-        for (Ellipse e : safeEllipses)
-            e.drawShape(g);
-        for (Point p : safePoints)
-            p.drawShape(g);
-        for (Polygon p : safePolygons)
-            p.drawShape(g);
-        for (Rectangle r : safeRectangles)
-            r.drawShape(g);
+        if (!HideShapesListener.isHidden){
+            for (Circle c : safeCircles)
+                c.drawShape(g);
+            for (Ellipse e : safeEllipses)
+                e.drawShape(g);
+            for (Polygon p : safePolygons)
+                p.drawShape(g);
+            for (Rectangle r : safeRectangles)
+                r.drawShape(g);
+        }
 
+        if (!HidePointsListener.isHidden)
+            for (Point p : safePoints)
+                p.drawShape(g);
     }
 
     public Level flipYCopy() {

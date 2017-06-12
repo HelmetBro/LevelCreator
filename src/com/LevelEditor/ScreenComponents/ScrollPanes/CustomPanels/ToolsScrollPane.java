@@ -6,7 +6,7 @@ import com.LevelEditor.ScreenComponents.DarkComponents.DarkCheckBox.DarkerCheckB
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkRadioButton.DarkerRadioButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.DarkSlider;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.*;
-import com.LevelEditor.Shapes.ShapeType;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,37 +62,37 @@ public class ToolsScrollPane extends CustomScrollPane {
         editorLabel.setBackground(backgroundShadedColor);
         editorLabel.setForeground(lightColor);
 
-        //circles
-        DarkerCheckBox circles = new DarkerCheckBox("Hide Circles", basicFont);
-        circles.setToolTipText("Enable to hide all circles");
-        circles.addActionListener(new HideShapeListener(ShapeType.CIRCLE));
+        //shapes
+        DarkerCheckBox shapes = new DarkerCheckBox("Hide Shapes", basicFont);
+        shapes.setToolTipText("Enable to hide all shapes");
+        shapes.addActionListener(new HideShapesListener());
 
-        //ellipses
-        DarkerCheckBox ellipses = new DarkerCheckBox("Hide Ellipses", basicFont);
-        ellipses.setToolTipText("Enable to hide all ellipses");
-        ellipses.addActionListener(new HideShapeListener(ShapeType.ELLIPSE));
+        //names
+        DarkerCheckBox names = new DarkerCheckBox("Hide Names", basicFont);
+        names.setToolTipText("Enable to hide all hovering names");
+        names.addActionListener(new HideNamesListener());
+
+        //hit boxes
+        DarkerCheckBox hitBoxes = new DarkerCheckBox("Hide Hit Boxes", basicFont);
+        hitBoxes.setToolTipText("Enable to hide all dashed line hit boxer");
+        hitBoxes.addActionListener(new HideHitBoxesListener());
 
         //points
         DarkerCheckBox points = new DarkerCheckBox("Hide Points", basicFont);
         points.setToolTipText("Enable to hide all points");
-        points.addActionListener(new HideShapeListener(ShapeType.POINT));
+        points.addActionListener(new HidePointsListener());
 
-        //polygons
-        DarkerCheckBox polygons = new DarkerCheckBox("Hide Polygons", basicFont);
-        polygons.setToolTipText("Enable to hide all polygons");
-        polygons.addActionListener(new HideShapeListener(ShapeType.POLYGON));
-
-        //rectangles
-        DarkerCheckBox rectangles = new DarkerCheckBox("Hide Rectangles", basicFont);
-        rectangles.setToolTipText("Enable to hide all rectangles");
-        rectangles.addActionListener(new HideShapeListener(ShapeType.RECTANGLE));
+        //paths
+        DarkerCheckBox paths = new DarkerCheckBox("Hide Paths", basicFont);
+        paths.setToolTipText("Enable to hide all dashed line paths");
+        paths.addActionListener(new HidePathsListener());
 
         p.add(editorLabel);
-        p.add(circles);
-        p.add(ellipses);
+        p.add(shapes);
+        p.add(names);
+        p.add(hitBoxes);
         p.add(points);
-        p.add(polygons);
-        p.add(rectangles);
+        p.add(paths);
 
         return p;
     }
