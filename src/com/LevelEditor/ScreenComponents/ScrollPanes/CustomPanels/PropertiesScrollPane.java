@@ -37,7 +37,8 @@ public class PropertiesScrollPane extends CustomScrollPane {
         setFocusable(false);
         this.windowHeight = windowHeight;
         this.width = width - (int) getVerticalScrollBar().getPreferredSize().getWidth();
-        createInfoLabel();
+
+        infoTip = createInfoLabel();
 
         scrollPanel.add(infoTip);
 
@@ -124,9 +125,9 @@ public class PropertiesScrollPane extends CustomScrollPane {
 
         //manages is info tip is there or not based off # of shapes
         if (shapes.size() > 0) {
-            ScrollPaneHandler.propSP.removeInfoTip();
+            scrollPanel.remove(infoTip);
         } else {
-            ScrollPaneHandler.propSP.addInfoTip();
+            scrollPanel.add(infoTip);
 
             //resetting the window startHeight without spacing
             scrollPanel.setPreferredSize(new Dimension(width, windowHeight));
@@ -142,7 +143,6 @@ public class PropertiesScrollPane extends CustomScrollPane {
         //starting position is 5
         int lastHeight = 5;
 
-        //iterate through shapes
         for (Shape shape : shapes) {
 
             //TITLE
@@ -189,7 +189,9 @@ public class PropertiesScrollPane extends CustomScrollPane {
         repaint();
     }
 
-    private void createInfoLabel() {
+    private JLabel createInfoLabel() {
+
+        JLabel infoTip;
 
         int labelWidth = 150;
 
@@ -203,14 +205,8 @@ public class PropertiesScrollPane extends CustomScrollPane {
         infoTip.setForeground(infoBoxColor);
         infoTip.setBorder(BorderFactory.createLineBorder(infoBoxColor));
         infoTip.setBackground(super.getBackground());
-    }
 
-    private void removeInfoTip() {
-        scrollPanel.remove(infoTip);
-    }
-
-    private void addInfoTip() {
-        scrollPanel.add(infoTip);
+        return infoTip;
     }
 
 }

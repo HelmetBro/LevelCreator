@@ -140,7 +140,7 @@ public class Canvas extends JPanel implements Resizable {
         g2d.scale(currentZoom, currentZoom);
         g2d.translate(translateCoorX, translateCoorY);
 
-        //draw outline so user can see canvas
+        //drawShape outline so user can see canvas
         g2d.setColor(lightColor);
         g2d.drawRect(-1, -1, width + 1, height + 1);
     }

@@ -11,6 +11,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static com.LevelEditor.ApplicationWindow.basicFont;
+
 @XmlRootElement(name = "Level")
 public class Level {
 
@@ -33,8 +35,10 @@ public class Level {
     @XmlElement(name = "Rectangles")
     public ArrayList<Rectangle> rectangles;
 
-    public Level() {
-    }
+    private transient Font font = new Font("Consolas", Font.PLAIN, 16);
+    private transient Color fontColor = new Color(216, 216, 213, 170);
+
+    public Level() {}
 
     public Level(int width, int height) {
 
@@ -57,20 +61,51 @@ public class Level {
         CopyOnWriteArrayList<Polygon> safePolygons = new CopyOnWriteArrayList<>(polygons);
         CopyOnWriteArrayList<Rectangle> safeRectangles = new CopyOnWriteArrayList<>(rectangles);
 
+        drawShapes(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles);
+        drawNames(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles);
+
+    }
+
+    private void drawNames(Graphics2D g,
+                           CopyOnWriteArrayList<Circle> safeCircles,
+                           CopyOnWriteArrayList<Ellipse> safeEllipses,
+                           CopyOnWriteArrayList<Point> safePoints,
+                           CopyOnWriteArrayList<Polygon> safePolygons,
+                           CopyOnWriteArrayList<Rectangle> safeRectangles){
+
+        g.setFont(font);
+        g.setColor(fontColor);
+
         for (Circle c : safeCircles)
-            c.drawCircle(g);
-
+            c.drawName(g, font);
         for (Ellipse e : safeEllipses)
-            e.drawEllipse(g);
-
+            e.drawName(g, font);
         for (Point p : safePoints)
-            p.drawPoint(g);
-
+            p.drawName(g, font);
         for (Polygon p : safePolygons)
-            p.drawPolygon(g);
-
+            p.drawName(g, font);
         for (Rectangle r : safeRectangles)
-            r.drawRectangle(g);
+            r.drawName(g, font);
+
+    }
+
+    private void drawShapes(Graphics2D g,
+                           CopyOnWriteArrayList<Circle> safeCircles,
+                           CopyOnWriteArrayList<Ellipse> safeEllipses,
+                           CopyOnWriteArrayList<Point> safePoints,
+                           CopyOnWriteArrayList<Polygon> safePolygons,
+                           CopyOnWriteArrayList<Rectangle> safeRectangles){
+
+        for (Circle c : safeCircles)
+            c.drawShape(g);
+        for (Ellipse e : safeEllipses)
+            e.drawShape(g);
+        for (Point p : safePoints)
+            p.drawShape(g);
+        for (Polygon p : safePolygons)
+            p.drawShape(g);
+        for (Rectangle r : safeRectangles)
+            r.drawShape(g);
 
     }
 

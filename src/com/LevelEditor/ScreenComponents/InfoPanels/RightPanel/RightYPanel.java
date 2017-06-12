@@ -26,7 +26,7 @@ public class RightYPanel extends SidePanel implements Resizable {
 
     protected void drawIncrements(Graphics2D g) {
 
-        //draw increments
+        //drawShape increments
         for (int i = 0; i < height; i += smallLineIncrementY) {
 
             if (i % bigLineIncrementY == 0) {

@@ -59,11 +59,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
 
         }
 
-        CustomMouseListener.currentState = enumToMouseState(currentMouseEnumState);
-
-        InfoLabelButton.updateStateLabelText(currentMouseEnumState);
-
-        UpdatePaint.remakeWindow();
+        switchState(currentMouseEnumState);
     }
 
     public void manualWheelMove(int rotationTicks) {
@@ -73,11 +69,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
         else
             incrementEnumState();
 
-        CustomMouseListener.currentState = enumToMouseState(currentMouseEnumState);
-
-        InfoLabelButton.updateStateLabelText(currentMouseEnumState);
-
-        UpdatePaint.remakeWindow();
+        switchState(currentMouseEnumState);
     }
 
     private void incrementEnumState() {
@@ -95,7 +87,16 @@ public class CustomMouseWheelListener implements MouseWheelListener {
 
     }
 
-    private MouseState enumToMouseState(EMouseStates eState) {
+    public static void switchState(EMouseStates state)
+    {
+        CustomMouseListener.currentState = enumToMouseState(state);
+
+        InfoLabelButton.updateStateLabelText(state);
+
+        UpdatePaint.remakeWindow();
+    }
+
+    private static MouseState enumToMouseState(EMouseStates eState) {
 
         switch (eState) {
 

@@ -25,7 +25,7 @@ public class TopXPanel extends SidePanel implements Resizable {
 
     protected void drawIncrements(Graphics2D g) {
 
-        //draw increments
+        //drawShape increments
         for (int i = 0; i < width; i += smallLineIncrementX) {
 
             if (i % bigLineIncrementX == 0) {

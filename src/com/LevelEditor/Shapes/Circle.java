@@ -4,6 +4,7 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 
 public class Circle extends Shape {
 
@@ -24,7 +25,7 @@ public class Circle extends Shape {
         this.radius = radius;
     }
 
-    public void drawCircle(Graphics2D g) {
+    public void drawShape(Graphics2D g) {
 
         if (isHidden)
             return;
@@ -39,6 +40,26 @@ public class Circle extends Shape {
             g.fillOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
         else
             g.drawOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
+
+    }
+
+    @Override
+    public void drawName(Graphics2D g, Font font) {
+        if (!showName || !hasUniqueName)
+            return;
+
+        FontRenderContext frc = g.getFontRenderContext();
+        float fontWidth = g.getFontMetrics().stringWidth(name);
+        float fontHeight = font.getLineMetrics(name, frc).getHeight();
+
+        g.drawString(name, center.x - fontWidth/2f, center.y - fontHeight/2f);
+    }
+
+    @Override
+    public void drawHitBox(Graphics2D g) {
+        if (!showHitBox)
+            return;
+
 
     }
 

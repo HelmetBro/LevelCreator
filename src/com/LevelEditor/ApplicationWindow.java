@@ -1,5 +1,6 @@
 package com.LevelEditor;
 
+import com.LevelEditor.MouseStates.MouseState;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.ScreenComponents.Canvas.CanvasHolder;
 import com.LevelEditor.ScreenComponents.Canvas.ScrollHolder;
@@ -18,6 +19,7 @@ import com.LevelEditor.TabActions.HelpTabActions.DonateActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.HowToUseActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.ReportBugActionListener;
 import com.LevelEditor.TabActions.HelpTabActions.SuggestionActionListener;
+import com.LevelEditor.TabActions.ToolsTabActions.SwitchToolActionListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -164,6 +166,48 @@ public class ApplicationWindow extends JFrame {
         fileTab.add(exportToXML);
         fileTab.add(exit);
 
+        //tools tab------
+        JMenu toolsTab = new JMenu("Tools");
+        toolsTab.setMnemonic(KeyEvent.VK_T);
+        toolsTab.setForeground(lightShadedColor);
+
+        JMenuItem circle = new JMenuItem("Circle");
+        circle.setMnemonic(KeyEvent.VK_C);
+        circle.setToolTipText("Switches current tool to Circle creator");
+        circle.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.CIRCLE));
+
+        JMenuItem ellipse = new JMenuItem("Ellipse");
+        ellipse.setMnemonic(KeyEvent.VK_E);
+        ellipse.setToolTipText("Switches current tool to ellipse creator");
+        ellipse.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.ELLIPSE));
+
+        JMenuItem point = new JMenuItem("Point");
+        point.setMnemonic(KeyEvent.VK_P);
+        point.setToolTipText("Switches current tool to point creator");
+        point.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.POINT));
+
+        JMenuItem polygon = new JMenuItem("Polygon");
+        polygon.setMnemonic(KeyEvent.VK_L);
+        polygon.setToolTipText("Switches current tool to polygon creator");
+        polygon.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.POLYGON));
+
+        JMenuItem rectangle = new JMenuItem("Rectangle");
+        rectangle.setMnemonic(KeyEvent.VK_R);
+        rectangle.setToolTipText("Switches current tool to rectangle creator");
+        rectangle.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.RECTANGLE));
+
+        JMenuItem selection = new JMenuItem("Selection");
+        selection.setMnemonic(KeyEvent.VK_S);
+        selection.setToolTipText("Switches current tool to object selector");
+        selection.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.SELECTION));
+
+        toolsTab.add(circle);
+        toolsTab.add(ellipse);
+        toolsTab.add(point);
+        toolsTab.add(polygon);
+        toolsTab.add(rectangle);
+        toolsTab.add(selection);
+
         //help tab------
         JMenu helpTab = new JMenu("Help");
         helpTab.setMnemonic(KeyEvent.VK_H);
@@ -192,6 +236,7 @@ public class ApplicationWindow extends JFrame {
 
         //adding file tab bar to menu bar
         menuBar.add(fileTab);
+        menuBar.add(toolsTab);
         menuBar.add(helpTab);
 
         //adding menu bar to JFrame

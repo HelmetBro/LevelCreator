@@ -6,7 +6,6 @@ public class UpdatePaint {
         remakeRightY();
         remakeTopX();
         remakeWindow();
-        delay();
     }
 
     public static void remakeWindow() {

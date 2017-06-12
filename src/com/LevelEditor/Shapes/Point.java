@@ -3,6 +3,7 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 import java.awt.geom.Line2D;
 
 public class Point extends Shape {
@@ -37,13 +38,34 @@ public class Point extends Shape {
         return this.y - p.y;
     }
 
-    public float dst2(Point v) {
-        final float x_d = v.x - x;
-        final float y_d = v.y - y;
-        return x_d * x_d + y_d * y_d;
+//    public float dst2(Point v) {
+//        final float x_d = v.x - x;
+//        final float y_d = v.y - y;
+//        return x_d * x_d + y_d * y_d;
+//    }
+
+    @Override
+    public void drawName(Graphics2D g, Font font) {
+        if (!showName || !hasUniqueName)
+            return;
+
+        FontRenderContext frc = g.getFontRenderContext();
+        float fontWidth = g.getFontMetrics().stringWidth(name);
+        float fontHeight = font.getLineMetrics(name, frc).getHeight();
+
+        g.drawString(name, x - fontWidth/2f, y - fontHeight/2f - pointSize/2f);
+
     }
 
-    public void drawPoint(Graphics2D g) {
+    @Override
+    public void drawHitBox(Graphics2D g) {
+        if (!showHitBox)
+            return;
+
+
+    }
+
+    public void drawShape(Graphics2D g) {
 
         if (isHidden)
             return;

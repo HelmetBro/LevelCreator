@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 
 public class CustomMouseListener implements MouseListener {
 
-    static MouseState currentState;
+    public static MouseState currentState;
 
     public static void updateLayer(Graphics2D g) {
         currentState.updateLayer(g);

@@ -2,6 +2,7 @@ package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelCom
 
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.Shapes.Shape;
+import com.LevelEditor.UpdatePaint;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -20,9 +21,10 @@ public class EditShapeNameListener implements DocumentListener {
 
         try {
             shape.name = e.getDocument().getText(0, e.getDocument().getLength());
+            shape.hasUniqueName = true;
             ScrollPaneHandler.objSP.updateList();
-        } catch (BadLocationException ignored) {
-        }
+            UpdatePaint.remakeWindow();
+        } catch (BadLocationException ignored) {}
 
     }
 

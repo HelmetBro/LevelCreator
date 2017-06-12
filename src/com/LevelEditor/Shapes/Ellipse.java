@@ -3,6 +3,7 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 
 
 public class Ellipse extends Shape {
@@ -26,7 +27,27 @@ public class Ellipse extends Shape {
         this.height = height;
     }
 
-    public void drawEllipse(Graphics2D g) {
+    @Override
+    public void drawName(Graphics2D g, Font font) {
+        if (!showName || !hasUniqueName)
+            return;
+
+        FontRenderContext frc = g.getFontRenderContext();
+        float fontWidth = g.getFontMetrics().stringWidth(name);
+        float fontHeight = font.getLineMetrics(name, frc).getHeight();
+
+        g.drawString(name, center.x - fontWidth/2f, center.y - fontHeight/2f);
+    }
+
+    @Override
+    public void drawHitBox(Graphics2D g) {
+        if (!showHitBox)
+            return;
+
+
+    }
+
+    public void drawShape(Graphics2D g) {
 
         if (isHidden)
             return;

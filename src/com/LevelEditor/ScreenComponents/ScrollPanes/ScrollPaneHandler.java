@@ -5,6 +5,7 @@ import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Resizable;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.ObjectsTreeScrollPane;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.PropertiesScrollPane;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.SpritesScrollPane;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.ToolsScrollPane;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ public class ScrollPaneHandler extends Container implements Resizable {
     public static ObjectsTreeScrollPane objSP;
     public static PropertiesScrollPane propSP;
     private static ToolsScrollPane toolsSP;
+    private static SpritesScrollPane spritesSP;
 
     private int startX;
     private int startY;
@@ -37,6 +39,7 @@ public class ScrollPaneHandler extends Container implements Resizable {
         objSP = new ObjectsTreeScrollPane();
         propSP = new PropertiesScrollPane(width, height);
         toolsSP = new ToolsScrollPane(width);
+        spritesSP = new SpritesScrollPane(width, height);
     }
 
     public void switchTab(int state) {
@@ -52,6 +55,9 @@ public class ScrollPaneHandler extends Container implements Resizable {
                 break;
             case 2:
                 add(objSP);
+                break;
+            case 3:
+                add(spritesSP);
                 break;
             default:
                 System.out.println("ERROR - Scroll pane state not defined! [ScrollPaneHandler]");

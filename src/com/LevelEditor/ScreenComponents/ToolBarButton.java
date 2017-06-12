@@ -13,7 +13,7 @@ public class ToolBarButton extends JButton implements Resizable {
 
     private static final State defaultState = State.TOOLS;
     //Properties
-    private static final String[] labels = new String[]{"Tools", "Properties", "Objects"};
+    private static final String[] labels = new String[]{"Tools", "Properties", "Objects", "Sprites"};
     private static State currentState = defaultState;
     private int startX;
 
@@ -72,7 +72,8 @@ public class ToolBarButton extends JButton implements Resizable {
     enum State {
         TOOLS(0),
         PROPERTIES(1),
-        OBJECTS(2);
+        OBJECTS(2),
+        SPRITES(3);
 
         int numVal;
 
