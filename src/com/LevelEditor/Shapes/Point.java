@@ -2,7 +2,6 @@ package com.LevelEditor.Shapes;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HidePointsListener;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -15,7 +14,6 @@ public class Point extends Shape {
     public static final int pointSize = 7;
     //drawing properties
     private static final int pointLineWidth = 3;
-    public static transient boolean isPointHidden;
     protected int x;
     protected int y;
 
@@ -55,7 +53,7 @@ public class Point extends Shape {
         float fontWidth = g.getFontMetrics().stringWidth(name);
         float fontHeight = font.getLineMetrics(name, frc).getHeight();
 
-        g.drawString(name, x - fontWidth/2f, y - fontHeight/2f - pointSize/2f);
+        g.drawString(name, x - fontWidth / 2f, y - fontHeight / 2f - pointSize / 2f);
 
     }
 

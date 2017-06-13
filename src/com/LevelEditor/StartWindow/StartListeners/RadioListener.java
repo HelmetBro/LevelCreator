@@ -10,6 +10,7 @@ public class RadioListener implements ActionListener {
 
     private final StartOptions selection;
     private final InitializeWindow window;
+
     public RadioListener(StartOptions selection, InitializeWindow window) {
         this.selection = selection;
         this.window = window;

@@ -20,4 +20,5 @@ public class HideNamesListener implements ActionListener {
         UpdatePaint.remakeAll();
 
     }
+
 }

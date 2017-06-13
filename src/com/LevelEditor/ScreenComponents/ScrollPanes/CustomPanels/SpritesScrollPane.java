@@ -23,7 +23,7 @@ public class SpritesScrollPane extends CustomScrollPane {
 
     private JLabel infoTip;
 
-    public SpritesScrollPane(int width, int windowHeight){
+    public SpritesScrollPane(int width, int windowHeight) {
         setFocusable(false);
         this.windowHeight = windowHeight;
         this.width = width - (int) getVerticalScrollBar().getPreferredSize().getWidth();
@@ -35,7 +35,7 @@ public class SpritesScrollPane extends CustomScrollPane {
         setViewportView(scrollPanel);
     }
 
-    public void updateSpriteEditor(){
+    public void updateSpriteEditor() {
 
         //all selected shapes
         ArrayList<Shape> shapes = ManageLevelArrayLists.getSelectedShapes();
@@ -57,7 +57,6 @@ public class SpritesScrollPane extends CustomScrollPane {
 
             return;
         }
-
 
 
     }

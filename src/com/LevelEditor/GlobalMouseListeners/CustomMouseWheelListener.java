@@ -13,7 +13,7 @@ import java.awt.event.MouseWheelListener;
 
 public class CustomMouseWheelListener implements MouseWheelListener {
 
-    public static String[] stateStrings = {"Polygon", "Selection", "Rectangle", "Ellipse", "Circle", "Point"};
+    public static String[] stateStrings = {"Polygon", "Selection", "Rectangle", "Ellipse", "Circle", "Point", "Path"};
     private static final int numOfMouseStates = stateStrings.length;
     private static EMouseStates currentMouseEnumState = EMouseStates.SELECTION;
     private static MouseState polyState;
@@ -22,6 +22,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
     private static MouseState ellipseState;
     private static MouseState circleState;
     private static MouseState pointState;
+    private static MouseState pathState;
 
     private Canvas canvas;
 
@@ -35,8 +36,43 @@ public class CustomMouseWheelListener implements MouseWheelListener {
         ellipseState = new EllipseCreatorState();
         circleState = new CircleCreatorState();
         pointState = new PointCreatorState();
+        pathState = new PathCreatorState();
 
         CustomMouseListener.currentState = enumToMouseState(currentMouseEnumState);
+    }
+
+    public static void switchState(EMouseStates state) {
+        CustomMouseListener.currentState = enumToMouseState(state);
+
+        InfoLabelButton.updateStateLabelText(state);
+
+        UpdatePaint.remakeWindow();
+    }
+
+    private static MouseState enumToMouseState(EMouseStates eState) {
+
+        switch (eState) {
+
+            case POLYGON:
+                return polyState;
+            case SELECTION:
+                return normalState;
+            case RECTANGLE:
+                return rectState;
+            case ELLIPSE:
+                return ellipseState;
+            case CIRCLE:
+                return circleState;
+            case POINT:
+                return pointState;
+            case PATH:
+                return pathState;
+            default:
+                System.out.println("ERROR - enumToMouseState invalid eState");
+                return null;
+
+        }
+
     }
 
     @Override
@@ -84,39 +120,6 @@ public class CustomMouseWheelListener implements MouseWheelListener {
             desiredIndex = numOfMouseStates - 1;
 
         currentMouseEnumState = EMouseStates.values()[desiredIndex];
-
-    }
-
-    public static void switchState(EMouseStates state)
-    {
-        CustomMouseListener.currentState = enumToMouseState(state);
-
-        InfoLabelButton.updateStateLabelText(state);
-
-        UpdatePaint.remakeWindow();
-    }
-
-    private static MouseState enumToMouseState(EMouseStates eState) {
-
-        switch (eState) {
-
-            case POLYGON:
-                return polyState;
-            case SELECTION:
-                return normalState;
-            case RECTANGLE:
-                return rectState;
-            case ELLIPSE:
-                return ellipseState;
-            case CIRCLE:
-                return circleState;
-            case POINT:
-                return pointState;
-            default:
-                System.out.println("ERROR - enumToMouseState invalid eState");
-                return null;
-
-        }
 
     }
 

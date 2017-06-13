@@ -1,6 +1,7 @@
 package com.LevelEditor;
 
 
+import com.LevelEditor.MouseStates.PathCreatorState;
 import com.LevelEditor.MouseStates.PolygonCreatorState;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.Shapes.*;
@@ -25,6 +26,8 @@ public final class ManageLevelArrayLists {
                 return Main.currentLevel.polygons;
             case RECTANGLE:
                 return Main.currentLevel.rectangles;
+            case PATH:
+                return Main.currentLevel.paths;
             default:
                 System.out.println("ERROR - typeToShapeArray data invalid [ManageLevelArrayLists]");
                 System.exit(-1);
@@ -43,6 +46,7 @@ public final class ManageLevelArrayLists {
         Main.currentLevel.ellipses.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.ELLIPSE));
         Main.currentLevel.polygons.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.POLYGON));
         Main.currentLevel.rectangles.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.RECTANGLE));
+        Main.currentLevel.paths.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.PATH));
 
         ScrollPaneHandler.objSP.updateList();
     }
@@ -77,6 +81,10 @@ public final class ManageLevelArrayLists {
                 LoggingManager.history.push(Rectangle.logMessageDelete);
                 break;
 
+            case PATH:
+                LoggingManager.history.push(Path.logMessageDelete);
+                break;
+
         }
 
         return true;
@@ -99,6 +107,9 @@ public final class ManageLevelArrayLists {
                 break;
             case RECTANGLE:
                 addRectangle((Rectangle) deletedShapes.pop(), false);
+                break;
+            case PATH:
+                addPath((Path) deletedShapes.pop(), false);
                 break;
             default:
                 System.out.println("ERROR - reAddShape data invalid [ManageLevelArrayLists]");
@@ -126,6 +137,9 @@ public final class ManageLevelArrayLists {
 
         for (Rectangle r : Main.currentLevel.rectangles)
             r.isSelected = false;
+
+        for (Path p : Main.currentLevel.paths)
+            p.isSelected = false;
     }
 
     public static void removeRecentShape(ShapeType type) {
@@ -150,6 +164,9 @@ public final class ManageLevelArrayLists {
                 break;
             case RECTANGLE:
                 currentType.remove(Main.currentLevel.rectangles.size() - 1);
+                break;
+            case PATH:
+                currentType.remove(Main.currentLevel.paths.size() - 1);
                 break;
             default:
                 System.out.println("ERROR - removeRecentShape data invalid [ManageLevelArrayLists]");
@@ -192,6 +209,7 @@ public final class ManageLevelArrayLists {
     }
 
     public static void addPolygon(Polygon polygon, boolean log) {
+
         Main.currentLevel.polygons.add(polygon);
 
         //iterate over array and remove latest logMessagePoint messages
@@ -221,7 +239,27 @@ public final class ManageLevelArrayLists {
             LoggingManager.history.push(Rectangle.logMessage);
     }
 
-    public static void reAddPolygon(Polygon polygon, boolean log) {
+    public static void addPath(Path path, boolean log) {
+        Main.currentLevel.paths.add(path);
+
+        //iterate over array and remove latest logMessagePoint messages
+        for (int i = 0; i < path.getSize(); i++) {
+            for (String logMessage : LoggingManager.history) {
+                if (logMessage.equals(PathCreatorState.logMessagePoint)) {
+                    LoggingManager.history.remove(logMessage);
+                    break;
+                }
+            }
+        }
+
+        //updates objects list
+        ScrollPaneHandler.objSP.updateList();
+
+        if (log)
+            LoggingManager.history.push(Path.logMessage);
+    }
+
+    private static void reAddPolygon(Polygon polygon, boolean log) {
         Main.currentLevel.polygons.add(polygon);
 
         //updates objects list
@@ -255,8 +293,11 @@ public final class ManageLevelArrayLists {
             if (r.isSelected)
                 shapes.add(r);
 
-        return shapes;
+        for (Path p : Main.currentLevel.paths)
+            if (p.isSelected)
+                shapes.add(p);
 
+        return shapes;
 
     }
 

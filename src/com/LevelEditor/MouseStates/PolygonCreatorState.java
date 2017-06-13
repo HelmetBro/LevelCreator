@@ -30,7 +30,7 @@ public class PolygonCreatorState extends MouseState {
         if (!currentPoly.isEmpty())
             currentPoly.removePoint(currentPoly.getNumPoints() - 1);
         else
-            System.out.println("ERROR - Tried to remove point that doesn't exist.");
+            System.out.println("ERROR - [PolygonCreatorState] Tried to remove point that doesn't exist. [removePointCurrentPoly]");
     }
 
     @Override

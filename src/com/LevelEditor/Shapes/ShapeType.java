@@ -6,5 +6,6 @@ public enum ShapeType {
     ELLIPSE,
     POINT,
     POLYGON,
-    RECTANGLE
+    RECTANGLE,
+    PATH
 }

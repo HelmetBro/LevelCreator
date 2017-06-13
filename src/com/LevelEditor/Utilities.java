@@ -1,12 +1,18 @@
 package com.LevelEditor;
 
 
+import com.LevelEditor.Shapes.Path;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Rectangle;
 
 import java.util.ArrayList;
 
 public class Utilities {
+
+    public static boolean pathCollide(Path path, int inputX, int inputY) {
+        //TODO finish this
+        return false;
+    }
 
     //jordan curve theorem
     public static boolean polyCollide(int numVertices, int[] xVertices, int[] yVertices, int inputX, int inputY) {

@@ -1,6 +1,7 @@
 package com.LevelEditor;
 
 
+import com.LevelEditor.MouseStates.PathCreatorState;
 import com.LevelEditor.MouseStates.PolygonCreatorState;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.Shapes.*;
@@ -23,6 +24,10 @@ public final class LoggingManager {
 
             case PolygonCreatorState.logMessagePoint:
                 PolygonCreatorState.removePointCurrentPoly();
+                break;
+
+            case PathCreatorState.logMessagePoint:
+                PathCreatorState.removeCurrentVector();
                 break;
 
             //circle
@@ -65,12 +70,32 @@ public final class LoggingManager {
                 ManageLevelArrayLists.reAddShape(ShapeType.RECTANGLE);
                 break;
 
+            //path
+            case Path.logMessage:
+                ManageLevelArrayLists.removeRecentShape(ShapeType.PATH);
+                break;
+            case Path.logMessageDelete:
+                ManageLevelArrayLists.reAddShape(ShapeType.PATH);
+                break;
+
             default:
-                System.out.println("ERROR - Undo log doesn't match any case");
+                System.out.println("ERROR [LOGGING_MANAGER] - Undo log doesn't match any case. [Undo]");
         }
 
         //updates objects list
         ScrollPaneHandler.objSP.updateList();
+    }
+
+    //for debugging
+    public static void printHistory() {
+
+        System.out.println("-------------");
+
+        for (String h : history)
+            System.out.println(h);
+
+        System.out.println("-------------");
+
     }
 
 }

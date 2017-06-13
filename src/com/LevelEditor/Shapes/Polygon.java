@@ -4,7 +4,6 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
 import com.LevelEditor.Utilities;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -39,7 +38,7 @@ public class Polygon extends Shape {
         float fontWidth = g.getFontMetrics().stringWidth(name);
         float fontHeight = font.getLineMetrics(name, frc).getHeight();
 
-        g.drawString(name, centroid.x - fontWidth/2f, centroid.y - fontHeight/2f);
+        g.drawString(name, centroid.x - fontWidth / 2f, centroid.y - fontHeight / 2f);
     }
 
     @Override
@@ -72,8 +71,7 @@ public class Polygon extends Shape {
 
     }
 
-    public Point compute2DPolygonCentroid()
-    {
+    public Point compute2DPolygonCentroid() {
         Point centroid = new Point();
         double signedArea = 0.0;
         double x0; // Current vertex X
@@ -84,16 +82,15 @@ public class Polygon extends Shape {
 
         // For all vertices except last
         int i;
-        for (i = 0; i< numPoints - 1; ++i)
-        {
+        for (i = 0; i < numPoints - 1; ++i) {
             x0 = points.get(i).x;
             y0 = points.get(i).y;
             x1 = points.get(i + 1).x;
             y1 = points.get(i + 1).y;
-            a = x0*y1 - x1*y0;
+            a = x0 * y1 - x1 * y0;
             signedArea += a;
-            centroid.x += (x0 + x1)*a;
-            centroid.y += (y0 + y1)*a;
+            centroid.x += (x0 + x1) * a;
+            centroid.y += (y0 + y1) * a;
         }
 
         // Do last vertex separately to avoid performing an expensive
@@ -102,14 +99,14 @@ public class Polygon extends Shape {
         y0 = points.get(i).y;
         x1 = points.get(0).x;
         y1 = points.get(0).y;
-        a = x0*y1 - x1*y0;
+        a = x0 * y1 - x1 * y0;
         signedArea += a;
-        centroid.x += (x0 + x1)*a;
-        centroid.y += (y0 + y1)*a;
+        centroid.x += (x0 + x1) * a;
+        centroid.y += (y0 + y1) * a;
 
         signedArea *= 0.5;
-        centroid.x /= (6.0*signedArea);
-        centroid.y /= (6.0*signedArea);
+        centroid.x /= (6.0 * signedArea);
+        centroid.y /= (6.0 * signedArea);
 
         return centroid;
     }

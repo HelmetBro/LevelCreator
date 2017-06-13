@@ -11,7 +11,7 @@ public class SwitchToolActionListener implements ActionListener {
 
     private MouseState.EMouseStates state;
 
-    public SwitchToolActionListener(MouseState.EMouseStates state){
+    public SwitchToolActionListener(MouseState.EMouseStates state) {
         this.state = state;
     }
 

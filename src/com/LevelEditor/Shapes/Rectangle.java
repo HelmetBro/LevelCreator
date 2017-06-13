@@ -4,7 +4,6 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -38,7 +37,7 @@ public class Rectangle extends Shape {
         float fontWidth = g.getFontMetrics().stringWidth(name);
         float fontHeight = font.getLineMetrics(name, frc).getHeight();
 
-        g.drawString(name, center.x - fontWidth/2f, center.y - fontHeight/2f);
+        g.drawString(name, center.x - fontWidth / 2f, center.y - fontHeight / 2f);
     }
 
     @Override

@@ -42,11 +42,13 @@ public class RatioButton extends JButton implements Resizable {
         //rounding to 1 decimal
         float zoom = Math.round(level * 100) / 100f;
 
-        if (zooming) {
-            duration = 0;
-            zoomText = "x" + zoom;
+        //the reset
+        duration = 0;
+        zoomText = "x" + zoom;
+
+        //if its already zooming, don't start another thread
+        if (zooming)
             return;
-        }
 
         new Thread(() -> {
 

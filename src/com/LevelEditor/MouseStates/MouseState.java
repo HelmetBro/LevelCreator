@@ -74,6 +74,10 @@ public abstract class MouseState {
             if (Utilities.rectangleCollide(r, currentClickX, currentClickY) && !r.isSelected)
                 r.isSelected = true;
 
+        for (Path p : Main.currentLevel.paths)
+            if (Utilities.pathCollide(p, currentClickX, currentClickY) && !p.isSelected)
+                p.isSelected = true;
+
         UpdatePaint.remakeWindow();
         ScrollPaneHandler.propSP.updatePropertyEditor();
     }
@@ -95,7 +99,8 @@ public abstract class MouseState {
         RECTANGLE(2),
         ELLIPSE(3),
         CIRCLE(4),
-        POINT(5);
+        POINT(5),
+        PATH(6);
 
         private int index;
 

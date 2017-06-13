@@ -11,6 +11,7 @@ public class AbsolutePixelListener extends ValueDocumentListener {
     private final Dimension d;
     private long width;
     private long height;
+
     public AbsolutePixelListener(InitializeWindow window, AspectSettings settings, Dimension dimension) {
         super(window, settings);
         this.d = dimension;
