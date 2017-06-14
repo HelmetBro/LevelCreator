@@ -13,7 +13,7 @@ public abstract class CustomScrollPane extends JScrollPane {
 
     CustomScrollPane() {
         super(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //creating the JPanel viewport
         scrollPanel = new JPanel(null);

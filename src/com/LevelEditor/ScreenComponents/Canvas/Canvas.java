@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.normalStroke;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class Canvas extends JPanel implements Resizable {
@@ -214,6 +215,7 @@ public class Canvas extends JPanel implements Resizable {
             int mouseX = CustomMouseMoveListener.getX();
             int mouseY = CustomMouseMoveListener.getY();
 
+            g.setStroke(PrecisionLinesListener.dashedStroke);
             g.setColor(PrecisionLinesListener.GridColor);
 
             //vertical line
@@ -221,6 +223,8 @@ public class Canvas extends JPanel implements Resizable {
 
             //horizontal line
             g.drawLine(0, mouseY, width, mouseY);
+
+            g.setStroke(normalStroke);
 
         }
     }

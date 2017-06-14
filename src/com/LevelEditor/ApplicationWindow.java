@@ -40,7 +40,7 @@ public class ApplicationWindow extends JFrame {
     public static final Color borderColor = lightShadedColor.darker().darker();
     public static final Font basicFont = new Font("Consolas", Font.PLAIN, 14);
     public static final BasicStroke normalStroke = new BasicStroke();
-    public static final BasicStroke dashedStroke = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+    public static final BasicStroke dashedStroke = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{7}, 0);
     private static final Font fontOfLabels = new Font("monospaced", Font.BOLD, 14);
     public static AspectSettings settings;
     public static InfoLabelButton infoLabelButton;

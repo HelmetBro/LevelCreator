@@ -3,7 +3,6 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 
 import java.awt.*;
-import java.awt.Point;
 import java.util.ArrayList;
 
 import static com.LevelEditor.ApplicationWindow.dashedStroke;
@@ -42,20 +41,41 @@ public class Path extends Shape {
     @Override
     public void drawShape(Graphics2D g) {
 
-        g.setStroke(dashedStroke);
-
         if (super.isSelected)
             g.setColor(ApplicationWindow.selectionColor);
         else
             g.setColor(color);
 
         for (int i = 0; i < pathPoints.size() - 1; i++) {
+
+            g.setStroke(dashedStroke);
             g.drawLine(pathPoints.get(i).x, pathPoints.get(i).y, pathPoints.get(i + 1).x, pathPoints.get(i + 1).y);
-            //TODO: later draw the vector head
+
+            g.setStroke(new BasicStroke(2));
+            drawArrowHead(g, pathPoints.get(i), pathPoints.get(i + 1));
         }
 
         g.setStroke(normalStroke);
 
+    }
+
+    private void drawArrowHead(Graphics2D g, Point start, Point end){
+
+        final int lineLength = 14;
+
+        float newAngle = (float)Math.atan2(end.y - start.y, end.x - start.x);
+
+        //the angle tilt of the arrow
+        newAngle += (float)(Math.sqrt(2) / 2f);
+
+        g.drawLine(end.x, end.y,
+                (int)(end.x + Math.cos(newAngle) * lineLength * -1),
+                (int)(end.y + Math.sin(newAngle) * lineLength * -1));
+
+    }
+
+    public ArrayList<Point> getPoints(){
+        return pathPoints;
     }
 
     @Override

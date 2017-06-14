@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
+import java.util.ArrayList;
 import java.util.Stack;
 
 import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
@@ -27,6 +28,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
     private DefaultMutableTreeNode pointNodes;
     private DefaultMutableTreeNode polygonNodes;
     private DefaultMutableTreeNode rectangleNodes;
+    private DefaultMutableTreeNode pathNodes;
     private DefaultTreeModel model;
 
     public ObjectsTreeScrollPane() {
@@ -41,12 +43,14 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
         pointNodes = new DefaultMutableTreeNode("Points");
         polygonNodes = new DefaultMutableTreeNode("Polygons");
         rectangleNodes = new DefaultMutableTreeNode("Rectangles");
+        pathNodes = new DefaultMutableTreeNode("Paths");
 
         allShapeNodes.add(circleNodes);
         allShapeNodes.add(ellipseNodes);
         allShapeNodes.add(pointNodes);
         allShapeNodes.add(polygonNodes);
         allShapeNodes.add(rectangleNodes);
+        allShapeNodes.add(pathNodes);
 
         createTree();
         updateList();
@@ -77,14 +81,66 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
         pointNodes.removeAllChildren();
         polygonNodes.removeAllChildren();
         rectangleNodes.removeAllChildren();
+        pathNodes.removeAllChildren();
 
         updateCircles();
         updateEllipses();
         updatePoints();
         updatePolygons();
         updateRectangles();
+        updatePaths();
 
         model.reload();
+    }
+
+    private void updatePaths() {
+
+        for (int i = 0; i < Main.currentLevel.paths.size(); i++) {
+
+            Path path = Main.currentLevel.paths.get(i);
+
+            if (path.name == null)
+                path.name = "Path " + (i + 1);
+
+            //folder node
+            CustomTreeNode pathNode = new CustomTreeNode(path);
+
+            for (int j = 0; j < path.getSize() - 1; j++){
+
+                Point p = path.getPoints().get(i);
+                Point nextP = path.getPoints().get(i + 1);
+
+                //for current point
+                int positionY = p.getY();
+                if (Main.currentLevel.flipY)
+                    positionY = ApplicationWindow.settings.getLvlMakerHeight() - p.getY();
+
+                //for next point
+                int nextPosY = nextP.getY();
+                if (Main.currentLevel.flipY)
+                    nextPosY = ApplicationWindow.settings.getLvlMakerHeight() - nextP.getY();
+
+                //folder node
+                DefaultMutableTreeNode vector = new DefaultMutableTreeNode("Vector " + (j + 1));
+
+                //root node
+                DefaultMutableTreeNode locationX1Node = new DefaultMutableTreeNode("(" + p.getX() + ", " + positionY + ")");
+                locationX1Node.setAllowsChildren(false);
+                //root node
+                DefaultMutableTreeNode locationY1Node = new DefaultMutableTreeNode("(" + nextP.getX() + ", " + nextPosY + ")");
+                locationY1Node.setAllowsChildren(false);
+
+                vector.add(locationX1Node);
+                vector.add(locationY1Node);
+
+                pathNode.add(vector);
+
+            }
+
+            pathNodes.add(pathNode);
+
+        }//big for loop
+
     }
 
     private void updateCircles() {
@@ -205,11 +261,10 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             if (poly.name == null)
                 poly.name = "Polygon " + (i + 1);
 
+            //folder node
             CustomTreeNode polygonNode = new CustomTreeNode(poly);
 
-            Stack<Point> polyPoints = poly.getPoints();
-
-            for (Point polyPoint : polyPoints) {
+            for (Point polyPoint : poly.getPoints()) {
 
                 int positionY = polyPoint.getY();
                 if (Main.currentLevel.flipY)

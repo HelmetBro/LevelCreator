@@ -5,6 +5,7 @@ import com.LevelEditor.LoggingManager;
 import com.LevelEditor.ManageLevelArrayLists;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
 import com.LevelEditor.Shapes.Path;
+import com.LevelEditor.Shapes.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,13 +47,13 @@ public class PathCreatorState extends MouseState {
         //draw path
         g.setColor(MouseState.drawColor);
         if (drawPathMaker)
-            g.drawLine(startPoint.x, startPoint.y, currentClickX, currentClickY);
+            g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
 
         //if grid is on, give it an outline
         if (Canvas.drawGrid && startPoint != null) {
             g.setColor(ApplicationWindow.selectionColor);
             g.setStroke(new BasicStroke(lineWidth));
-            g.drawLine(startPoint.x, startPoint.y, currentClickX, currentClickY);
+            g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
 
             //resetting stroke
             g.setStroke(new BasicStroke(1));

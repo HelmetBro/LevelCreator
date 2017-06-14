@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 public class PrecisionLinesListener implements ActionListener {
 
     public static final Color GridColor = Color.RED;
+    public static final BasicStroke dashedStroke = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{5}, 0);
 
     @Override
     public void actionPerformed(ActionEvent e) {
