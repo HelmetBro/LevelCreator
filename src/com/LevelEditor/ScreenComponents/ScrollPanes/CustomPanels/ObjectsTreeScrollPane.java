@@ -107,8 +107,8 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
 
             for (int j = 0; j < path.getSize() - 1; j++){
 
-                Point p = path.getPoints().get(i);
-                Point nextP = path.getPoints().get(i + 1);
+                Point p = path.getPoints().get(j);
+                Point nextP = path.getPoints().get(j + 1);
 
                 //for current point
                 int positionY = p.getY();

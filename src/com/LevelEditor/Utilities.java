@@ -10,8 +10,7 @@ import java.util.ArrayList;
 public class Utilities {
 
     public static boolean pathCollide(Path path, int inputX, int inputY) {
-        //TODO finish this
-        return false;
+        return circleCollide(path.startPoint(), Path.START_POINT_RADIUS + 5,  inputX, inputY);
     }
 
     //jordan curve theorem

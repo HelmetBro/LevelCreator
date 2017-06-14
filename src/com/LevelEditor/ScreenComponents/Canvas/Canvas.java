@@ -248,7 +248,7 @@ public class Canvas extends JPanel implements Resizable {
 
     public enum BackgroundColorState {
 
-        BLACK(3, 3, 0, 0),
+        BLACK(0, 0, 0, 0),
         LIGHT_BLACK(46, 46, 43, 1),
         GRAY(110, 110, 107, 2),
         DARK_WHITE(195, 195, 192, 3),

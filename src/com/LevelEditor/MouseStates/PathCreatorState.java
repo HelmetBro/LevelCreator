@@ -83,13 +83,20 @@ public class PathCreatorState extends MouseState {
             startPoint = new Point(currentClickX, currentClickY);
         }
 
-        if (SwingUtilities.isRightMouseButton(e) && clickCount == 1)
-            finalizePoint();
+        if (SwingUtilities.isRightMouseButton(e)){
+
+            if (clickCount == 1)
+                finalizePoint();
+            else
+                select();
+
+        }
+
     }
 
     private void finalizePath() {
 
-        if (!currentPath.isEmpty())
+        if (currentPath.getSize() > 1)
             ManageLevelArrayLists.addPath(currentPath, true);
 
         currentPath = new Path();

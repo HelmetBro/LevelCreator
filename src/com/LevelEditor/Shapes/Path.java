@@ -3,6 +3,7 @@ package com.LevelEditor.Shapes;
 import com.LevelEditor.ApplicationWindow;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 
 import static com.LevelEditor.ApplicationWindow.dashedStroke;
@@ -13,7 +14,11 @@ public class Path extends Shape {
     public static final String logMessage = "Level - added path";
     public static final String logMessageDelete = "Level - removed path";
 
-    private static final Color color = new Color(29, 187, 56, 200);
+    private static final Color lineColor = new Color(29, 187, 56, 200);
+    private static final Color dotColor = new Color(187, 45, 39, 90);
+
+    public static final int START_POINT_RADIUS = 8; //8
+    private static final byte NAME_HOVER = 8;
 
     private ArrayList<Point> pathPoints;
 
@@ -41,10 +46,15 @@ public class Path extends Shape {
     @Override
     public void drawShape(Graphics2D g) {
 
+        if (isEmpty())
+            return;
+
+        /* ++ drawing line ++ */
+
         if (super.isSelected)
             g.setColor(ApplicationWindow.selectionColor);
         else
-            g.setColor(color);
+            g.setColor(lineColor);
 
         for (int i = 0; i < pathPoints.size() - 1; i++) {
 
@@ -55,6 +65,20 @@ public class Path extends Shape {
             drawArrowHead(g, pathPoints.get(i), pathPoints.get(i + 1));
         }
 
+
+        /* ++ drawing start point ++ */
+
+        if (super.isSelected)
+            g.setColor(dotColor.darker());
+        else
+            g.setColor(dotColor);
+
+        Circle circle = new Circle(startPoint(), START_POINT_RADIUS);
+        g.fillOval(circle.getTopLeft().x - START_POINT_RADIUS, circle.getTopLeft().y - START_POINT_RADIUS,
+                START_POINT_RADIUS * 2, START_POINT_RADIUS * 2);
+
+
+        /* ++ resetting stroke ++ */
         g.setStroke(normalStroke);
 
     }
@@ -78,8 +102,20 @@ public class Path extends Shape {
         return pathPoints;
     }
 
+    public Point startPoint(){
+        return pathPoints.get(0);
+    }
+
     @Override
     public void drawName(Graphics2D g, Font font) {
+        if (!hasUniqueName)
+            return;
+
+        FontRenderContext frc = g.getFontRenderContext();
+        float fontWidth = g.getFontMetrics().stringWidth(name);
+        float fontHeight = font.getLineMetrics(name, frc).getHeight();
+
+        g.drawString(name, startPoint().x - fontWidth / 2f, startPoint().y - fontHeight / 2f - NAME_HOVER / 2f);
 
     }
 
@@ -90,7 +126,12 @@ public class Path extends Shape {
 
     @Override
     public Path copyFlip() {
-        return null;
+        Path copy = new Path();
+
+        for (Point p : pathPoints)
+            copy.addVector(p.copyFlip());
+
+        return copy;
     }
 
 }
