@@ -2,6 +2,7 @@ package com.LevelEditor.ScreenComponents.InfoPanels.TopPanel;
 
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ScreenComponents.InfoPanels.BackPanel;
+import com.LevelEditor.StartWindow.AspectSettings;
 
 import java.awt.*;
 
@@ -40,7 +41,7 @@ public class BackTopXPanel extends BackPanel {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int resizeWidth = windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X;
+        int resizeWidth = windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - AspectSettings.TOOLS_WINDOW_SIZE_X;
         setBounds(x, y, startWidth + resizeWidth, startHeight);
 
         topXPanel.moveComponent(windowWidth, windowHeight);

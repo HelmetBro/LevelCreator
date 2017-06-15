@@ -28,7 +28,7 @@ public abstract class BackPanel extends JPanel implements Resizable {
 
         setBackground(BASE_BACKGROUND_COLOR);
         setFocusable(false);
-        setVisible(true); //COULD OVERRIDE PAINT AND BACK IT FADE OOOOOOOOOOOOO
+        setVisible(true);
     }
 
 }

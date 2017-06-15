@@ -78,7 +78,7 @@ public class ApplicationWindow extends JFrame {
         //mandatory settings
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(3, 3, 0));
-        getContentPane().setPreferredSize(new Dimension(settings.getWindowWidth() + settings.TOOLS_WINDOW_SIZE_X, settings.getWindowHeight()));
+        getContentPane().setPreferredSize(new Dimension(settings.getWindowWidth() + AspectSettings.TOOLS_WINDOW_SIZE_X, settings.getWindowHeight()));
 
         createMenuBar();
         standardizeLayout();
@@ -104,14 +104,14 @@ public class ApplicationWindow extends JFrame {
                 settings.getLvlMakerWidth(), 0, RULER_WIDTH, RULER_HEIGHT);
 
         //info thing
-        infoLabelButton = new InfoLabelButton(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT, settings.TOOLS_WINDOW_SIZE_X);
+        infoLabelButton = new InfoLabelButton(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT, AspectSettings.TOOLS_WINDOW_SIZE_X);
 
         //scroll pane
         scrollPaneHandler = new ScrollPaneHandler(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT + InfoLabelButton.HEIGHT_OF_LABEL,
-                settings.TOOLS_WINDOW_SIZE_X, settings.getLvlMakerHeight() - InfoLabelButton.HEIGHT_OF_LABEL);
+                AspectSettings.TOOLS_WINDOW_SIZE_X, settings.getLvlMakerHeight() - InfoLabelButton.HEIGHT_OF_LABEL);
 
         //tools button
-        toolBarButton = new ToolBarButton(MONOSPACED, settings.getLvlMakerWidth() + RULER_WIDTH, 0, settings.TOOLS_WINDOW_SIZE_X, RULER_HEIGHT);
+        toolBarButton = new ToolBarButton(MONOSPACED, settings.getLvlMakerWidth() + RULER_WIDTH, 0, AspectSettings.TOOLS_WINDOW_SIZE_X, RULER_HEIGHT);
 
         //main window (passing in ratio button for zoom animation)
         canvas = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight(), ratioButton);
@@ -119,7 +119,7 @@ public class ApplicationWindow extends JFrame {
         panelHolder = new CanvasHolder(canvas);
         //scroller that holds it
         scrollHolder = new ScrollHolder(panelHolder, 0, RULER_HEIGHT,
-                settings.getWindowWidth() + settings.TOOLS_WINDOW_SIZE_X,
+                settings.getWindowWidth() + AspectSettings.TOOLS_WINDOW_SIZE_X,
                 settings.getWindowHeight());
 
         //order matters
@@ -203,10 +203,10 @@ public class ApplicationWindow extends JFrame {
         rectangle.setToolTipText("Switches current tool to rectangle creator");
         rectangle.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.RECTANGLE));
 
-        JMenuItem selection = new JMenuItem("Selection");
-        selection.setMnemonic(KeyEvent.VK_S);
-        selection.setToolTipText("Switches current tool to object selector");
-        selection.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.SELECTION));
+        JMenuItem rotation = new JMenuItem("Rotation");
+        rotation.setMnemonic(KeyEvent.VK_O);
+        rotation.setToolTipText("Switches current tool to object rotation tool");
+        rotation.addActionListener(new SwitchToolActionListener(MouseState.EMouseStates.ROTATION));
 
         toolsTab.add(circle);
         toolsTab.add(ellipse);
@@ -214,7 +214,7 @@ public class ApplicationWindow extends JFrame {
         toolsTab.add(polygon);
         toolsTab.add(path);
         toolsTab.add(rectangle);
-        toolsTab.add(selection);
+        toolsTab.add(rotation);
 
         //help tab------
         JMenu helpTab = new JMenu("Help");

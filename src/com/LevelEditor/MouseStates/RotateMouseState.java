@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class SelectionMouseState extends MouseState {
+public class RotateMouseState extends MouseState {
 
     @Override
     public void updateLayer(Graphics2D g) {

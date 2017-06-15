@@ -34,7 +34,6 @@ public abstract class SidePanel extends JPanel implements Resizable {
 
         marker = new MarkerImage();
 
-        setToolTipText("Level with " + text + " pixels in startHeight");
         setFocusable(false);
         setVisible(true);
 

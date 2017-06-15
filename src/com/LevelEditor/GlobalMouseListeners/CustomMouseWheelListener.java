@@ -13,11 +13,11 @@ import java.awt.event.MouseWheelListener;
 
 public class CustomMouseWheelListener implements MouseWheelListener {
 
-    public static String[] stateStrings = {"Polygon", "Selection", "Rectangle", "Ellipse", "Circle", "Point", "Path"};
+    public static String[] stateStrings = {"Polygon", "Rotation", "Rectangle", "Ellipse", "Circle", "Point", "Path"};
     private static final int NUM_OF_MOUSE_STATES = stateStrings.length;
-    private static EMouseStates currentMouseEnumState = EMouseStates.SELECTION;
+    private static EMouseStates currentMouseEnumState = EMouseStates.ROTATION;
     private static MouseState polyState;
-    private static MouseState normalState;
+    private static MouseState rotateState;
     private static MouseState rectState;
     private static MouseState ellipseState;
     private static MouseState circleState;
@@ -31,7 +31,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
         this.canvas = canvas;
 
         polyState = new PolygonCreatorState();
-        normalState = new SelectionMouseState();
+        rotateState = new RotateMouseState();
         rectState = new RectangleCreatorState();
         ellipseState = new EllipseCreatorState();
         circleState = new CircleCreatorState();
@@ -55,8 +55,8 @@ public class CustomMouseWheelListener implements MouseWheelListener {
 
             case POLYGON:
                 return polyState;
-            case SELECTION:
-                return normalState;
+            case ROTATION:
+                return rotateState;
             case RECTANGLE:
                 return rectState;
             case ELLIPSE:

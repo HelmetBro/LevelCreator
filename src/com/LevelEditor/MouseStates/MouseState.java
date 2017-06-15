@@ -95,7 +95,7 @@ public abstract class MouseState {
     public enum EMouseStates {
 
         POLYGON(0),
-        SELECTION(1),
+        ROTATION(1),
         RECTANGLE(2),
         ELLIPSE(3),
         CIRCLE(4),

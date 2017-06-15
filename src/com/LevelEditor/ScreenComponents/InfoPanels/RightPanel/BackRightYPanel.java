@@ -3,6 +3,7 @@ package com.LevelEditor.ScreenComponents.InfoPanels.RightPanel;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Resizable;
 import com.LevelEditor.ScreenComponents.InfoPanels.BackPanel;
+import com.LevelEditor.StartWindow.AspectSettings;
 
 import java.awt.*;
 
@@ -41,7 +42,7 @@ public class BackRightYPanel extends BackPanel {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
+        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - AspectSettings.TOOLS_WINDOW_SIZE_X);
         int resizeHeight = windowHeight - ApplicationWindow.settings.getLvlMakerHeight() - RULER_HEIGHT;
 
         //setLocation(x + moveDistanceX, y);
