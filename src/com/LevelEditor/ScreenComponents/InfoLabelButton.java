@@ -14,7 +14,7 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class InfoLabelButton extends JButton implements Resizable {
 
-    public static final int heightOfLabel = 30;
+    public static final int HEIGHT_OF_LABEL = 30;
     private int startX;
     private int startY;
 
@@ -25,13 +25,13 @@ public class InfoLabelButton extends JButton implements Resizable {
         setFocusPainted(false);
         setContentAreaFilled(false);
         setOpaque(true);
-        setForeground(lightColor);
-        setBackground(backgroundShadedColor);
+        setForeground(LIGHT_COLOR);
+        setBackground(BACKGROUND_SHADED_COLOR);
         setText("Welcome!");
         setToolTipText("To change the state, move your mouse wheel!");
-        setFont(basicFont);
-        setBounds(x, y, width, heightOfLabel);
-        setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, borderColor));
+        setFont(CONSOLAS);
+        setBounds(x, y, width, HEIGHT_OF_LABEL);
+        setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, BORDER_COLOR));
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
 
@@ -50,7 +50,7 @@ public class InfoLabelButton extends JButton implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX);
+        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
         setLocation(startX + moveDistance, startY);
     }
 

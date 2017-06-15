@@ -22,59 +22,59 @@ public final class LoggingManager {
         //undo most recent action
         switch (history.pop()) {
 
-            case PolygonCreatorState.logMessagePoint:
+            case PolygonCreatorState.LOG_MESSAGE_POINT:
                 PolygonCreatorState.removePointCurrentPoly();
                 break;
 
-            case PathCreatorState.logMessagePoint:
+            case PathCreatorState.LOG_MESSAGE_POINT:
                 PathCreatorState.removeCurrentVector();
                 break;
 
             //circle
-            case Circle.logMessage:
+            case Circle.LOG_MESSAGE:
                 ManageLevelArrayLists.removeRecentShape(ShapeType.CIRCLE);
                 break;
-            case Circle.logMessageDelete:
+            case Circle.LOG_MESSAGE_DELETE:
                 ManageLevelArrayLists.reAddShape(ShapeType.CIRCLE);
                 break;
 
             //ellipse
-            case Ellipse.logMessage:
+            case Ellipse.LOG_MESSAGE:
                 ManageLevelArrayLists.removeRecentShape(ShapeType.ELLIPSE);
                 break;
-            case Ellipse.logMessageDelete:
+            case Ellipse.LOG_MESSAGE_DELETE:
                 ManageLevelArrayLists.reAddShape(ShapeType.ELLIPSE);
                 break;
 
             //point
-            case Point.logMessage:
+            case Point.LOG_MESSAGE:
                 ManageLevelArrayLists.removeRecentShape(ShapeType.POINT);
                 break;
-            case Point.logMessageDelete:
+            case Point.LOG_MESSAGE_DELETE:
                 ManageLevelArrayLists.reAddShape(ShapeType.POINT);
                 break;
 
             //polygon
-            case Polygon.logMessage:
+            case Polygon.LOG_MESSAGE:
                 ManageLevelArrayLists.removeRecentShape(ShapeType.POLYGON);
                 break;
-            case Polygon.logMessageDelete:
+            case Polygon.LOG_MESSAGE_DELETE:
                 ManageLevelArrayLists.reAddShape(ShapeType.POLYGON);
                 break;
 
             //rectangle
-            case Rectangle.logMessage:
+            case Rectangle.LOG_MESSAGE:
                 ManageLevelArrayLists.removeRecentShape(ShapeType.RECTANGLE);
                 break;
-            case Rectangle.logMessageDelete:
+            case Rectangle.LOG_MESSAGE_DELETE:
                 ManageLevelArrayLists.reAddShape(ShapeType.RECTANGLE);
                 break;
 
             //path
-            case Path.logMessage:
+            case Path.LOG_MESSAGE:
                 ManageLevelArrayLists.removeRecentShape(ShapeType.PATH);
                 break;
-            case Path.logMessageDelete:
+            case Path.LOG_MESSAGE_DELETE:
                 ManageLevelArrayLists.reAddShape(ShapeType.PATH);
                 break;
 

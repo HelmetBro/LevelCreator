@@ -5,7 +5,7 @@ package com.LevelEditor;
  */
 public interface Resizable {
 
-    int YOffset = 20;
+    int Y_OFFSET = 20;
 
     void moveComponent(int windowWidth, int windowHeight);
 }

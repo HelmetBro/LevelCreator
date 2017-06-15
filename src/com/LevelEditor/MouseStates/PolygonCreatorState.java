@@ -15,7 +15,7 @@ import java.awt.geom.Line2D;
 
 public class PolygonCreatorState extends MouseState {
 
-    public static final String logMessagePoint = "PolygonCreatorState - added point";
+    public static final String LOG_MESSAGE_POINT = "PolygonCreatorState - added point";
 
     private static Polygon currentPoly;
 
@@ -41,15 +41,15 @@ public class PolygonCreatorState extends MouseState {
         int sz = uncreatedPointSize / 2;
         for (Point p : currentPoly.getPoints()) {
 
-            g.setColor(MouseState.drawColor);
+            g.setColor(MouseState.DRAW_COLOR);
             g.setStroke(new BasicStroke(uncreatedPointLineWidth));
 
             g.draw(new Line2D.Float(p.getX() - sz, p.getY() - sz, p.getX() + sz, p.getY() + sz));
             g.draw(new Line2D.Float(p.getX() + sz, p.getY() - sz, p.getX() - sz, p.getY() + sz));
 
             if (Canvas.drawGrid) {
-                g.setStroke(new BasicStroke(Math.abs(lineWidth - 3)));
-                g.setColor(ApplicationWindow.selectionColor);
+                g.setStroke(new BasicStroke(Math.abs(LINE_WIDTH - 3)));
+                g.setColor(ApplicationWindow.SELECTION_COLOR);
                 g.draw(new Line2D.Float(p.getX() - sz, p.getY() - sz, p.getX() + sz, p.getY() + sz));
                 g.draw(new Line2D.Float(p.getX() + sz, p.getY() - sz, p.getX() - sz, p.getY() + sz));
 
@@ -71,7 +71,7 @@ public class PolygonCreatorState extends MouseState {
         lastClickY = currentClickY;
 
         //logging action
-        LoggingManager.history.push(logMessagePoint);
+        LoggingManager.history.push(LOG_MESSAGE_POINT);
     }
 
     private void finalizePoly() {

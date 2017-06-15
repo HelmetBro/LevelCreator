@@ -62,27 +62,27 @@ public final class ManageLevelArrayLists {
         switch (type) {
 
             case POINT:
-                LoggingManager.history.push(Point.logMessageDelete);
+                LoggingManager.history.push(Point.LOG_MESSAGE_DELETE);
                 break;
 
             case CIRCLE:
-                LoggingManager.history.push(Circle.logMessageDelete);
+                LoggingManager.history.push(Circle.LOG_MESSAGE_DELETE);
                 break;
 
             case ELLIPSE:
-                LoggingManager.history.push(Ellipse.logMessageDelete);
+                LoggingManager.history.push(Ellipse.LOG_MESSAGE_DELETE);
                 break;
 
             case POLYGON:
-                LoggingManager.history.push(Polygon.logMessageDelete);
+                LoggingManager.history.push(Polygon.LOG_MESSAGE_DELETE);
                 break;
 
             case RECTANGLE:
-                LoggingManager.history.push(Rectangle.logMessageDelete);
+                LoggingManager.history.push(Rectangle.LOG_MESSAGE_DELETE);
                 break;
 
             case PATH:
-                LoggingManager.history.push(Path.logMessageDelete);
+                LoggingManager.history.push(Path.LOG_MESSAGE_DELETE);
                 break;
 
         }
@@ -185,7 +185,7 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Circle.logMessage);
+            LoggingManager.history.push(Circle.LOG_MESSAGE);
     }
 
     public static void addEllipse(Ellipse ellipse, boolean log) {
@@ -195,7 +195,7 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Ellipse.logMessage);
+            LoggingManager.history.push(Ellipse.LOG_MESSAGE);
     }
 
     public static void addPoint(Point point, boolean log) {
@@ -205,17 +205,17 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Point.logMessage);
+            LoggingManager.history.push(Point.LOG_MESSAGE);
     }
 
     public static void addPolygon(Polygon polygon, boolean log) {
 
         Main.currentLevel.polygons.add(polygon);
 
-        //iterate over array and remove latest logMessagePoint messages
+        //iterate over array and remove latest LOG_MESSAGE_POINT messages
         for (int i = 0; i < polygon.getNumPoints(); i++) {
             for (String logMessage : LoggingManager.history) {
-                if (logMessage.equals(PolygonCreatorState.logMessagePoint)) {
+                if (logMessage.equals(PolygonCreatorState.LOG_MESSAGE_POINT)) {
                     LoggingManager.history.remove(logMessage);
                     break;
                 }
@@ -226,7 +226,7 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Polygon.logMessage);
+            LoggingManager.history.push(Polygon.LOG_MESSAGE);
     }
 
     public static void addRectangle(Rectangle rectangle, boolean log) {
@@ -236,16 +236,16 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Rectangle.logMessage);
+            LoggingManager.history.push(Rectangle.LOG_MESSAGE);
     }
 
     public static void addPath(Path path, boolean log) {
         Main.currentLevel.paths.add(path);
 
-        //iterate over array and remove latest logMessagePoint messages
+        //iterate over array and remove latest LOG_MESSAGE_POINT messages
         for (int i = 0; i < path.getSize(); i++) {
             for (String logMessage : LoggingManager.history) {
-                if (logMessage.equals(PathCreatorState.logMessagePoint)) {
+                if (logMessage.equals(PathCreatorState.LOG_MESSAGE_POINT)) {
                     LoggingManager.history.remove(logMessage);
                     break;
                 }
@@ -256,7 +256,7 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Path.logMessage);
+            LoggingManager.history.push(Path.LOG_MESSAGE);
     }
 
     private static void reAddPolygon(Polygon polygon, boolean log) {
@@ -266,7 +266,7 @@ public final class ManageLevelArrayLists {
         ScrollPaneHandler.objSP.updateList();
 
         if (log)
-            LoggingManager.history.push(Polygon.logMessage);
+            LoggingManager.history.push(Polygon.LOG_MESSAGE);
     }
 
     public static ArrayList<Shape> getSelectedShapes() {

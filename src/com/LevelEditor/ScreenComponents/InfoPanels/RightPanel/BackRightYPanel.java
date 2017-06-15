@@ -41,11 +41,11 @@ public class BackRightYPanel extends BackPanel {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX);
+        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
         int resizeHeight = windowHeight - ApplicationWindow.settings.getLvlMakerHeight() - RULER_HEIGHT;
 
         //setLocation(x + moveDistanceX, y);
-        setBounds(x + moveDistanceX, y, startWidth, startHeight + resizeHeight + Resizable.YOffset);
+        setBounds(x + moveDistanceX, y, startWidth, startHeight + resizeHeight + Resizable.Y_OFFSET);
 
         rightYPanel.moveComponent(windowWidth, windowHeight);
     }

@@ -11,26 +11,26 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class ToolBarButton extends JButton implements Resizable {
 
-    private static final State defaultState = State.TOOLS;
+    private static final State DEFAULT_STATE = State.TOOLS;
     //Properties
-    private static final String[] labels = new String[]{"Tools", "Properties", "Objects", "Sprites"};
-    private static State currentState = defaultState;
+    private static final String[] LABELS = new String[]{"Tools", "Properties", "Objects", "Sprites"};
+    private static State currentState = DEFAULT_STATE;
     private int startX;
 
     public ToolBarButton(Font font, int x, int y, int width, int height) {
-        super(labels[defaultState.numVal]);
+        super(LABELS[DEFAULT_STATE.numVal]);
         this.startX = x;
         setFocusable(false);
         setBounds(x, y, width, height);
         setFont(font);
-        setBackground(backgroundColor);
-        setForeground(lightShadedColor);
+        setBackground(BACKGROUND_COLOR);
+        setForeground(LIGHT_SHADED_COLOR);
         setToolTipText("Click to change editor options");
 
         setFocusPainted(false);
         setContentAreaFilled(false);
 
-        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, borderColor));
+        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, BORDER_COLOR));
 
         addActionListener(e -> incrementState());
 
@@ -40,7 +40,7 @@ public class ToolBarButton extends JButton implements Resizable {
     @Override
     protected void paintComponent(Graphics g) {
         if (getModel().isPressed())
-            g.setColor(backgroundColor.darker().darker());
+            g.setColor(BACKGROUND_COLOR.darker().darker());
         else
             g.setColor(getBackground());
 
@@ -50,7 +50,7 @@ public class ToolBarButton extends JButton implements Resizable {
 
     private void incrementState() {
         //change state
-        currentState = State.values()[(currentState.numVal + 1) % labels.length];
+        currentState = State.values()[(currentState.numVal + 1) % LABELS.length];
 
         //changing to new state
         loadNewState();
@@ -58,14 +58,14 @@ public class ToolBarButton extends JButton implements Resizable {
 
     private void loadNewState() {
         //changing label
-        setText(labels[currentState.numVal]);
+        setText(LABELS[currentState.numVal]);
         //changing panes to match new state
         ApplicationWindow.scrollPaneHandler.switchTab(currentState.numVal);
     }
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX);
+        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
         setLocation(startX + moveDistance, 0);
     }
 

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class DarkCheckBoxIcon implements Icon, UIResource, Serializable {
 
-    private final int controlSize = 13;
+    private static final int CONTROL_SIZE = 13;
 
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -17,17 +17,17 @@ public class DarkCheckBoxIcon implements Icon, UIResource, Serializable {
         if (model.isEnabled()) {
             if (model.isPressed() && model.isArmed()) {
                 g.setColor(UIManager.getColor("DarkerCheckBox.checkClickBackground"));
-                g.fillRect(x, y, controlSize - 1, controlSize - 1);
+                g.fillRect(x, y, CONTROL_SIZE - 1, CONTROL_SIZE - 1);
             } else {
                 g.setColor(UIManager.getColor("DarkerCheckBox.checkBackground"));
-                g.fillRect(x, y, controlSize - 1, controlSize - 1);
+                g.fillRect(x, y, CONTROL_SIZE - 1, CONTROL_SIZE - 1);
             }
 
             g.setColor(UIManager.getColor("DarkerCheckBox.checkForeground"));
 
         } else {
             g.setColor(UIManager.getColor("DarkerCheckBox.checkDisabled"));
-            g.drawRect(x, y, controlSize - 1, controlSize - 1);
+            g.drawRect(x, y, CONTROL_SIZE - 1, CONTROL_SIZE - 1);
         }
 
         if (model.isSelected())
@@ -35,16 +35,16 @@ public class DarkCheckBoxIcon implements Icon, UIResource, Serializable {
     }
 
     private void drawCheck(Graphics g, int x, int y) {
-        g.fillRect(x + 2, y + 2, controlSize - 5, controlSize - 5);
+        g.fillRect(x + 2, y + 2, CONTROL_SIZE - 5, CONTROL_SIZE - 5);
     }
 
     @Override
     public int getIconWidth() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 
     @Override
     public int getIconHeight() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 }

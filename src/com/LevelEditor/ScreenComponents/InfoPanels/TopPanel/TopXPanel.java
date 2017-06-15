@@ -29,11 +29,11 @@ public class TopXPanel extends SidePanel implements Resizable {
         for (int i = 0; i < width; i += smallLineIncrementX) {
 
             if (i % bigLineIncrementX == 0) {
-                g.setColor(bigLineColor);
-                g.drawLine(i, height, i, height - bigLineSize);
+                g.setColor(BIG_LINE_COLOR);
+                g.drawLine(i, height, i, height - BIG_LINE_SIZE);
             } else {
-                g.setColor(smallLineColor);
-                g.drawLine(i, height, i, height - smallLineSize);
+                g.setColor(SMALL_LINE_COLOR);
+                g.drawLine(i, height, i, height - SMALL_LINE_SIZE);
             }
 
         }//for loop
@@ -48,7 +48,7 @@ public class TopXPanel extends SidePanel implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX) / 2;
+        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X) / 2;
         setLocation(startX + moveDistanceX, 0);
     }
 }

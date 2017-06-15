@@ -6,13 +6,13 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 
-import static com.LevelEditor.ApplicationWindow.dashedStroke;
-import static com.LevelEditor.ApplicationWindow.normalStroke;
+import static com.LevelEditor.ApplicationWindow.DASHED_STROKE;
+import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
 
 public class Path extends Shape {
 
-    public static final String logMessage = "Level - added path";
-    public static final String logMessageDelete = "Level - removed path";
+    public static final String LOG_MESSAGE = "Level - added path";
+    public static final String LOG_MESSAGE_DELETE = "Level - removed path";
 
     private static final Color lineColor = new Color(29, 187, 56, 200);
     private static final Color dotColor = new Color(187, 45, 39, 90);
@@ -52,13 +52,13 @@ public class Path extends Shape {
         /* ++ drawing line ++ */
 
         if (super.isSelected)
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
         else
             g.setColor(lineColor);
 
         for (int i = 0; i < pathPoints.size() - 1; i++) {
 
-            g.setStroke(dashedStroke);
+            g.setStroke(DASHED_STROKE);
             g.drawLine(pathPoints.get(i).x, pathPoints.get(i).y, pathPoints.get(i + 1).x, pathPoints.get(i + 1).y);
 
             g.setStroke(new BasicStroke(2));
@@ -79,7 +79,7 @@ public class Path extends Shape {
 
 
         /* ++ resetting stroke ++ */
-        g.setStroke(normalStroke);
+        g.setStroke(NORMAL_STROKE);
 
     }
 

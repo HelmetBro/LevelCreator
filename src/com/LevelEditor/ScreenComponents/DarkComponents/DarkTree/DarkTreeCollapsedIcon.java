@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class DarkTreeCollapsedIcon implements Icon, UIResource, Serializable {
 
-    private final int controlSize = 12;
+    private static final int CONTROL_SIZE = 12;
 
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -16,11 +16,11 @@ public class DarkTreeCollapsedIcon implements Icon, UIResource, Serializable {
 
     @Override
     public int getIconWidth() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 
     @Override
     public int getIconHeight() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 }

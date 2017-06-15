@@ -18,7 +18,7 @@ public class ConfirmPropertyValueListener implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        String lastVal = PropertiesScrollPane.defaultBoxValue;
+        String lastVal = PropertiesScrollPane.DEFAULT_BOX_VALUE;
 
         if (e == null)
             return;

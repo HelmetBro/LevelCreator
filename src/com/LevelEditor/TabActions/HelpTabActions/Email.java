@@ -14,8 +14,8 @@ import java.util.Properties;
 
 public class Email {
 
-    private final String from = "eplevelcreator@gmail.com";
-    private final String to = "eplevelcreator@gmail.com";
+    private static final String FROM = "eplevelcreator@gmail.com";
+    private static final String TO = "eplevelcreator@gmail.com";
 
     private String subject;
     private String body;
@@ -60,8 +60,8 @@ public class Email {
 
                 final MimeMessage msg = new MimeMessage(session);
 
-                msg.setFrom(new InternetAddress(from));
-                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
+                msg.setFrom(new InternetAddress(FROM));
+                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(TO, false));
 
                 msg.setSubject(subject);
                 msg.setText(body, "utf-8");
@@ -69,7 +69,7 @@ public class Email {
 
                 SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
 
-                t.connect("smtp.gmail.com", from, "MDcjanf#^#$(VasFMF(@)$m2");
+                t.connect("smtp.gmail.com", FROM, "MDcjanf#^#$(VasFMF(@)$m2");
                 t.sendMessage(msg, msg.getAllRecipients());
                 t.close();
 

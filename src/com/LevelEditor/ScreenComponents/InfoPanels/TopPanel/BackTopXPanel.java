@@ -40,7 +40,7 @@ public class BackTopXPanel extends BackPanel {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int resizeWidth = windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX;
+        int resizeWidth = windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X;
         setBounds(x, y, startWidth + resizeWidth, startHeight);
 
         topXPanel.moveComponent(windowWidth, windowHeight);

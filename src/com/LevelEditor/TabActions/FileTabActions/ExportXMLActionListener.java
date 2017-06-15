@@ -26,7 +26,7 @@ public class ExportXMLActionListener extends ExportAction {
         }
 
         //adding extension
-        path += "." + XMLExtension;
+        path += "." + XML_EXTENSION;
 
         try {
 

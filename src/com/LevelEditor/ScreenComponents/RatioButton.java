@@ -30,9 +30,9 @@ public class RatioButton extends JButton implements Resizable {
         setFocusable(false);
         setContentAreaFilled(false);
         setFont(font);
-        setBackground(backgroundColor);
-        setForeground(lightColor);
-        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, borderColor));
+        setBackground(BACKGROUND_COLOR);
+        setForeground(LIGHT_COLOR);
+        setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, BORDER_COLOR));
         setToolTipText("Multiplier: " + ApplicationWindow.settings.getMultiplier());
         addActionListener(e -> incrementBackground());
     }
@@ -78,7 +78,7 @@ public class RatioButton extends JButton implements Resizable {
 
     private void incrementBackground() {
 
-        int newIndex = ++Canvas.getColorState().index % Canvas.numOfBackStates;
+        int newIndex = ++Canvas.getColorState().index % Canvas.NUM_OF_BACK_STATES;
 
         ApplicationWindow.canvas.setColor(Canvas.BackgroundColorState.values()[newIndex]);
     }
@@ -86,7 +86,7 @@ public class RatioButton extends JButton implements Resizable {
     @Override
     protected void paintComponent(Graphics g) {
         if (getModel().isPressed())
-            g.setColor(backgroundColor.darker().darker());
+            g.setColor(BACKGROUND_COLOR.darker().darker());
         else
             g.setColor(getBackground());
 
@@ -96,7 +96,7 @@ public class RatioButton extends JButton implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX);
+        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
         setLocation(startX + moveDistance, 0);
     }
 }

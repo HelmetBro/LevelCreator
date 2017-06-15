@@ -5,26 +5,26 @@ import javax.swing.plaf.UIResource;
 import java.awt.*;
 import java.io.Serializable;
 
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class DarkTreeOpenIcon implements Icon, UIResource, Serializable {
 
-    private final int controlSize = 12;
+    private static final int CONTROL_SIZE = 12;
 
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
-        g.setColor(lightColor);
-        g.drawRect(1, 1, controlSize, controlSize);
-        g.drawRect(4, 4, controlSize - 6, controlSize - 6);
+        g.setColor(LIGHT_COLOR);
+        g.drawRect(1, 1, CONTROL_SIZE, CONTROL_SIZE);
+        g.drawRect(4, 4, CONTROL_SIZE - 6, CONTROL_SIZE - 6);
     }
 
     @Override
     public int getIconWidth() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 
     @Override
     public int getIconHeight() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 }

@@ -11,7 +11,7 @@ public class AspectSettings {
     public static final int RULER_WIDTH = 65;
     public static final int RULER_HEIGHT = 40;
     //extra startWidth for tools window (in pixels)
-    public final int toolsWindowSizeX = 180;
+    public static final int TOOLS_WINDOW_SIZE_X = 180;
     //level creator multiplier
     private int multiplier;
     //16:9

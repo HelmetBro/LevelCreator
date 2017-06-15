@@ -21,9 +21,9 @@ public class DarkAddButton extends JButton {
         super(text);
         setBorder(new LineBorder(Color.BLACK, 1));
         setFocusable(false);
-        setBackground(backgroundColor);
-        setForeground(lightColor);
-        setFont(basicFont.deriveFont(19f));
+        setBackground(BACKGROUND_COLOR);
+        setForeground(LIGHT_COLOR);
+        setFont(CONSOLAS.deriveFont(19f));
         setBounds(x, y + yOffset, width, height);
         setToolTipText("Click to add property to shape");
         setFocusPainted(false);

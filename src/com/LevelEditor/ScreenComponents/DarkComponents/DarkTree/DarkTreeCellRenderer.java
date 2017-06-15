@@ -7,8 +7,8 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 
-import static com.LevelEditor.ApplicationWindow.basicFont;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.CONSOLAS;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class DarkTreeCellRenderer extends DefaultTreeCellRenderer {
 
@@ -18,8 +18,8 @@ public class DarkTreeCellRenderer extends DefaultTreeCellRenderer {
                                                   int row, boolean hasFocus) {
 
         super.getTreeCellRendererComponent(tree, value, sel, exp, leaf, row, hasFocus);
-        setForeground(lightColor);
-        setFont(basicFont);
+        setForeground(LIGHT_COLOR);
+        setFont(CONSOLAS);
 
         return this;
     }
@@ -31,7 +31,7 @@ public class DarkTreeCellRenderer extends DefaultTreeCellRenderer {
 
     @Override
     public Color getBackgroundSelectionColor() {
-        return ApplicationWindow.selectionColor;
+        return ApplicationWindow.SELECTION_COLOR;
     }
 
     @Override

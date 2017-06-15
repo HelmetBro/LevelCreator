@@ -14,7 +14,7 @@ import java.awt.event.MouseWheelListener;
 public class CustomMouseWheelListener implements MouseWheelListener {
 
     public static String[] stateStrings = {"Polygon", "Selection", "Rectangle", "Ellipse", "Circle", "Point", "Path"};
-    private static final int numOfMouseStates = stateStrings.length;
+    private static final int NUM_OF_MOUSE_STATES = stateStrings.length;
     private static EMouseStates currentMouseEnumState = EMouseStates.SELECTION;
     private static MouseState polyState;
     private static MouseState normalState;
@@ -109,7 +109,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
     }
 
     private void incrementEnumState() {
-        currentMouseEnumState = EMouseStates.values()[(currentMouseEnumState.getIndex() + 1) % numOfMouseStates];
+        currentMouseEnumState = EMouseStates.values()[(currentMouseEnumState.getIndex() + 1) % NUM_OF_MOUSE_STATES];
     }
 
     private void decrementState() {
@@ -117,7 +117,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
         int desiredIndex = currentMouseEnumState.getIndex() - 1;
 
         if (desiredIndex < 0)
-            desiredIndex = numOfMouseStates - 1;
+            desiredIndex = NUM_OF_MOUSE_STATES - 1;
 
         currentMouseEnumState = EMouseStates.values()[desiredIndex];
 

@@ -16,13 +16,13 @@ import com.LevelEditor.Utilities;
 import javax.swing.*;
 import java.awt.*;
 
-import static com.LevelEditor.ApplicationWindow.lightColor;
-import static com.LevelEditor.ApplicationWindow.normalStroke;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
+import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class Canvas extends JPanel implements Resizable {
 
-    public static final byte numOfBackStates = 5;
+    public static final byte NUM_OF_BACK_STATES = 5;
     private static final float ZOOM_INTERVAL = 0.05f;
     private static final float ZOOM_MAX = 8f;
     private static final float ZOOM_MIN = ZOOM_INTERVAL;
@@ -142,7 +142,7 @@ public class Canvas extends JPanel implements Resizable {
         g2d.translate(translateCoorX, translateCoorY);
 
         //drawShape outline so user can see canvas
-        g2d.setColor(lightColor);
+        g2d.setColor(LIGHT_COLOR);
         g2d.drawRect(-1, -1, width + 1, height + 1);
     }
 
@@ -186,16 +186,16 @@ public class Canvas extends JPanel implements Resizable {
             snappedX = Utilities.round(CustomMouseMoveListener.getX(), GridListener.gridSizeX);
             snappedY = Utilities.round(CustomMouseMoveListener.getY(), GridListener.gridSizeY);
 
-            g.setColor(GridListener.gridColor.brighter());
+            g.setColor(GridListener.GRID_COLOR.brighter());
 
-            g.fillOval(snappedX - SnapToGridListener.dotSize / 2, snappedY - SnapToGridListener.dotSize / 2,
-                    SnapToGridListener.dotSize, SnapToGridListener.dotSize);
+            g.fillOval(snappedX - SnapToGridListener.DOT_SIZE / 2, snappedY - SnapToGridListener.DOT_SIZE / 2,
+                    SnapToGridListener.DOT_SIZE, SnapToGridListener.DOT_SIZE);
         }
     }
 
     private void updateGrid(Graphics2D g) {
         if (drawGrid) {
-            g.setColor(GridListener.gridColor);
+            g.setColor(GridListener.GRID_COLOR);
 
             //horizontal lines
             for (int i = 0; i < height; i += GridListener.gridSizeY)
@@ -215,8 +215,8 @@ public class Canvas extends JPanel implements Resizable {
             int mouseX = CustomMouseMoveListener.getX();
             int mouseY = CustomMouseMoveListener.getY();
 
-            g.setStroke(PrecisionLinesListener.dashedStroke);
-            g.setColor(PrecisionLinesListener.GridColor);
+            g.setStroke(PrecisionLinesListener.DASHED_STROKE);
+            g.setColor(PrecisionLinesListener.GRID_COLOR);
 
             //vertical line
             g.drawLine(mouseX, 0, mouseX, height);
@@ -224,7 +224,7 @@ public class Canvas extends JPanel implements Resizable {
             //horizontal line
             g.drawLine(0, mouseY, width, mouseY);
 
-            g.setStroke(normalStroke);
+            g.setStroke(NORMAL_STROKE);
 
         }
     }
@@ -235,7 +235,7 @@ public class Canvas extends JPanel implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.toolsWindowSizeX) / 2;
+        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X) / 2;
         int moveDistanceY = (windowHeight - ApplicationWindow.settings.getLvlMakerHeight()) / 2;
 
         if (moveDistanceX < 0)
@@ -243,7 +243,7 @@ public class Canvas extends JPanel implements Resizable {
         if (moveDistanceY < 0)
             moveDistanceY = 0;
 
-        setLocation(moveDistanceX, moveDistanceY - Resizable.YOffset);
+        setLocation(moveDistanceX, moveDistanceY - Resizable.Y_OFFSET);
     }
 
     public enum BackgroundColorState {

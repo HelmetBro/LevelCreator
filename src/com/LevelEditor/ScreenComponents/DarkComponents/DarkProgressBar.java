@@ -13,7 +13,7 @@ public class DarkProgressBar extends JProgressBar {
         setBorderPainted(false);
         setToolTipText("Loading bar");
         setBorderPainted(false);
-        setForeground(ApplicationWindow.selectionColor);
+        setForeground(ApplicationWindow.SELECTION_COLOR);
         setStringPainted(true);
         setString("");
     }

@@ -10,8 +10,8 @@ import java.awt.font.FontRenderContext;
 
 public class Circle extends Shape {
 
-    public static final String logMessage = "Level - added circle";
-    public static final String logMessageDelete = "Level - removed circle";
+    public static final String LOG_MESSAGE = "Level - added circle";
+    public static final String LOG_MESSAGE_DELETE = "Level - removed circle";
     public int radius;
     private Point topLeft;
     private Point center;
@@ -29,9 +29,9 @@ public class Circle extends Shape {
     public void drawShape(Graphics2D g) {
 
         if (super.isSelected)
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
         else
-            g.setColor(ApplicationWindow.shapeColor);
+            g.setColor(ApplicationWindow.SHAPE_COLOR);
 
         if (ShapeFillListener.isFilled)
             g.fillOval(topLeft.x, topLeft.y, radius * 2, radius * 2);

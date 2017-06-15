@@ -14,10 +14,8 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
-import java.util.ArrayList;
-import java.util.Stack;
 
-import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
+import static com.LevelEditor.ApplicationWindow.BACKGROUND_SHADED_COLOR;
 
 public class ObjectsTreeScrollPane extends CustomScrollPane {
 
@@ -62,7 +60,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
     private void createTree() {
         listOfShapes = new JTree(allShapeNodes);
         listOfShapes.setToggleClickCount(2);
-        listOfShapes.setBackground(backgroundShadedColor);
+        listOfShapes.setBackground(BACKGROUND_SHADED_COLOR);
         listOfShapes.setEditable(false);
         listOfShapes.setDragEnabled(false);
         listOfShapes.setCellRenderer(new DarkTreeCellRenderer());

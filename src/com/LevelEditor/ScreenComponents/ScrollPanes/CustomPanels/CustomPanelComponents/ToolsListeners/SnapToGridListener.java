@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class SnapToGridListener implements ActionListener {
 
-    public static final int dotSize = 10;
+    public static final int DOT_SIZE = 10;
 
     @Override
     public void actionPerformed(ActionEvent e) {

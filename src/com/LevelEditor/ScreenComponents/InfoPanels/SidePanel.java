@@ -10,10 +10,10 @@ import java.awt.*;
 
 public abstract class SidePanel extends JPanel implements Resizable {
 
-    protected static final Color bigLineColor = new Color(145, 145, 142);
-    protected static final Color smallLineColor = new Color(104, 104, 101);
-    protected static final int bigLineSize = 10;
-    protected static final int smallLineSize = 5;
+    protected static final Color BIG_LINE_COLOR = new Color(145, 145, 142);
+    protected static final Color SMALL_LINE_COLOR = new Color(104, 104, 101);
+    protected static final int BIG_LINE_SIZE = 10;
+    protected static final int SMALL_LINE_SIZE = 5;
     public static boolean drawMarker = true;
     protected static int bigLineIncrementX = GridListener.gridSizeX;
     protected static int bigLineIncrementY = GridListener.gridSizeY;
@@ -46,11 +46,11 @@ public abstract class SidePanel extends JPanel implements Resizable {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setVerticalAlignment(SwingConstants.CENTER);
         label.setFont(font);
-        label.setForeground(ApplicationWindow.lightShadedColor);
+        label.setForeground(ApplicationWindow.LIGHT_SHADED_COLOR);
 
         add(label, BorderLayout.CENTER);
 
-        setBackground(ApplicationWindow.backgroundShadedColor);
+        setBackground(ApplicationWindow.BACKGROUND_SHADED_COLOR);
     }
 
     @Override

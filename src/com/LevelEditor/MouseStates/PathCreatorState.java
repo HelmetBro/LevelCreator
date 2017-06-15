@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 
 public class PathCreatorState extends MouseState {
 
-    public static final String logMessagePoint = "PathCreatorState - added vector";
+    public static final String LOG_MESSAGE_POINT = "PathCreatorState - added vector";
 
     private static Path currentPath;
     private static Point startPoint;
@@ -45,14 +45,14 @@ public class PathCreatorState extends MouseState {
         super.updateLayer(g);
 
         //draw path
-        g.setColor(MouseState.drawColor);
+        g.setColor(MouseState.DRAW_COLOR);
         if (drawPathMaker)
             g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
 
         //if grid is on, give it an outline
         if (Canvas.drawGrid && startPoint != null) {
-            g.setColor(ApplicationWindow.selectionColor);
-            g.setStroke(new BasicStroke(lineWidth));
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
+            g.setStroke(new BasicStroke(LINE_WIDTH));
             g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
 
             //resetting stroke
@@ -105,7 +105,7 @@ public class PathCreatorState extends MouseState {
 
     private void addVector(Point p) {
         currentPath.addVector(p);
-        LoggingManager.history.push(logMessagePoint);
+        LoggingManager.history.push(LOG_MESSAGE_POINT);
     }
 
     private void finalizePoint() {

@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 public abstract class ExportAction implements ActionListener {
 
-    public static final String JSONExtension = "json";
-    public static final String XMLExtension = "xml";
+    public static final String JSON_EXTENSION = "json";
+    public static final String XML_EXTENSION = "xml";
     public static boolean prettyPrint;
     private JFrame browser = new JFrame();
 

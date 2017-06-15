@@ -52,8 +52,8 @@ public class OpenDirectoryListener implements ActionListener {
         if (f == null)
             return null;
 
-        if (!Objects.equals(getExtension(f), ExportAction.JSONExtension) &&
-                !Objects.equals(getExtension(f), ExportAction.XMLExtension))
+        if (!Objects.equals(getExtension(f), ExportAction.JSON_EXTENSION) &&
+                !Objects.equals(getExtension(f), ExportAction.XML_EXTENSION))
             return null;
 
         if (userSelection == JFileChooser.APPROVE_OPTION)

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public abstract class BackPanel extends JPanel implements Resizable {
 
-    protected static final Color FADE_BACKGROUND_COLOR = ApplicationWindow.backgroundShadedColor.brighter().brighter().brighter();
+    protected static final Color FADE_BACKGROUND_COLOR = ApplicationWindow.BACKGROUND_SHADED_COLOR.brighter().brighter().brighter();
     private static final Color BASE_BACKGROUND_COLOR = Color.BLACK;
 
     protected int startWidth;

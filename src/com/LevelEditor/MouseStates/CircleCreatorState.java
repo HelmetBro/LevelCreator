@@ -51,14 +51,14 @@ public class CircleCreatorState extends MouseState {
         if (drawcle.radius == 0)
             return;
 
-        g.setColor(MouseState.drawClearColor);
+        g.setColor(MouseState.DRAW_CLEAR_COLOR);
         g.drawOval(drawcle.getTopLeft().getX(), drawcle.getTopLeft().getY(),
                 drawcle.radius * 2, drawcle.radius * 2);
 
         if (Canvas.drawGrid) {
 
-            g.setStroke(new BasicStroke(lineWidth));
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setStroke(new BasicStroke(LINE_WIDTH));
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
             g.drawOval(drawcle.getTopLeft().getX(), drawcle.getTopLeft().getY(),
                     drawcle.radius * 2, drawcle.radius * 2);
 

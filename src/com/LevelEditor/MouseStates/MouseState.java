@@ -15,11 +15,11 @@ import java.awt.event.MouseEvent;
 
 public abstract class MouseState {
 
-    public static final Color drawColor = ApplicationWindow.lightShadedColor;
-    public static final Color drawClearColor = new Color(
-            drawColor.getRed(), drawColor.getGreen(), drawColor.getBlue(), 100);
+    public static final Color DRAW_COLOR = ApplicationWindow.LIGHT_SHADED_COLOR;
+    public static final Color DRAW_CLEAR_COLOR = new Color(
+            DRAW_COLOR.getRed(), DRAW_COLOR.getGreen(), DRAW_COLOR.getBlue(), 100);
 
-    protected static final int lineWidth = 7;
+    protected static final int LINE_WIDTH = 7;
 
     //to prevent double clicks
     protected static int lastClickX = 0;

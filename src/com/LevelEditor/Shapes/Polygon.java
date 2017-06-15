@@ -14,8 +14,8 @@ import java.util.Stack;
 
 public class Polygon extends Shape {
 
-    public static final String logMessage = "Level - added polygon";
-    public static final String logMessageDelete = "Level - removed polygon";
+    public static final String LOG_MESSAGE = "Level - added polygon";
+    public static final String LOG_MESSAGE_DELETE = "Level - removed polygon";
     private static Color concaveColor = new Color(175, 95, 0, 180);
     private boolean isConvex;
     private int numPoints;
@@ -57,9 +57,9 @@ public class Polygon extends Shape {
             javaPoly.addPoint(p.getX(), p.getY());
 
         if (super.isSelected)
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
         else if (isConvex)
-            g.setColor(ApplicationWindow.shapeColor);
+            g.setColor(ApplicationWindow.SHAPE_COLOR);
         else
             g.setColor(concaveColor);
 

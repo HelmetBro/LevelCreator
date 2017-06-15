@@ -9,8 +9,8 @@ import java.awt.geom.Line2D;
 
 public class Point extends Shape {
 
-    public static final String logMessage = "Level - added point";
-    public static final String logMessageDelete = "Level - removed point";
+    public static final String LOG_MESSAGE = "Level - added point";
+    public static final String LOG_MESSAGE_DELETE = "Level - removed point";
     public static final int pointSize = 7;
     //drawing properties
     private static final int pointLineWidth = 3;
@@ -68,9 +68,9 @@ public class Point extends Shape {
     public void drawShape(Graphics2D g) {
 
         if (super.isSelected)
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
         else
-            g.setColor(ApplicationWindow.shapeColor);
+            g.setColor(ApplicationWindow.SHAPE_COLOR);
 
         g.setStroke(new BasicStroke(pointLineWidth));
 

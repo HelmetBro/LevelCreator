@@ -36,7 +36,7 @@ public class ExportJSONActionListener extends ExportAction {
         }
 
         //adding extension
-        path += "." + JSONExtension;
+        path += "." + JSON_EXTENSION;
 
         //creating writer and writing level to GSON file
         try (Writer writer = new FileWriter(path)) {

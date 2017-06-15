@@ -19,7 +19,7 @@ public class AddPropertyListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        shape.getProperties().add(new Property(PropertiesScrollPane.defaultBoxName, PropertiesScrollPane.defaultBoxValue));
+        shape.getProperties().add(new Property(PropertiesScrollPane.DEFAULT_BOX_NAME, PropertiesScrollPane.DEFAULT_BOX_VALUE));
         ScrollPaneHandler.propSP.updatePropertyEditor();
     }
 

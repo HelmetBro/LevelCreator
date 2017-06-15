@@ -31,17 +31,17 @@ import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class ApplicationWindow extends JFrame {
 
-    public static final Color selectionColor = new Color(111, 59, 255, 100);
-    public static final Color shapeColor = new Color(0, 137, 153, 180);
-    public static final Color backgroundColor = new Color(34, 34, 31);
-    public static final Color backgroundShadedColor = new Color(24, 24, 21);
-    public static final Color lightColor = new Color(175, 175, 172);
-    public static final Color lightShadedColor = new Color(165, 165, 162);
-    public static final Color borderColor = lightShadedColor.darker().darker();
-    public static final Font basicFont = new Font("Consolas", Font.PLAIN, 14);
-    public static final BasicStroke normalStroke = new BasicStroke();
-    public static final BasicStroke dashedStroke = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{7}, 0);
-    private static final Font fontOfLabels = new Font("monospaced", Font.BOLD, 14);
+    public static final Color SELECTION_COLOR = new Color(111, 59, 255, 100);
+    public static final Color SHAPE_COLOR = new Color(0, 137, 153, 180);
+    public static final Color BACKGROUND_COLOR = new Color(34, 34, 31);
+    public static final Color BACKGROUND_SHADED_COLOR = new Color(24, 24, 21);
+    public static final Color LIGHT_COLOR = new Color(175, 175, 172);
+    public static final Color LIGHT_SHADED_COLOR = new Color(165, 165, 162);
+    public static final Color BORDER_COLOR = LIGHT_SHADED_COLOR.darker().darker();
+    public static final Font CONSOLAS = new Font("Consolas", Font.PLAIN, 14);
+    public static final BasicStroke NORMAL_STROKE = new BasicStroke();
+    public static final BasicStroke DASHED_STROKE = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{7}, 0);
+    private static final Font MONOSPACED = new Font("monospaced", Font.BOLD, 14);
     public static AspectSettings settings;
     public static InfoLabelButton infoLabelButton;
     public static ScrollPaneHandler scrollPaneHandler;
@@ -78,7 +78,7 @@ public class ApplicationWindow extends JFrame {
         //mandatory settings
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(3, 3, 0));
-        getContentPane().setPreferredSize(new Dimension(settings.getWindowWidth() + settings.toolsWindowSizeX, settings.getWindowHeight()));
+        getContentPane().setPreferredSize(new Dimension(settings.getWindowWidth() + settings.TOOLS_WINDOW_SIZE_X, settings.getWindowHeight()));
 
         createMenuBar();
         standardizeLayout();
@@ -93,25 +93,25 @@ public class ApplicationWindow extends JFrame {
         setLayout(null);
 
         //top label
-        backTopXPanel = new BackTopXPanel("" + settings.getLvlMakerWidth(), fontOfLabels, 0, 0, settings.getLvlMakerWidth(), RULER_HEIGHT);
+        backTopXPanel = new BackTopXPanel("" + settings.getLvlMakerWidth(), MONOSPACED, 0, 0, settings.getLvlMakerWidth(), RULER_HEIGHT);
 
         //right label
-        backRightYPanel = new BackRightYPanel("" + settings.getLvlMakerHeight(), fontOfLabels,
+        backRightYPanel = new BackRightYPanel("" + settings.getLvlMakerHeight(), MONOSPACED,
                 settings.getLvlMakerWidth(), RULER_HEIGHT, RULER_WIDTH, settings.getLvlMakerHeight());
 
         //ratio label
-        ratioButton = new RatioButton(settings.getAspectRatioX() + ":" + settings.getAspectRatioY(), fontOfLabels,
+        ratioButton = new RatioButton(settings.getAspectRatioX() + ":" + settings.getAspectRatioY(), MONOSPACED,
                 settings.getLvlMakerWidth(), 0, RULER_WIDTH, RULER_HEIGHT);
 
         //info thing
-        infoLabelButton = new InfoLabelButton(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT, settings.toolsWindowSizeX);
+        infoLabelButton = new InfoLabelButton(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT, settings.TOOLS_WINDOW_SIZE_X);
 
         //scroll pane
-        scrollPaneHandler = new ScrollPaneHandler(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT + InfoLabelButton.heightOfLabel,
-                settings.toolsWindowSizeX, settings.getLvlMakerHeight() - InfoLabelButton.heightOfLabel);
+        scrollPaneHandler = new ScrollPaneHandler(settings.getLvlMakerWidth() + RULER_WIDTH, RULER_HEIGHT + InfoLabelButton.HEIGHT_OF_LABEL,
+                settings.TOOLS_WINDOW_SIZE_X, settings.getLvlMakerHeight() - InfoLabelButton.HEIGHT_OF_LABEL);
 
         //tools button
-        toolBarButton = new ToolBarButton(fontOfLabels, settings.getLvlMakerWidth() + RULER_WIDTH, 0, settings.toolsWindowSizeX, RULER_HEIGHT);
+        toolBarButton = new ToolBarButton(MONOSPACED, settings.getLvlMakerWidth() + RULER_WIDTH, 0, settings.TOOLS_WINDOW_SIZE_X, RULER_HEIGHT);
 
         //main window (passing in ratio button for zoom animation)
         canvas = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight(), ratioButton);
@@ -119,7 +119,7 @@ public class ApplicationWindow extends JFrame {
         panelHolder = new CanvasHolder(canvas);
         //scroller that holds it
         scrollHolder = new ScrollHolder(panelHolder, 0, RULER_HEIGHT,
-                settings.getWindowWidth() + settings.toolsWindowSizeX,
+                settings.getWindowWidth() + settings.TOOLS_WINDOW_SIZE_X,
                 settings.getWindowHeight());
 
         //order matters
@@ -140,7 +140,7 @@ public class ApplicationWindow extends JFrame {
         //file tab------
         JMenu fileTab = new JMenu("File");
         fileTab.setMnemonic(KeyEvent.VK_F);
-        fileTab.setForeground(lightShadedColor);
+        fileTab.setForeground(LIGHT_SHADED_COLOR);
 
         JMenuItem save = new JMenuItem("Save");
         save.setMnemonic(KeyEvent.VK_S);
@@ -171,7 +171,7 @@ public class ApplicationWindow extends JFrame {
         //tools tab------
         JMenu toolsTab = new JMenu("Tools");
         toolsTab.setMnemonic(KeyEvent.VK_T);
-        toolsTab.setForeground(lightShadedColor);
+        toolsTab.setForeground(LIGHT_SHADED_COLOR);
 
         JMenuItem circle = new JMenuItem("Circle");
         circle.setMnemonic(KeyEvent.VK_C);
@@ -219,7 +219,7 @@ public class ApplicationWindow extends JFrame {
         //help tab------
         JMenu helpTab = new JMenu("Help");
         helpTab.setMnemonic(KeyEvent.VK_H);
-        helpTab.setForeground(lightShadedColor);
+        helpTab.setForeground(LIGHT_SHADED_COLOR);
 
         JMenuItem donateTab = new JMenuItem("Donate");
         donateTab.setMnemonic(KeyEvent.VK_D);

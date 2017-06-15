@@ -32,7 +32,7 @@ public class ScrollHolder extends JScrollPane implements Resizable {
         getVerticalScrollBar().setUnitIncrement(5);
         getHorizontalScrollBar().setUnitIncrement(5);
 
-        setCorner(JScrollPane.LOWER_RIGHT_CORNER, new SnapCorner("+", 0, 0, basicFont, backgroundShadedColor, lightColor));
+        setCorner(JScrollPane.LOWER_RIGHT_CORNER, new SnapCorner("+", 0, 0, CONSOLAS, BACKGROUND_SHADED_COLOR, LIGHT_COLOR));
 
         setBackground(Color.BLACK);
     }
@@ -47,7 +47,7 @@ public class ScrollHolder extends JScrollPane implements Resizable {
 
         SnapCorner(String text, int width, int height, Font font, Color background, Color foreground) {
             super(text, width, height, font, background, foreground);
-            setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, lightColor));
+            setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, LIGHT_COLOR));
             addActionListener(new Resizer());
         }
 

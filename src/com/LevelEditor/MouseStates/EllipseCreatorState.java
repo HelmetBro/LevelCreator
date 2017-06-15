@@ -65,14 +65,14 @@ public class EllipseCreatorState extends MouseState {
         if (drawlipse.height == 0 || drawlipse.width == 0)
             return;
 
-        g.setColor(MouseState.drawClearColor);
+        g.setColor(MouseState.DRAW_CLEAR_COLOR);
         g.drawOval(drawlipse.getTopLeft().getX(), drawlipse.getTopLeft().getY(),
                 drawlipse.width, drawlipse.height);
 
         if (Canvas.drawGrid) {
 
-            g.setStroke(new BasicStroke(lineWidth));
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setStroke(new BasicStroke(LINE_WIDTH));
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
             g.drawOval(drawlipse.getTopLeft().getX(), drawlipse.getTopLeft().getY(),
                     drawlipse.width, drawlipse.height);
 

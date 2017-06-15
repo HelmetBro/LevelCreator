@@ -18,7 +18,7 @@ public class EditPropertyNameListener implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        String newName = PropertiesScrollPane.defaultBoxName;
+        String newName = PropertiesScrollPane.DEFAULT_BOX_NAME;
 
         if (e == null)
             return;

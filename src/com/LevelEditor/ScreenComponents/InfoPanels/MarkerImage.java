@@ -16,7 +16,7 @@ public class MarkerImage extends BufferedImage {
 
         Graphics g = this.createGraphics();
 
-        g.setColor(ApplicationWindow.lightColor);
+        g.setColor(ApplicationWindow.LIGHT_COLOR);
 
         //creating triangle polygon
         Polygon triangle = new Polygon();

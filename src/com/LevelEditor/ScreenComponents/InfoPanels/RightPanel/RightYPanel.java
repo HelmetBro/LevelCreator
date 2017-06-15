@@ -30,11 +30,11 @@ public class RightYPanel extends SidePanel implements Resizable {
         for (int i = 0; i < height; i += smallLineIncrementY) {
 
             if (i % bigLineIncrementY == 0) {
-                g.setColor(bigLineColor);
-                g.drawLine(0, i, bigLineSize - 1, i);
+                g.setColor(BIG_LINE_COLOR);
+                g.drawLine(0, i, BIG_LINE_SIZE - 1, i);
             } else {
-                g.setColor(smallLineColor);
-                g.drawLine(0, i, smallLineSize - 1, i);
+                g.setColor(SMALL_LINE_COLOR);
+                g.drawLine(0, i, SMALL_LINE_SIZE - 1, i);
             }
 
         }//for loop

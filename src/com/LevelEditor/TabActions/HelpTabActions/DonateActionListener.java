@@ -8,8 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.BACKGROUND_SHADED_COLOR;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class DonateActionListener implements ActionListener {
 
@@ -26,14 +26,14 @@ public class DonateActionListener implements ActionListener {
 
         // for copying style
         JLabel label = new JLabel();
-        Font font = ApplicationWindow.basicFont;
+        Font font = ApplicationWindow.CONSOLAS;
 
         // create some css from the label's font
         StringBuilder style = new StringBuilder("font-family:" + font.getFamily() + ";");
         style.append("font-weight:").append("normal").append(";");
         style.append("font-size:").append(12).append("pt;"); //12 is font size
         style.append("color:").append(
-                "rgb(" + lightColor.getRed() + "," + lightColor.getGreen() + "," + lightColor.getBlue() + ")"
+                "rgb(" + LIGHT_COLOR.getRed() + "," + LIGHT_COLOR.getGreen() + "," + LIGHT_COLOR.getBlue() + ")"
         ).append("pt;");
 
         // html content
@@ -58,7 +58,7 @@ public class DonateActionListener implements ActionListener {
         ep.setEditable(false);
         ep.setBackground(label.getBackground());
 
-        ep.setBackground(backgroundShadedColor);
+        ep.setBackground(BACKGROUND_SHADED_COLOR);
 
         JOptionPane.showMessageDialog(null, ep);
 

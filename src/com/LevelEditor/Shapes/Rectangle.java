@@ -10,8 +10,8 @@ import java.awt.font.FontRenderContext;
 
 public class Rectangle extends Shape {
 
-    public static final String logMessage = "Level - added rectangle";
-    public static final String logMessageDelete = "Level - removed rectangle";
+    public static final String LOG_MESSAGE = "Level - added rectangle";
+    public static final String LOG_MESSAGE_DELETE = "Level - removed rectangle";
     public int width;
     public int height;
     private Point topLeft;
@@ -51,9 +51,9 @@ public class Rectangle extends Shape {
     public void drawShape(Graphics2D g) {
 
         if (super.isSelected)
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
         else
-            g.setColor(ApplicationWindow.shapeColor);
+            g.setColor(ApplicationWindow.SHAPE_COLOR);
 
         if (ShapeFillListener.isFilled)
             g.fillRect(topLeft.x, topLeft.y, width, height);

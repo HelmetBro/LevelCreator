@@ -17,8 +17,8 @@ public abstract class CustomScrollPane extends JScrollPane {
 
         //creating the JPanel viewport
         scrollPanel = new JPanel(null);
-        scrollPanel.setBackground(backgroundShadedColor);
-        scrollPanel.setForeground(lightColor);
+        scrollPanel.setBackground(BACKGROUND_SHADED_COLOR);
+        scrollPanel.setForeground(LIGHT_COLOR);
 
         setBorder(BorderFactory.createEmptyBorder());
 
@@ -26,7 +26,7 @@ public abstract class CustomScrollPane extends JScrollPane {
 
         changeScrollToolLook();
 
-        setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, borderColor));
+        setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, BORDER_COLOR));
     }
 
     private void setScrollBottomRight() {
@@ -36,9 +36,9 @@ public abstract class CustomScrollPane extends JScrollPane {
         bottomRightCorner.setOpaque(true);
         bottomRightCorner.setFocusable(false);
         bottomRightCorner.setVisible(true);
-        bottomRightCorner.setBackground(backgroundShadedColor);
+        bottomRightCorner.setBackground(BACKGROUND_SHADED_COLOR);
         bottomRightCorner.setBorder(BorderFactory.createMatteBorder(
-                1, 1, 0, 0, lightColor));
+                1, 1, 0, 0, LIGHT_COLOR));
         setCorner(JScrollPane.LOWER_RIGHT_CORNER, bottomRightCorner);
 
         getVerticalScrollBar().setUnitIncrement(10);

@@ -70,9 +70,9 @@ import static com.LevelEditor.ApplicationWindow.*;
 
 public class Main implements Serializable {
 
-    public static final float smallFontSize = 12f;
+    public static final float SMALL_FONT_SIZE = 12f;
     private static final long serialVersionUID = 90210L;
-    private static final float mediumFontSize = 13f;
+    private static final float MEDIUM_FONT_SIZE = 13f;
     public static ApplicationWindow applicationWindow;
     public static Level currentLevel;
 
@@ -88,22 +88,22 @@ public class Main implements Serializable {
         //changing UI for check boxes
         UIManager.put("CheckBox.icon", new DarkCheckBoxIcon());
         UIManager.put("DarkerCheckBox.checkBackground",
-                backgroundShadedColor.brighter().brighter());
+                BACKGROUND_SHADED_COLOR.brighter().brighter());
         UIManager.put("DarkerCheckBox.checkClickBackground",
-                backgroundShadedColor.brighter().brighter().brighter());
+                BACKGROUND_SHADED_COLOR.brighter().brighter().brighter());
         UIManager.put("DarkerCheckBox.checkForeground",
-                lightColor.darker());
+                LIGHT_COLOR.darker());
         UIManager.put("DarkerCheckBox.checkDisabled",
-                lightColor.darker());
+                LIGHT_COLOR.darker());
 
         //changing UI for radio buttons
         UIManager.put("RadioButton.icon", new DarkRadioButtonIcon());
         UIManager.put("DarkRadioButton.background",
-                backgroundShadedColor.brighter().brighter());
+                BACKGROUND_SHADED_COLOR.brighter().brighter());
         UIManager.put("DarkRadioButton.select",
-                backgroundShadedColor.brighter().brighter().brighter());
+                BACKGROUND_SHADED_COLOR.brighter().brighter().brighter());
         UIManager.put("DarkRadioButton.foreground",
-                lightColor.darker());
+                LIGHT_COLOR.darker());
 
         //changing UI for tree
         UIManager.put("Tree.closedIcon", new DarkTreeClosedIcon());
@@ -115,46 +115,46 @@ public class Main implements Serializable {
         UIManager.put("Tree.drawDashedFocusIndicator", false);
 
         //changing UI ComboBox
-        UIManager.put("ComboBox.background", backgroundColor);
-        UIManager.put("ComboBox.foreground", lightColor);
-        UIManager.put("ComboBox.selectionBackground", ApplicationWindow.selectionColor);
-        UIManager.put("ComboBox.selectionForeground", lightColor);
-        UIManager.put("ComboBox.font", basicFont.deriveFont(smallFontSize));
+        UIManager.put("ComboBox.background", BACKGROUND_COLOR);
+        UIManager.put("ComboBox.foreground", LIGHT_COLOR);
+        UIManager.put("ComboBox.selectionBackground", ApplicationWindow.SELECTION_COLOR);
+        UIManager.put("ComboBox.selectionForeground", LIGHT_COLOR);
+        UIManager.put("ComboBox.font", CONSOLAS.deriveFont(SMALL_FONT_SIZE));
 
         //changing UI TextField
-        UIManager.put("TextField.selectionBackground", ApplicationWindow.selectionColor);
-        UIManager.put("TextField.selectionForeground", lightColor);
-        UIManager.put("TextField.caretForeground", lightColor);
+        UIManager.put("TextField.selectionBackground", ApplicationWindow.SELECTION_COLOR);
+        UIManager.put("TextField.selectionForeground", LIGHT_COLOR);
+        UIManager.put("TextField.caretForeground", LIGHT_COLOR);
 
         //changing text tool-tips
         UIManager.put("ToolTip.background", Color.BLACK);
-        UIManager.put("ToolTip.foreground", lightColor);
-        UIManager.put("ToolTip.border", lightColor.brighter());
-        UIManager.put("ToolTip.font", basicFont.deriveFont(mediumFontSize));
+        UIManager.put("ToolTip.foreground", LIGHT_COLOR);
+        UIManager.put("ToolTip.border", LIGHT_COLOR.brighter());
+        UIManager.put("ToolTip.font", CONSOLAS.deriveFont(MEDIUM_FONT_SIZE));
 
         //changing progress bar
-        UIManager.put("ProgressBar.background", backgroundShadedColor);
-        UIManager.put("ProgressBar.foreground", ApplicationWindow.selectionColor);
+        UIManager.put("ProgressBar.background", BACKGROUND_SHADED_COLOR);
+        UIManager.put("ProgressBar.foreground", ApplicationWindow.SELECTION_COLOR);
 
         //changing Slider
-        UIManager.put("Slider.focus", backgroundShadedColor);
+        UIManager.put("Slider.focus", BACKGROUND_SHADED_COLOR);
 
         //changing menu bar items
-        UIManager.put("MenuItem.background", backgroundShadedColor);
-        UIManager.put("MenuItem.font", basicFont.deriveFont(mediumFontSize));
-        UIManager.put("MenuItem.foreground", lightShadedColor);
-        UIManager.put("MenuItem.selectionBackground", lightShadedColor);
+        UIManager.put("MenuItem.background", BACKGROUND_SHADED_COLOR);
+        UIManager.put("MenuItem.font", CONSOLAS.deriveFont(MEDIUM_FONT_SIZE));
+        UIManager.put("MenuItem.foreground", LIGHT_SHADED_COLOR);
+        UIManager.put("MenuItem.selectionBackground", LIGHT_SHADED_COLOR);
         UIManager.put("MenuItem.selectionForeground", Color.BLACK);
         UIManager.put("MenuItem.border", BorderFactory.createEmptyBorder());
 
         //changing menu bar
-        UIManager.put("MenuBar.background", backgroundShadedColor);
+        UIManager.put("MenuBar.background", BACKGROUND_SHADED_COLOR);
         UIManager.put("MenuBar.border", BorderFactory.createMatteBorder(
-                0, 0, 1, 0, borderColor));
+                0, 0, 1, 0, BORDER_COLOR));
 
         //changing menu
-        UIManager.put("Menu.font", basicFont.deriveFont(mediumFontSize));
-        UIManager.put("Menu.selectionBackground", lightShadedColor);
+        UIManager.put("Menu.font", CONSOLAS.deriveFont(MEDIUM_FONT_SIZE));
+        UIManager.put("Menu.selectionBackground", LIGHT_SHADED_COLOR);
         UIManager.put("Menu.selectionForeground", Color.BLACK);
         UIManager.put("Menu.border", BorderFactory.createEmptyBorder());
 
@@ -162,13 +162,13 @@ public class Main implements Serializable {
         UIManager.put("PopupMenu.border", BorderFactory.createEmptyBorder());
 
         //changing option pane
-        UIManager.put("OptionPane.background", backgroundShadedColor);
-        UIManager.put("OptionPane.messageForeground", lightColor);
-        UIManager.put("OptionPane.messageFont", basicFont.deriveFont(mediumFontSize));
+        UIManager.put("OptionPane.background", BACKGROUND_SHADED_COLOR);
+        UIManager.put("OptionPane.messageForeground", LIGHT_COLOR);
+        UIManager.put("OptionPane.messageFont", CONSOLAS.deriveFont(MEDIUM_FONT_SIZE));
 
         // both for file chooser
-        UIManager.put("Panel.background", backgroundShadedColor); //changing panel
-        UIManager.put("Label.foreground", lightColor); //changing label
+        UIManager.put("Panel.background", BACKGROUND_SHADED_COLOR); //changing panel
+        UIManager.put("Label.foreground", LIGHT_COLOR); //changing label
 
     }
 

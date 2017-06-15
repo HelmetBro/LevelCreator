@@ -26,27 +26,27 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Objects;
 
-import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.BACKGROUND_SHADED_COLOR;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 
 public class InitializeWindow extends JFrame {
 
     private static final String TITLE = "Level Creator Prototype v1.5";
-    private static final int progressMaximum = 100;
-    private static final int progressMinimum = 0;
-    private static final Font bigFont = new Font("Consolas", Font.PLAIN, 24);
-    private static final Font normalFont = new Font("Consolas", Font.PLAIN, 14);
-    private static final Font smallFont = new Font("Consolas", Font.PLAIN, 12);
-    private static final Font startFont = new Font("Consolas", Font.PLAIN, 17);
-    private static final Color infoBoxColor = new Color(
-            lightColor.getRed(),
-            lightColor.getGreen(),
-            lightColor.getBlue(),
-            Math.abs(lightColor.getAlpha() - 200));
-    private static final Color startButtonColor = new Color(34, 34, 31);
-    private static final int initializeWindowWidth = 410;
-    private static final int initializeWindowHeight = 490;
+    private static final int PROGRESS_MAXIMUM = 100;
+    private static final int PROGRESS_MINIMUM = 0;
+    private static final Font BIG_FONT = new Font("Consolas", Font.PLAIN, 24);
+    private static final Font NORMAL_FONT = new Font("Consolas", Font.PLAIN, 14);
+    private static final Font SMALL_FONT = new Font("Consolas", Font.PLAIN, 12);
+    private static final Font START_FONT = new Font("Consolas", Font.PLAIN, 17);
+    private static final Color INFO_BOX_COLOR = new Color(
+            LIGHT_COLOR.getRed(),
+            LIGHT_COLOR.getGreen(),
+            LIGHT_COLOR.getBlue(),
+            Math.abs(LIGHT_COLOR.getAlpha() - 200));
+    private static final Color START_BUTTON_COLOR = new Color(34, 34, 31);
+    private static final int INITIALIZE_WINDOW_WIDTH = 410;
+    private static final int INITIALIZE_WINDOW_HEIGHT = 490;
     public static String filePath;
     public static boolean isFileLoaded;
     public static boolean isJSONNotXML;
@@ -64,14 +64,14 @@ public class InitializeWindow extends JFrame {
     private JTextField absoluteHeight;
 
     public InitializeWindow() {
-        setPreferredSize(new Dimension(initializeWindowWidth, initializeWindowHeight));
+        setPreferredSize(new Dimension(INITIALIZE_WINDOW_WIDTH, INITIALIZE_WINDOW_HEIGHT));
         setResizable(false);
         setLayout(new BorderLayout());
         setTitle(TITLE);
 
         settings = new AspectSettings();
 
-        Border outline = new LineBorder(lightColor, 1, false);
+        Border outline = new LineBorder(LIGHT_COLOR, 1, false);
         Border margin = new EmptyBorder(2, 5, 0, 5);
         Border border = new CompoundBorder(outline, margin);
 
@@ -105,40 +105,40 @@ public class InitializeWindow extends JFrame {
         title.setFocusable(false);
 
         //title compound borders
-        Border outline = new LineBorder(infoBoxColor, 5);
+        Border outline = new LineBorder(INFO_BOX_COLOR, 5);
         Border margin = new EmptyBorder(4, 0, 0, 0);
         Border border = new CompoundBorder(outline, margin);
 
         title.setBorder(border);
 
-        title.setFont(bigFont);
-        title.setForeground(lightColor);
-        title.setBackground(backgroundShadedColor);
+        title.setFont(BIG_FONT);
+        title.setForeground(LIGHT_COLOR);
+        title.setBackground(BACKGROUND_SHADED_COLOR);
         title.setOpaque(true);
         add(title, BorderLayout.NORTH);
     }
 
     private void options(Border border) {
         JPanel p = new JPanel(new GridBagLayout());
-        p.setBackground(backgroundShadedColor);
+        p.setBackground(BACKGROUND_SHADED_COLOR);
         GridBagConstraints c = new GridBagConstraints();
 
         //creating radio buttons and container
         ButtonGroup radioGroup = new ButtonGroup();
-        DarkerRadioButton load = new DarkerRadioButton("Load File", normalFont);
+        DarkerRadioButton load = new DarkerRadioButton("Load File", NORMAL_FONT);
         load.setToolTipText("Loads up a JSON or XML file to resume editing");
         load.addActionListener(new RadioListener(RadioListener.StartOptions.LOAD, this));
         load.setSelected(true);
 
-        DarkerRadioButton auto = new DarkerRadioButton("Auto Scale", normalFont);
+        DarkerRadioButton auto = new DarkerRadioButton("Auto Scale", NORMAL_FONT);
         auto.setToolTipText("Creates new level with dimensions that auto scale according to your monitor");
         auto.addActionListener(new RadioListener(RadioListener.StartOptions.AUTO, this));
 
-        DarkerRadioButton customAR = new DarkerRadioButton("Custom by Aspect Ratio", normalFont);
+        DarkerRadioButton customAR = new DarkerRadioButton("Custom by Aspect Ratio", NORMAL_FONT);
         customAR.setToolTipText("Creates new level with custom aspect ratio properties below");
         customAR.addActionListener(new RadioListener(RadioListener.StartOptions.CUSTOM_AR, this));
 
-        DarkerRadioButton customAbsolute = new DarkerRadioButton("Custom by Absolute", normalFont);
+        DarkerRadioButton customAbsolute = new DarkerRadioButton("Custom by Absolute", NORMAL_FONT);
         customAbsolute.setToolTipText("Creates new level with inputted pixel size below");
         customAbsolute.addActionListener(new RadioListener(RadioListener.StartOptions.CUSTOM_AB, this));
 
@@ -196,31 +196,31 @@ public class InitializeWindow extends JFrame {
         layout.setVgap(15);
         panel.setLayout(layout);
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        panel.setBackground(backgroundShadedColor);
+        panel.setBackground(BACKGROUND_SHADED_COLOR);
 
         //header
         JLabel choiceLabel = new JLabel("Absolute Size", SwingConstants.CENTER);
         choiceLabel.setFocusable(false);
-        choiceLabel.setFont(normalFont);
-        choiceLabel.setForeground(lightColor);
-        choiceLabel.setBackground(backgroundShadedColor);
+        choiceLabel.setFont(NORMAL_FONT);
+        choiceLabel.setForeground(LIGHT_COLOR);
+        choiceLabel.setBackground(BACKGROUND_SHADED_COLOR);
         choiceLabel.setOpaque(true);
 
         //choice 1 label
         JLabel ch1 = new JLabel("Width in Pixels: ", SwingConstants.CENTER);
         ch1.setFocusable(false);
-        ch1.setFont(normalFont);
-        ch1.setForeground(lightColor);
-        ch1.setBackground(backgroundShadedColor);
+        ch1.setFont(NORMAL_FONT);
+        ch1.setForeground(LIGHT_COLOR);
+        ch1.setBackground(BACKGROUND_SHADED_COLOR);
         ch1.setOpaque(true);
         //ch1 text field
         JTextField ch1TextField = new JTextField();
         ch1TextField.setFocusable(true);
         ch1TextField.setHorizontalAlignment(JTextField.CENTER);
-        ch1TextField.setFont(normalFont);
+        ch1TextField.setFont(NORMAL_FONT);
         ch1TextField.setPreferredSize(new Dimension(60, 20));
-        ch1TextField.setForeground(lightColor);
-        ch1TextField.setBackground(backgroundShadedColor);
+        ch1TextField.setForeground(LIGHT_COLOR);
+        ch1TextField.setBackground(BACKGROUND_SHADED_COLOR);
         ch1TextField.setBorder(border);
         ch1TextField.setText("" + settings.getLvlMakerWidth());
 
@@ -230,18 +230,18 @@ public class InitializeWindow extends JFrame {
         //choice 2 label
         JLabel ch2 = new JLabel("Height in Pixels: ", SwingConstants.CENTER);
         ch2.setFocusable(false);
-        ch2.setFont(normalFont);
-        ch2.setForeground(lightColor);
-        ch2.setBackground(backgroundShadedColor);
+        ch2.setFont(NORMAL_FONT);
+        ch2.setForeground(LIGHT_COLOR);
+        ch2.setBackground(BACKGROUND_SHADED_COLOR);
         ch2.setOpaque(true);
         //ch2 text field
         JTextField ch2TextField = new JTextField();
         ch2TextField.setFocusable(true);
         ch2TextField.setHorizontalAlignment(JTextField.CENTER);
-        ch2TextField.setFont(normalFont);
+        ch2TextField.setFont(NORMAL_FONT);
         ch2TextField.setPreferredSize(new Dimension(60, 20));
-        ch2TextField.setForeground(lightColor);
-        ch2TextField.setBackground(backgroundShadedColor);
+        ch2TextField.setForeground(LIGHT_COLOR);
+        ch2TextField.setBackground(BACKGROUND_SHADED_COLOR);
         ch2TextField.setBorder(border);
         ch2TextField.setText("" + settings.getLvlMakerHeight());
 
@@ -285,9 +285,9 @@ public class InitializeWindow extends JFrame {
         //multiplier label
         JLabel mLabel = new JLabel("Multiplier", SwingConstants.CENTER);
         mLabel.setFocusable(false);
-        mLabel.setFont(normalFont);
-        mLabel.setForeground(lightColor);
-        mLabel.setBackground(backgroundShadedColor);
+        mLabel.setFont(NORMAL_FONT);
+        mLabel.setForeground(LIGHT_COLOR);
+        mLabel.setBackground(BACKGROUND_SHADED_COLOR);
         mLabel.setOpaque(true);
         mLabel.setToolTipText("Should be set proportionally to Aspect Ratio");
 
@@ -295,10 +295,10 @@ public class InitializeWindow extends JFrame {
         multiplierField = new JTextField();
         multiplierField.setFocusable(true);
         multiplierField.setHorizontalAlignment(JTextField.CENTER);
-        multiplierField.setFont(normalFont);
+        multiplierField.setFont(NORMAL_FONT);
         multiplierField.setPreferredSize(new Dimension(60, 20));
-        multiplierField.setForeground(lightColor);
-        multiplierField.setBackground(backgroundShadedColor);
+        multiplierField.setForeground(LIGHT_COLOR);
+        multiplierField.setBackground(BACKGROUND_SHADED_COLOR);
         multiplierField.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         multiplierField.setToolTipText("Aspect Ratio * Multiplier = Pixels");
         multiplierField.getDocument().addDocumentListener(new DimensionListener(this, settings, DimensionListener.DimensionFields.MULTIPLIER));
@@ -321,31 +321,31 @@ public class InitializeWindow extends JFrame {
         layout.setVgap(15);
         panel.setLayout(layout);
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        panel.setBackground(backgroundShadedColor);
+        panel.setBackground(BACKGROUND_SHADED_COLOR);
 
         //header
         JLabel choiceLabel = new JLabel(title, SwingConstants.CENTER);
         choiceLabel.setFocusable(false);
-        choiceLabel.setFont(normalFont);
-        choiceLabel.setForeground(lightColor);
-        choiceLabel.setBackground(backgroundShadedColor);
+        choiceLabel.setFont(NORMAL_FONT);
+        choiceLabel.setForeground(LIGHT_COLOR);
+        choiceLabel.setBackground(BACKGROUND_SHADED_COLOR);
         choiceLabel.setOpaque(true);
 
         //choice 1 label
         JLabel ch1 = new JLabel(choice1, SwingConstants.CENTER);
         ch1.setFocusable(false);
-        ch1.setFont(normalFont);
-        ch1.setForeground(lightColor);
-        ch1.setBackground(backgroundShadedColor);
+        ch1.setFont(NORMAL_FONT);
+        ch1.setForeground(LIGHT_COLOR);
+        ch1.setBackground(BACKGROUND_SHADED_COLOR);
         ch1.setOpaque(true);
         //ch1 text field
         JTextField ch1TextField = new JTextField();
         ch1TextField.setFocusable(true);
         ch1TextField.setHorizontalAlignment(JTextField.CENTER);
-        ch1TextField.setFont(normalFont);
+        ch1TextField.setFont(NORMAL_FONT);
         ch1TextField.setPreferredSize(new Dimension(60, 20));
-        ch1TextField.setForeground(lightColor);
-        ch1TextField.setBackground(backgroundShadedColor);
+        ch1TextField.setForeground(LIGHT_COLOR);
+        ch1TextField.setBackground(BACKGROUND_SHADED_COLOR);
         ch1TextField.setBorder(border);
         if (isAspectNotPixels) {
             xField = ch1TextField;
@@ -359,18 +359,18 @@ public class InitializeWindow extends JFrame {
         //choice 2 label
         JLabel ch2 = new JLabel(choice2, SwingConstants.CENTER);
         ch2.setFocusable(false);
-        ch2.setFont(normalFont);
-        ch2.setForeground(lightColor);
-        ch2.setBackground(backgroundShadedColor);
+        ch2.setFont(NORMAL_FONT);
+        ch2.setForeground(LIGHT_COLOR);
+        ch2.setBackground(BACKGROUND_SHADED_COLOR);
         ch2.setOpaque(true);
         //ch2 text field
         JTextField ch2TextField = new JTextField();
         ch2TextField.setFocusable(true);
         ch2TextField.setHorizontalAlignment(JTextField.CENTER);
-        ch2TextField.setFont(normalFont);
+        ch2TextField.setFont(NORMAL_FONT);
         ch2TextField.setPreferredSize(new Dimension(60, 20));
-        ch2TextField.setForeground(lightColor);
-        ch2TextField.setBackground(backgroundShadedColor);
+        ch2TextField.setForeground(LIGHT_COLOR);
+        ch2TextField.setBackground(BACKGROUND_SHADED_COLOR);
         ch2TextField.setBorder(border);
         if (isAspectNotPixels) {
             yField = ch2TextField;
@@ -417,26 +417,26 @@ public class InitializeWindow extends JFrame {
         //path label
         JLabel pathLabel = new JLabel("Path: ", SwingConstants.CENTER);
         pathLabel.setFocusable(false);
-        pathLabel.setFont(normalFont);
-        pathLabel.setForeground(lightColor);
-        pathLabel.setBackground(backgroundShadedColor);
+        pathLabel.setFont(NORMAL_FONT);
+        pathLabel.setForeground(LIGHT_COLOR);
+        pathLabel.setBackground(BACKGROUND_SHADED_COLOR);
         pathLabel.setOpaque(true);
 
         //JTextField
         pathField = new JTextField("C:\\");
         pathField.setFocusable(true);
         pathField.setHorizontalAlignment(JTextField.LEFT);
-        pathField.setFont(normalFont);
+        pathField.setFont(NORMAL_FONT);
         pathField.setPreferredSize(new Dimension(300, 20));
-        pathField.setForeground(lightColor);
-        pathField.setBackground(backgroundShadedColor);
+        pathField.setForeground(LIGHT_COLOR);
+        pathField.setBackground(BACKGROUND_SHADED_COLOR);
         pathField.setBorder(border);
 
         pathField.setToolTipText("Enter the complete path of the file to load");
 
         //directory label/button
-        DarkJButton directory = new DarkJButton("...", 23, 20, smallFont, backgroundShadedColor, lightColor);
-        directory.setBorder(new LineBorder(lightColor.darker()));
+        DarkJButton directory = new DarkJButton("...", 23, 20, SMALL_FONT, BACKGROUND_SHADED_COLOR, LIGHT_COLOR);
+        directory.setBorder(new LineBorder(LIGHT_COLOR.darker()));
         directory.setToolTipText("Click to open directory");
         directory.addActionListener(new OpenDirectoryListener());
 
@@ -451,11 +451,11 @@ public class InitializeWindow extends JFrame {
         JPanel panel = new JPanel();
         FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 15, 5);
         panel.setLayout(flowLayout);
-        panel.setBackground(backgroundShadedColor);
+        panel.setBackground(BACKGROUND_SHADED_COLOR);
         panel.setBorder(new EmptyBorder(0, 0, 5, 0));
 
         //start button
-        DarkJButton start = new DarkJButton("Begin", 80, 30, startFont, startButtonColor, lightColor);
+        DarkJButton start = new DarkJButton("Begin", 80, 30, START_FONT, START_BUTTON_COLOR, LIGHT_COLOR);
         start.addActionListener(new BeginListener());
         start.setBorder(new LineBorder(Color.BLACK, 1));
 
@@ -463,10 +463,10 @@ public class InitializeWindow extends JFrame {
         JPanel progressPanel = new JPanel(null);
         progressPanel.setFocusable(false);
         progressPanel.setPreferredSize(new Dimension(277, 17));
-        progressPanel.setBackground(backgroundShadedColor);
+        progressPanel.setBackground(BACKGROUND_SHADED_COLOR);
         progressPanel.setToolTipText("It's just a loading bar");
-        progressPanel.setBorder(BorderFactory.createLineBorder(lightColor, 1));
-        progressBar = new DarkProgressBar(progressMinimum, progressMaximum, -4, -1,
+        progressPanel.setBorder(BorderFactory.createLineBorder(LIGHT_COLOR, 1));
+        progressBar = new DarkProgressBar(PROGRESS_MINIMUM, PROGRESS_MAXIMUM, -4, -1,
                 (int) progressPanel.getPreferredSize().getWidth() + 9,
                 (int) progressPanel.getPreferredSize().getHeight() + 4);
         progressBar.setVisible(false);
@@ -524,7 +524,7 @@ public class InitializeWindow extends JFrame {
         File f = new File(filePath);
 
         //if JSON file
-        if (Objects.equals(OpenDirectoryListener.getExtension(f), ExportAction.JSONExtension)) {
+        if (Objects.equals(OpenDirectoryListener.getExtension(f), ExportAction.JSON_EXTENSION)) {
 
             //opening GSON and popping in data
             Gson gson = new Gson();
@@ -543,7 +543,7 @@ public class InitializeWindow extends JFrame {
 
         }
         //if XML file
-        else if (Objects.equals(OpenDirectoryListener.getExtension(f), ExportAction.XMLExtension)) {
+        else if (Objects.equals(OpenDirectoryListener.getExtension(f), ExportAction.XML_EXTENSION)) {
 
             //creating XML parsers and giving data to level
             try {

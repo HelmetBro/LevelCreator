@@ -5,16 +5,16 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
-import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.BACKGROUND_SHADED_COLOR;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class CustomScrollBarUI extends BasicScrollBarUI {
 
-    private static final int pixelDecreaseOfBar = 7;
+    private static final int PIXEL_DECREASE_OF_BAR = 7;
 
     @Override
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-        g.setColor(backgroundShadedColor);
+        g.setColor(BACKGROUND_SHADED_COLOR);
         g.fillRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height);
 
         if (trackHighlight == DECREASE_HIGHLIGHT) {
@@ -35,12 +35,12 @@ public class CustomScrollBarUI extends BasicScrollBarUI {
 
         g.translate(thumbBounds.x, thumbBounds.y);
 
-        g.setColor(lightColor);
+        g.setColor(LIGHT_COLOR);
 
         if (h > w)
-            g.fillRect(pixelDecreaseOfBar / 2 + 1, 0, w - 1 - pixelDecreaseOfBar, h - 1);
+            g.fillRect(PIXEL_DECREASE_OF_BAR / 2 + 1, 0, w - 1 - PIXEL_DECREASE_OF_BAR, h - 1);
         else
-            g.fillRect(0, pixelDecreaseOfBar / 2 + 1, w - 1, h - 1 - pixelDecreaseOfBar);
+            g.fillRect(0, PIXEL_DECREASE_OF_BAR / 2 + 1, w - 1, h - 1 - PIXEL_DECREASE_OF_BAR);
 
         g.translate(-thumbBounds.x, -thumbBounds.y);
     }
@@ -62,7 +62,7 @@ public class CustomScrollBarUI extends BasicScrollBarUI {
             @Override
             protected void paintComponent(Graphics g) {
                 if (getModel().isPressed())
-                    g.setColor(backgroundShadedColor.darker());
+                    g.setColor(BACKGROUND_SHADED_COLOR.darker());
                 else
                     g.setColor(getBackground());
 
@@ -74,19 +74,19 @@ public class CustomScrollBarUI extends BasicScrollBarUI {
         //1 is vertical up direction, 7 is left horizontal direction.
         if (direction == 1)
             button.setBorder(BorderFactory.createMatteBorder(
-                    0, 1, 1, 0, lightColor));
+                    0, 1, 1, 0, LIGHT_COLOR));
         else if (direction == 7)
             button.setBorder(BorderFactory.createMatteBorder(
-                    1, 0, 0, 1, lightColor));
+                    1, 0, 0, 1, LIGHT_COLOR));
         else
             button.setBorder(BorderFactory.createMatteBorder(
-                    1, 1, 0, 0, lightColor));
+                    1, 1, 0, 0, LIGHT_COLOR));
 
         button.setContentAreaFilled(false);
         button.setPreferredSize(new Dimension(super.scrollBarWidth, super.scrollBarWidth));
         button.setFocusable(false);
-        button.setBackground(backgroundShadedColor.darker().darker().darker().darker());
-        button.setForeground(lightColor);
+        button.setBackground(BACKGROUND_SHADED_COLOR.darker().darker().darker().darker());
+        button.setForeground(LIGHT_COLOR);
 
         return button;
 

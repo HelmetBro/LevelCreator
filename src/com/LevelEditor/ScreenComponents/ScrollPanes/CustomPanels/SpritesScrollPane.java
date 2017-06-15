@@ -7,16 +7,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static com.LevelEditor.ApplicationWindow.basicFont;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.CONSOLAS;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class SpritesScrollPane extends CustomScrollPane {
 
-    private static final Color infoBoxColor = new Color(
-            lightColor.getRed(),
-            lightColor.getGreen(),
-            lightColor.getBlue(),
-            Math.abs(lightColor.getAlpha() - 200));
+    private static final Color INFO_BOX_COLOR = new Color(
+            LIGHT_COLOR.getRed(),
+            LIGHT_COLOR.getGreen(),
+            LIGHT_COLOR.getBlue(),
+            Math.abs(LIGHT_COLOR.getAlpha() - 200));
 
     private int windowHeight;
     private int width;
@@ -72,10 +72,10 @@ public class SpritesScrollPane extends CustomScrollPane {
                 "</div></html>", SwingConstants.CENTER);
         infoTip.setBounds((width / 2 - labelWidth / 2) + (int) getVerticalScrollBar().getPreferredSize().getWidth() / 2,
                 20, labelWidth, 80);
-        infoTip.setFont(basicFont);
+        infoTip.setFont(CONSOLAS);
 
-        infoTip.setForeground(infoBoxColor);
-        infoTip.setBorder(BorderFactory.createLineBorder(infoBoxColor));
+        infoTip.setForeground(INFO_BOX_COLOR);
+        infoTip.setBorder(BorderFactory.createLineBorder(INFO_BOX_COLOR));
         infoTip.setBackground(super.getBackground());
 
         return infoTip;

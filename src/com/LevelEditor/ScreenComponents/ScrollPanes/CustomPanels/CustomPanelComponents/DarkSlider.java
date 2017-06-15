@@ -6,13 +6,13 @@ import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 
-import static com.LevelEditor.ApplicationWindow.backgroundShadedColor;
-import static com.LevelEditor.ApplicationWindow.lightColor;
+import static com.LevelEditor.ApplicationWindow.BACKGROUND_SHADED_COLOR;
+import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class DarkSlider extends BasicSliderUI {
 
-    private final int width = 16;
-    private final int height = 25;
+    private static final int WIDTH = 16;
+    private static final int HEIGHT = 25;
 
     public DarkSlider(JSlider b) {
         super(b);
@@ -28,14 +28,14 @@ public class DarkSlider extends BasicSliderUI {
 
     @Override
     protected Dimension getThumbSize() {
-        return new Dimension(width, height);
+        return new Dimension(WIDTH, HEIGHT);
     }
 
     @Override
     public void paintTrack(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         Stroke old = g2d.getStroke();
-        g2d.setPaint(lightColor);
+        g2d.setPaint(LIGHT_COLOR);
         if (slider.getOrientation() == SwingConstants.HORIZONTAL) {
             g2d.drawLine(trackRect.x, trackRect.y + trackRect.height / 2,
                     trackRect.x + trackRect.width, trackRect.y + trackRect.height / 2);
@@ -61,12 +61,12 @@ public class DarkSlider extends BasicSliderUI {
         shape.lineTo((x1 + x2) / 2, topY + width);
         shape.closePath();
 
-        g2d.setPaint(backgroundShadedColor.brighter().brighter());
+        g2d.setPaint(BACKGROUND_SHADED_COLOR.brighter().brighter());
         g2d.fill(shape);
         Stroke old = g2d.getStroke();
 
         g2d.setStroke(new BasicStroke(2f));
-        g2d.setPaint(backgroundShadedColor.brighter().brighter().brighter().brighter().brighter());
+        g2d.setPaint(BACKGROUND_SHADED_COLOR.brighter().brighter().brighter().brighter().brighter());
         g2d.draw(shape);
         g2d.setStroke(old);
     }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class DarkRadioButtonIcon implements Icon, UIResource, Serializable {
 
-    private final int controlSize = 14;
+    private static final int CONTROL_SIZE = 14;
 
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -18,10 +18,10 @@ public class DarkRadioButtonIcon implements Icon, UIResource, Serializable {
         if (model.isEnabled()) {
             if (model.isPressed() && model.isArmed()) {
                 g.setColor(UIManager.getColor("DarkRadioButton.select"));
-                g.fillOval(x, y, controlSize - 1, controlSize - 1);
+                g.fillOval(x, y, CONTROL_SIZE - 1, CONTROL_SIZE - 1);
             } else {
                 g.setColor(UIManager.getColor("DarkRadioButton.background"));
-                g.fillOval(x, y, controlSize - 1, controlSize - 1);
+                g.fillOval(x, y, CONTROL_SIZE - 1, CONTROL_SIZE - 1);
             }
             g.setColor(UIManager.getColor("DarkRadioButton.foreground"));
         }
@@ -31,16 +31,16 @@ public class DarkRadioButtonIcon implements Icon, UIResource, Serializable {
     }
 
     private void drawCheck(Graphics g, int x, int y) {
-        g.fillOval(x + 2, y + 2, controlSize - 5, controlSize - 5);
+        g.fillOval(x + 2, y + 2, CONTROL_SIZE - 5, CONTROL_SIZE - 5);
     }
 
     @Override
     public int getIconWidth() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 
     @Override
     public int getIconHeight() {
-        return controlSize;
+        return CONTROL_SIZE;
     }
 }

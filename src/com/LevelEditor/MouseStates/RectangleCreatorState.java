@@ -64,14 +64,14 @@ public class RectangleCreatorState extends MouseState {
         if (drawtangle.height == 0 || drawtangle.width == 0)
             return;
 
-        g.setColor(MouseState.drawClearColor);
+        g.setColor(MouseState.DRAW_CLEAR_COLOR);
         g.drawRect(drawtangle.getTopLeft().getX(), drawtangle.getTopLeft().getY(),
                 drawtangle.width, drawtangle.height);
 
         if (Canvas.drawGrid) {
 
-            g.setStroke(new BasicStroke(lineWidth));
-            g.setColor(ApplicationWindow.selectionColor);
+            g.setStroke(new BasicStroke(LINE_WIDTH));
+            g.setColor(ApplicationWindow.SELECTION_COLOR);
             g.drawRect(drawtangle.getTopLeft().getX(), drawtangle.getTopLeft().getY(),
                     drawtangle.width, drawtangle.height);
 
