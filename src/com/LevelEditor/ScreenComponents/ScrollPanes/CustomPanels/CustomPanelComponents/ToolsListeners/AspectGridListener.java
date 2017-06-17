@@ -1,6 +1,8 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners;
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.MouseStates.MouseState;
 import com.LevelEditor.UpdatePaint;
 
 import javax.swing.*;
@@ -20,6 +22,9 @@ public class AspectGridListener implements ActionListener {
 
         isSelected = abstractButton.getModel().isSelected();
 
+        if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION)
+            return;
+
         if (!isSelected) {
             GridListener.gridSizeX = SliderListener.sliderValue;
             GridListener.gridSizeY = SliderListener.sliderValue;
@@ -36,7 +41,6 @@ public class AspectGridListener implements ActionListener {
             GridListener.gridSizeX = x;
             GridListener.gridSizeY = y;
         }
-
 
         UpdatePaint.remakeAll();
     }

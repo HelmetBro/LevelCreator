@@ -73,9 +73,9 @@ public class ToolsScrollPane extends CustomScrollPane {
         names.addActionListener(new HideNamesListener());
 
         //hit boxes
-        DarkerCheckBox hitBoxes = new DarkerCheckBox("Hide Hit Boxes", CONSOLAS);
-        hitBoxes.setToolTipText("Enable to hide all dashed line hit boxer");
-        hitBoxes.addActionListener(new HideHitBoxesListener());
+        DarkerCheckBox rotateOutline = new DarkerCheckBox("Hide Rotations", CONSOLAS);
+        rotateOutline.setToolTipText("Enable to hide all dashed rotation outlines");
+        rotateOutline.addActionListener(new HideRotationOutlineListener());
 
         //points
         DarkerCheckBox points = new DarkerCheckBox("Hide Points", CONSOLAS);
@@ -90,7 +90,7 @@ public class ToolsScrollPane extends CustomScrollPane {
         p.add(editorLabel);
         p.add(shapes);
         p.add(names);
-        p.add(hitBoxes);
+        p.add(rotateOutline);
         p.add(points);
         p.add(paths);
 

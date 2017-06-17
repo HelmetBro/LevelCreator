@@ -46,17 +46,20 @@ public class PathCreatorState extends MouseState {
 
         //draw path
         g.setColor(MouseState.DRAW_COLOR);
-        if (drawPathMaker)
+        if (drawPathMaker) {
+
             g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
 
-        //if grid is on, give it an outline
-        if (Canvas.drawGrid && startPoint != null) {
-            g.setColor(ApplicationWindow.SELECTION_COLOR);
-            g.setStroke(new BasicStroke(LINE_WIDTH));
-            g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
+            //if grid is on, give it an outline
+            if (Canvas.drawGrid && startPoint != null) {
+                g.setColor(ApplicationWindow.SELECTION_COLOR);
+                g.setStroke(new BasicStroke(LINE_WIDTH));
+                g.drawLine(startPoint.getX(), startPoint.getY(), currentClickX, currentClickY);
 
-            //resetting stroke
-            g.setStroke(new BasicStroke(1));
+                //resetting stroke
+                g.setStroke(new BasicStroke(1));
+            }
+
         }
 
         //draw the current path that's being made
@@ -83,7 +86,7 @@ public class PathCreatorState extends MouseState {
             startPoint = new Point(currentClickX, currentClickY);
         }
 
-        if (SwingUtilities.isRightMouseButton(e)){
+        if (SwingUtilities.isRightMouseButton(e)) {
 
             if (clickCount == 1)
                 finalizePoint();

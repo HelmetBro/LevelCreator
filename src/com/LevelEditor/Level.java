@@ -70,7 +70,6 @@ public class Level {
 
         drawShapes(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles, safePaths);
         drawNames(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles, safePaths);
-
     }
 
     private void drawNames(Graphics2D g,

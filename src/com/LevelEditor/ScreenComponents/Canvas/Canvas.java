@@ -1,23 +1,25 @@
 package com.LevelEditor.ScreenComponents.Canvas;
 
-import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.*;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseMoveListener;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
-import com.LevelEditor.Main;
-import com.LevelEditor.Resizable;
+import com.LevelEditor.MouseStates.MouseState;
+import com.LevelEditor.MouseStates.RotateMouseState;
 import com.LevelEditor.ScreenComponents.CustomKeyboardListener;
-import com.LevelEditor.ScreenComponents.RatioButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.PrecisionLinesListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.SnapToGridListener;
-import com.LevelEditor.Utilities;
+import com.LevelEditor.Shapes.Point;
+import com.LevelEditor.StartWindow.AspectSettings;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
+import static com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener.gridSizeX;
+import static com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.GridListener.gridSizeY;
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_WIDTH;
 
 public class Canvas extends JPanel implements Resizable {
@@ -33,7 +35,8 @@ public class Canvas extends JPanel implements Resizable {
     public static boolean antiAlias = true;
     public static int snappedX = 0;
     public static int snappedY = 0;
-
+    //rotation grid property
+    public static int chosen = gridSizeX - 4;
     //zooming properties
     static float currentZoom = 1f;
     static float translateCoorX = 0;
@@ -42,15 +45,12 @@ public class Canvas extends JPanel implements Resizable {
     private final int width;
     private final int height;
     private boolean zoomFlag = false;
-    private RatioButton button;
-
     private int translateDirection = 0;
     private int translateIncrement = 10;
 
-    public Canvas(int x, int y, int width, int height, RatioButton button) {
+    public Canvas(int x, int y, int width, int height) {
         this.width = width;
         this.height = height;
-        this.button = button;
         setPreferredSize(new Dimension(width, height));
         setBounds(x, y, width, height);
         setColor(colorState);
@@ -131,7 +131,7 @@ public class Canvas extends JPanel implements Resizable {
             translateCoorX = xOff * CustomMouseMoveListener.getX() / (float) width / currentZoom;
             translateCoorY = yOff * CustomMouseMoveListener.getY() / (float) height / currentZoom;
 
-            button.displayZoom(currentZoom);
+            ApplicationWindow.ratioButton.displayZoom(currentZoom);
 
             //resetting flag
             zoomFlag = false;
@@ -162,11 +162,18 @@ public class Canvas extends JPanel implements Resizable {
 
         zoom(g2d);
 
-        //added shapes
-        Main.currentLevel.updateLevel(g2d);
+        if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION) {
+            //needs to make rotation first
+            CustomMouseListener.updateLayer(g2d);
+            //then draw
+            Main.currentLevel.updateLevel(g2d);
 
-        //shape in the making
-        CustomMouseListener.updateLayer(g2d);
+        } else {
+            //draw the shapes
+            Main.currentLevel.updateLevel(g2d);
+            //shape in the making
+            CustomMouseListener.updateLayer(g2d);
+        }
 
         //editor grid
         updateGrid(g2d);
@@ -176,15 +183,45 @@ public class Canvas extends JPanel implements Resizable {
 
         //update mouse snapping to grid
         updateSnapGrid(g2d);
-
     }
 
     private void updateSnapGrid(Graphics2D g) {
 
         if (snapToGrid) {
 
-            snappedX = Utilities.round(CustomMouseMoveListener.getX(), GridListener.gridSizeX);
-            snappedY = Utilities.round(CustomMouseMoveListener.getY(), GridListener.gridSizeY);
+            if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION) {
+
+                if (ManageLevelArrayLists.getSelectedShapes().size() <= 0) {
+                    snappedX = CustomMouseMoveListener.getX();
+                    snappedY = CustomMouseMoveListener.getY();
+                    return;
+                }
+
+                //two points for calculation
+                Point center = new Point(
+                        ApplicationWindow.settings.getLvlMakerWidth() / 2,
+                        ApplicationWindow.settings.getLvlMakerHeight() / 2);
+                Point mouse = new Point(
+                        CustomMouseMoveListener.getX(),
+                        CustomMouseMoveListener.getY());
+
+                //angle relative to the center point of the mouse
+                float mouseAngle = (float) Math.toDegrees(Math.atan2(
+                        center.getY() - mouse.getY(),
+                        mouse.getX() - center.getX())
+                );
+
+                //the angle closest to the grid
+                float snappedAngle = Utilities.round(Utilities.normalize(mouseAngle), chosen);
+                float mouseDistance = Utilities.distance(center, mouse);
+
+                snappedX = (int) (Math.cos(Math.toRadians(Utilities.undoAngleMods(snappedAngle))) * mouseDistance) + center.getX();
+                snappedY = (int) (Math.sin(Math.toRadians(Utilities.undoAngleMods(snappedAngle))) * mouseDistance) + center.getY();
+
+            } else {
+                snappedX = Utilities.round(CustomMouseMoveListener.getX(), gridSizeX);
+                snappedY = Utilities.round(CustomMouseMoveListener.getY(), gridSizeY);
+            }
 
             g.setColor(GridListener.GRID_COLOR.brighter());
 
@@ -194,15 +231,27 @@ public class Canvas extends JPanel implements Resizable {
     }
 
     private void updateGrid(Graphics2D g) {
+
+        //making sure the angle is a factor of 360 for even degrees
+        chosen = gridSizeX - 4;
+        while (360 % chosen != 0)
+            chosen++;
+
         if (drawGrid) {
+
             g.setColor(GridListener.GRID_COLOR);
 
+            if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION) {
+                gridBacking(g);
+                return;
+            }
+
             //horizontal lines
-            for (int i = 0; i < height; i += GridListener.gridSizeY)
+            for (int i = 0; i < height; i += gridSizeY)
                 g.drawLine(0, i, width, i);
 
             //vertical lines
-            for (int i = 0; i < width; i += GridListener.gridSizeX)
+            for (int i = 0; i < width; i += gridSizeX)
                 g.drawLine(i, 0, i, height);
 
         }
@@ -215,7 +264,11 @@ public class Canvas extends JPanel implements Resizable {
             int mouseX = CustomMouseMoveListener.getX();
             int mouseY = CustomMouseMoveListener.getY();
 
-            g.setStroke(PrecisionLinesListener.DASHED_STROKE);
+            if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.PATH)
+                g.setStroke(PrecisionLinesListener.DASHED_STROKE);
+            else
+                g.setStroke(NORMAL_STROKE);
+
             g.setColor(PrecisionLinesListener.GRID_COLOR);
 
             //vertical line
@@ -224,9 +277,22 @@ public class Canvas extends JPanel implements Resizable {
             //horizontal line
             g.drawLine(0, mouseY, width, mouseY);
 
-            g.setStroke(NORMAL_STROKE);
-
         }
+    }
+
+
+    private void gridBacking(Graphics2D g) {
+
+        float centerX = ApplicationWindow.settings.getLvlMakerWidth() / 2f;
+        float centerY = ApplicationWindow.settings.getLvlMakerHeight() / 2f;
+
+        //each line
+        for (int i = 0; i < 360; i += chosen) {
+            double x = Math.cos(Math.toRadians(i)) * (RotateMouseState.GRID_RADIUS / 2);
+            double y = Math.sin(Math.toRadians(i)) * (RotateMouseState.GRID_RADIUS / 2);
+            g.drawLine((int) centerX, (int) centerY, (int) (x + centerX), (int) (y + centerY));
+        }
+
     }
 
     public void setColor(BackgroundColorState state) {
@@ -235,7 +301,7 @@ public class Canvas extends JPanel implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X) / 2;
+        int moveDistanceX = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - AspectSettings.TOOLS_WINDOW_SIZE_X) / 2;
         int moveDistanceY = (windowHeight - ApplicationWindow.settings.getLvlMakerHeight()) / 2;
 
         if (moveDistanceX < 0)

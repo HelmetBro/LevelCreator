@@ -6,11 +6,26 @@ import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Rectangle;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Utilities {
 
+    /**
+     * @param angle is in degrees.
+     */
+    public static float undoAngleMods(float angle) {
+        return 360 - angle;
+    }
+
+    /**
+     * @param angle is in degrees.
+     */
+    public static float normalize(float angle) {
+        return (angle < 0) ? angle + 360 : angle;
+    }
+
     public static boolean pathCollide(Path path, int inputX, int inputY) {
-        return circleCollide(path.startPoint(), Path.START_POINT_RADIUS + 5,  inputX, inputY);
+        return circleCollide(path.startPoint(), Path.START_POINT_RADIUS + 5, inputX, inputY);
     }
 
     //jordan curve theorem
@@ -65,6 +80,58 @@ public class Utilities {
         final float x_d = p1.getX() - p2.getX();
         final float y_d = p1.getY() - p2.getY();
         return (float) Math.sqrt(x_d * x_d + y_d * y_d);
+    }
+
+    public static float distance2(Point p1, Point p2) {
+        final float x_d = p1.getX() - p2.getX();
+        final float y_d = p1.getY() - p2.getY();
+        return x_d * x_d + y_d * y_d;
+    }
+
+    public static Point compute2DPolygonCentroid(Stack<Point> points) {
+        return compute2DPolygonCentroid(new ArrayList<>(points));
+    }
+
+    public static Point compute2DPolygonCentroid(ArrayList<Point> points) {
+        int numPoints = points.size();
+
+        Point centroid = new Point();
+        double signedArea = 0.0;
+        double x0; // Current vertex X
+        double y0; // Current vertex Y
+        double x1; // Next vertex X
+        double y1; // Next vertex Y
+        double a;  // Partial signed area
+
+        // For all vertices except last
+        int i;
+        for (i = 0; i < numPoints - 1; ++i) {
+            x0 = points.get(i).getX();
+            y0 = points.get(i).getY();
+            x1 = points.get(i + 1).getX();
+            y1 = points.get(i + 1).getY();
+            a = x0 * y1 - x1 * y0;
+            signedArea += a;
+            centroid.setX(centroid.getX() + (int) ((x0 + x1) * a));
+            centroid.setY(centroid.getY() + (int) ((y0 + y1) * a));
+        }
+
+        // Do last vertex separately to avoid performing an expensive
+        // modulus operation in each iteration.
+        x0 = points.get(i).getX();
+        y0 = points.get(i).getY();
+        x1 = points.get(0).getX();
+        y1 = points.get(0).getY();
+        a = x0 * y1 - x1 * y0;
+        signedArea += a;
+        centroid.setX(centroid.getX() + (int) ((x0 + x1) * a));
+        centroid.setY(centroid.getY() + (int) ((y0 + y1) * a));
+
+        signedArea *= 0.5;
+        centroid.setX((int) (centroid.getX() / (6.0 * signedArea)));
+        centroid.setY((int) (centroid.getY() / (6.0 * signedArea)));
+
+        return centroid;
     }
 
 //    public static int[] reverse(int[] x) {

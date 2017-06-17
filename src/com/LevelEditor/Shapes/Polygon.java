@@ -2,8 +2,11 @@ package com.LevelEditor.Shapes;
 
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.MouseStates.MouseState;
+import com.LevelEditor.MouseStates.RotateMouseState;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideRotationOutlineListener;
 import com.LevelEditor.Utilities;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -12,6 +15,10 @@ import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import static com.LevelEditor.ApplicationWindow.DASHED_STROKE;
+import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
+import static com.LevelEditor.MouseStates.RotateMouseState.EXTENSION;
+
 public class Polygon extends Shape {
 
     public static final String LOG_MESSAGE = "Level - added polygon";
@@ -19,6 +26,7 @@ public class Polygon extends Shape {
     private static Color concaveColor = new Color(175, 95, 0, 180);
     private boolean isConvex;
     private int numPoints;
+
     @XmlElement
     private Stack<Point> points;
 
@@ -32,7 +40,7 @@ public class Polygon extends Shape {
         if (!hasUniqueName)
             return;
 
-        Point centroid = compute2DPolygonCentroid();
+        Point centroid = Utilities.compute2DPolygonCentroid(points);
 
         FontRenderContext frc = g.getFontRenderContext();
         float fontWidth = g.getFontMetrics().stringWidth(name);
@@ -42,19 +50,9 @@ public class Polygon extends Shape {
     }
 
     @Override
-    public void drawHitBox(Graphics2D g) {
-        if (HideHitBoxesListener.isHidden)
+    public void drawRotationOutline(Graphics2D g) {
+        if (HideRotationOutlineListener.isHidden || angle <= 0 || angle >= 360)
             return;
-
-
-    }
-
-    public void drawShape(Graphics2D g) {
-
-        java.awt.Polygon javaPoly = new java.awt.Polygon();
-
-        for (Point p : points)
-            javaPoly.addPoint(p.getX(), p.getY());
 
         if (super.isSelected)
             g.setColor(ApplicationWindow.SELECTION_COLOR);
@@ -63,70 +61,78 @@ public class Polygon extends Shape {
         else
             g.setColor(concaveColor);
 
+        g.setStroke(DASHED_STROKE);
+
+        java.awt.Polygon javaPoly = new java.awt.Polygon();
+
+        for (Point p : points)
+            javaPoly.addPoint(p.getX(), p.getY());
 
         if (ShapeFillListener.isFilled)
-            g.fillPolygon(javaPoly);
-        else
             g.drawPolygon(javaPoly);
 
+        g.setStroke(NORMAL_STROKE);
+
     }
 
-    public Point compute2DPolygonCentroid() {
-        Point centroid = new Point();
-        double signedArea = 0.0;
-        double x0; // Current vertex X
-        double y0; // Current vertex Y
-        double x1; // Next vertex X
-        double y1; // Next vertex Y
-        double a;  // Partial signed area
+    public void drawShape(Graphics2D g) {
 
-        // For all vertices except last
-        int i;
-        for (i = 0; i < numPoints - 1; ++i) {
-            x0 = points.get(i).x;
-            y0 = points.get(i).y;
-            x1 = points.get(i + 1).x;
-            y1 = points.get(i + 1).y;
-            a = x0 * y1 - x1 * y0;
-            signedArea += a;
-            centroid.x += (x0 + x1) * a;
-            centroid.y += (y0 + y1) * a;
+        drawRotationOutline(g);
+
+        Point centroid = Utilities.compute2DPolygonCentroid(points);
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), centroid.x, centroid.y);
+
+        //color
+        if (super.isSelected)
+            rg2d.setColor(ApplicationWindow.SELECTION_COLOR);
+        else if (isConvex)
+            rg2d.setColor(ApplicationWindow.SHAPE_COLOR);
+        else
+            rg2d.setColor(concaveColor);
+
+        java.awt.Polygon javaPoly = new java.awt.Polygon();
+
+        for (Point p : points)
+            javaPoly.addPoint(p.getX(), p.getY());
+
+        if (ShapeFillListener.isFilled)
+            rg2d.fillPolygon(javaPoly);
+        else
+            rg2d.drawPolygon(javaPoly);
+
+        //rotation lines
+        if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION && !HideRotationOutlineListener.isHidden) {
+
+            rg2d.setColor(RotateMouseState.LINE_COLOR);
+
+            int longDist = (int) calculateLongestDistance();
+            rg2d.drawLine(centroid.x - longDist / 2 - EXTENSION, centroid.y,
+                    centroid.x + longDist / 2 + EXTENSION, centroid.y);
+            rg2d.drawLine(centroid.x, centroid.y - longDist / 2 - EXTENSION,
+                    centroid.x, centroid.y + longDist / 2 - EXTENSION);
         }
 
-        // Do last vertex separately to avoid performing an expensive
-        // modulus operation in each iteration.
-        x0 = points.get(i).x;
-        y0 = points.get(i).y;
-        x1 = points.get(0).x;
-        y1 = points.get(0).y;
-        a = x0 * y1 - x1 * y0;
-        signedArea += a;
-        centroid.x += (x0 + x1) * a;
-        centroid.y += (y0 + y1) * a;
+        rg2d.dispose();
 
-        signedArea *= 0.5;
-        centroid.x /= (6.0 * signedArea);
-        centroid.y /= (6.0 * signedArea);
-
-        return centroid;
     }
 
-//    private float calculateLongestDistance() {
-//
-//        if (numPoints < 4)
-//            return 0;
-//
-//        float current, longest = 0f;
-//
-//        for (int i = 0; i < numPoints - 2; i++)
-//            for (int j = i + 1; j <= numPoints - 1 - i; j++) {
-//                current = points.get(i).dst2(points.get(j));
-//                if (current > longest)
-//                    longest = current;
-//            }
-//
-//        return (float) Math.sqrt(longest);
-//    }
+    private float calculateLongestDistance() {
+
+        if (numPoints < 4)
+            return 0;
+
+        float current, longest = 0f;
+
+        for (int i = 0; i < numPoints - 2; i++)
+            for (int j = i + 1; j <= numPoints - 1 - i; j++) {
+                current = Utilities.distance2(points.get(i), (points.get(j)));
+                if (current > longest)
+                    longest = current;
+            }
+
+        return (float) Math.sqrt(longest);
+    }
 
     public int[] arrayOfXPoints() {
         ArrayList<Integer> xPoints = new ArrayList<>();

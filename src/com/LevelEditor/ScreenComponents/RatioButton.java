@@ -3,6 +3,7 @@ package com.LevelEditor.ScreenComponents;
 import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.Resizable;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
+import com.LevelEditor.StartWindow.AspectSettings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,10 @@ public class RatioButton extends JButton implements Resizable {
         addActionListener(e -> incrementBackground());
     }
 
+    public void resetText() {
+        setText(text);
+    }
+
     public void displayZoom(float level) {
 
         //rounding to 1 decimal
@@ -69,7 +74,7 @@ public class RatioButton extends JButton implements Resizable {
 
             //the reset
             duration = 0f;
-            setText(text);
+            resetText();
             zooming = false;
 
         }).start();
@@ -96,7 +101,7 @@ public class RatioButton extends JButton implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
+        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - AspectSettings.TOOLS_WINDOW_SIZE_X);
         setLocation(startX + moveDistance, 0);
     }
 }

@@ -1,11 +1,11 @@
 package com.LevelEditor.TabActions.ToolsTabActions;
 
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
 import com.LevelEditor.MouseStates.MouseState;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener.switchState;
 
 public class SwitchToolActionListener implements ActionListener {
 
@@ -17,7 +17,7 @@ public class SwitchToolActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switchState(state);
+        CustomMouseWheelListener.switchState(state);
     }
 
 }

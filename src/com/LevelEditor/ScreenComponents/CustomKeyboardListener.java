@@ -3,8 +3,6 @@ package com.LevelEditor.ScreenComponents;
 import com.LevelEditor.LoggingManager;
 import com.LevelEditor.ManageLevelArrayLists;
 import com.LevelEditor.ScreenComponents.Canvas.Canvas;
-import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
-import com.LevelEditor.UpdatePaint;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -54,13 +52,8 @@ public class CustomKeyboardListener implements KeyListener {
             LoggingManager.Undo();
 
         //if i press delete and there are shapes selected
-        if (e.getKeyCode() == KeyEvent.VK_DELETE && ManageLevelArrayLists.getSelectedShapes().size() > 0) {
-            new Thread(() -> {
-                ManageLevelArrayLists.removeSelectedShapes();
-                ScrollPaneHandler.propSP.updatePropertyEditor();
-                UpdatePaint.remakeAll();
-            }).start();
-        }
+        if (e.getKeyCode() == KeyEvent.VK_DELETE)
+            ManageLevelArrayLists.removeSelectedShapes();
 
     }
 

@@ -48,9 +48,9 @@ public class ApplicationWindow extends JFrame {
     public static Canvas canvas;
     public static ScrollHolder scrollHolder;
     public static CanvasHolder panelHolder;
+    public static RatioButton ratioButton;
     static BackRightYPanel backRightYPanel;
     static BackTopXPanel backTopXPanel;
-    static RatioButton ratioButton;
     static ToolBarButton toolBarButton;
 
     public ApplicationWindow(AspectSettings settings) {
@@ -114,7 +114,7 @@ public class ApplicationWindow extends JFrame {
         toolBarButton = new ToolBarButton(MONOSPACED, settings.getLvlMakerWidth() + RULER_WIDTH, 0, AspectSettings.TOOLS_WINDOW_SIZE_X, RULER_HEIGHT);
 
         //main window (passing in ratio button for zoom animation)
-        canvas = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight(), ratioButton);
+        canvas = new Canvas(0, 0, settings.getLvlMakerWidth(), settings.getLvlMakerHeight());
         //pane holder for scroller
         panelHolder = new CanvasHolder(canvas);
         //scroller that holds it

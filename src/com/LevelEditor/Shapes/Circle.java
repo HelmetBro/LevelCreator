@@ -2,11 +2,17 @@ package com.LevelEditor.Shapes;
 
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.MouseStates.MouseState;
+import com.LevelEditor.MouseStates.RotateMouseState;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideRotationOutlineListener;
+import com.LevelEditor.Utilities;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
+
+import static com.LevelEditor.MouseStates.RotateMouseState.EXTENSION;
 
 public class Circle extends Shape {
 
@@ -28,15 +34,35 @@ public class Circle extends Shape {
 
     public void drawShape(Graphics2D g) {
 
-        if (super.isSelected)
-            g.setColor(ApplicationWindow.SELECTION_COLOR);
-        else
-            g.setColor(ApplicationWindow.SHAPE_COLOR);
+        drawRotationOutline(g);
 
-        if (ShapeFillListener.isFilled)
-            g.fillOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), center.x, center.y);
+
+        //color
+        if (super.isSelected)
+            rg2d.setColor(ApplicationWindow.SELECTION_COLOR);
         else
-            g.drawOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
+            rg2d.setColor(ApplicationWindow.SHAPE_COLOR);
+
+        //drawing
+        if (ShapeFillListener.isFilled)
+            rg2d.fillOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
+        else
+            rg2d.drawOval(topLeft.x, topLeft.y, radius * 2, radius * 2);
+
+        //rotation lines
+        if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION && !HideRotationOutlineListener.isHidden) {
+
+            rg2d.setColor(RotateMouseState.LINE_COLOR);
+
+            rg2d.drawLine(topLeft.x - EXTENSION, topLeft.y + radius,
+                    radius * 2 + topLeft.x + EXTENSION, topLeft.y + radius);
+            rg2d.drawLine(topLeft.x + radius, topLeft.y - EXTENSION,
+                    topLeft.x + radius, topLeft.y + radius * 2 + EXTENSION);
+        }
+
+        rg2d.dispose();
 
     }
 
@@ -53,11 +79,7 @@ public class Circle extends Shape {
     }
 
     @Override
-    public void drawHitBox(Graphics2D g) {
-        if (HideHitBoxesListener.isHidden)
-            return;
-
-
+    public void drawRotationOutline(Graphics2D g) {
     }
 
     public Point getTopLeft() {

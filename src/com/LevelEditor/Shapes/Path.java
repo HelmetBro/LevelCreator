@@ -1,23 +1,26 @@
 package com.LevelEditor.Shapes;
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.MouseStates.MouseState;
+import com.LevelEditor.MouseStates.RotateMouseState;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideRotationOutlineListener;
+import com.LevelEditor.Utilities;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 
 import static com.LevelEditor.ApplicationWindow.DASHED_STROKE;
-import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
+import static com.LevelEditor.MouseStates.RotateMouseState.EXTENSION;
 
 public class Path extends Shape {
 
     public static final String LOG_MESSAGE = "Level - added path";
     public static final String LOG_MESSAGE_DELETE = "Level - removed path";
-
+    public static final int START_POINT_RADIUS = 8; //8
     private static final Color lineColor = new Color(29, 187, 56, 200);
     private static final Color dotColor = new Color(187, 45, 39, 90);
-
-    public static final int START_POINT_RADIUS = 8; //8
     private static final byte NAME_HOVER = 8;
 
     private ArrayList<Point> pathPoints;
@@ -49,6 +52,8 @@ public class Path extends Shape {
         if (isEmpty())
             return;
 
+        drawRotationOutline(g);
+
         /* ++ drawing line ++ */
 
         if (super.isSelected)
@@ -65,7 +70,6 @@ public class Path extends Shape {
             drawArrowHead(g, pathPoints.get(i), pathPoints.get(i + 1));
         }
 
-
         /* ++ drawing start point ++ */
 
         if (super.isSelected)
@@ -76,33 +80,45 @@ public class Path extends Shape {
         Circle circle = new Circle(startPoint(), START_POINT_RADIUS);
         g.fillOval(circle.getTopLeft().x - START_POINT_RADIUS, circle.getTopLeft().y - START_POINT_RADIUS,
                 START_POINT_RADIUS * 2, START_POINT_RADIUS * 2);
-
-
-        /* ++ resetting stroke ++ */
-        g.setStroke(NORMAL_STROKE);
-
     }
 
-    private void drawArrowHead(Graphics2D g, Point start, Point end){
+    @Override
+    public void drawRotationOutline(Graphics2D g) {
+
+        if (CustomMouseWheelListener.getState() != MouseState.EMouseStates.ROTATION || HideRotationOutlineListener.isHidden)
+            return;
+
+        Graphics2D rg2d = (Graphics2D) g.create();
+        Point start = startPoint();
+        Point end = new Point(start.x + EXTENSION * 4, start.y);
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), start.x, start.y);
+
+        rg2d.setColor(RotateMouseState.LINE_COLOR);
+
+        rg2d.drawLine(start.x, start.y, end.x, end.y);
+        drawArrowHead(rg2d, start, end);
+    }
+
+    private void drawArrowHead(Graphics2D g, Point start, Point end) {
 
         final int lineLength = 14;
 
-        float newAngle = (float)Math.atan2(end.y - start.y, end.x - start.x);
+        float newAngle = (float) Math.atan2(end.y - start.y, end.x - start.x);
 
         //the angle tilt of the arrow
-        newAngle += (float)(Math.sqrt(2) / 2f);
+        newAngle += (float) (Math.sqrt(2) / 2f);
 
         g.drawLine(end.x, end.y,
-                (int)(end.x + Math.cos(newAngle) * lineLength * -1),
-                (int)(end.y + Math.sin(newAngle) * lineLength * -1));
+                (int) (end.x + Math.cos(newAngle) * lineLength * -1),
+                (int) (end.y + Math.sin(newAngle) * lineLength * -1));
 
     }
 
-    public ArrayList<Point> getPoints(){
+    public ArrayList<Point> getPoints() {
         return pathPoints;
     }
 
-    public Point startPoint(){
+    public Point startPoint() {
         return pathPoints.get(0);
     }
 
@@ -116,11 +132,6 @@ public class Path extends Shape {
         float fontHeight = font.getLineMetrics(name, frc).getHeight();
 
         g.drawString(name, startPoint().x - fontWidth / 2f, startPoint().y - fontHeight / 2f - NAME_HOVER / 2f);
-
-    }
-
-    @Override
-    public void drawHitBox(Graphics2D g) {
 
     }
 

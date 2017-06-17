@@ -36,11 +36,14 @@ public final class ManageLevelArrayLists {
         return null;
     }
 
-
     /**
      * If shape is selected, removes from array, adds to deleted array.
      */
     public static void removeSelectedShapes() {
+
+        if (ManageLevelArrayLists.getSelectedShapes().size() <= 0)
+            return;
+
         Main.currentLevel.circles.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.CIRCLE));
         Main.currentLevel.points.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.POINT));
         Main.currentLevel.ellipses.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.ELLIPSE));
@@ -48,7 +51,9 @@ public final class ManageLevelArrayLists {
         Main.currentLevel.rectangles.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.RECTANGLE));
         Main.currentLevel.paths.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.PATH));
 
+        ScrollPaneHandler.propSP.updatePropertyEditor();
         ScrollPaneHandler.objSP.updateList();
+        UpdatePaint.remakeAll();
     }
 
     private static boolean shapeSelectedAndDeleted(Shape shape, ShapeType type) {

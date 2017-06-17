@@ -1,18 +1,54 @@
 package com.LevelEditor.MouseStates;
 
 
+import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
+import com.LevelEditor.Shapes.Shape;
+import com.LevelEditor.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class RotateMouseState extends MouseState {
+
+    public static final int EXTENSION = 10;
+    public static final Color LINE_COLOR = new Color(158, 88, 213);
+    //a^2 + b^2 = c^2 is what this is
+    public static final int GRID_RADIUS = (int) Math.sqrt(
+            (ApplicationWindow.settings.getLvlMakerHeight() * ApplicationWindow.settings.getLvlMakerHeight()) +
+                    ApplicationWindow.settings.getLvlMakerWidth() * ApplicationWindow.settings.getLvlMakerWidth());
+    //reference
+    private ArrayList<Shape> selectedShapes;
+    //degrees
+    private float currentAngle = 0;
 
     @Override
     public void updateLayer(Graphics2D g) {
         super.updateLayer(g);
+
+        selectedShapes = ManageLevelArrayLists.getSelectedShapes();
+        if (selectedShapes == null || selectedShapes.isEmpty())
+            return;
+
+        currentAngle = updatedAngle();
+
+        //current show degrees in ratio button
+        ApplicationWindow.ratioButton.setText(Math.round(currentAngle) + "°");
+
+        //print cardinal direction for selected shapes
+        for (Shape s : selectedShapes) {
+            printCardinalLines(s);
+            s.angle = currentAngle;
+        }
+
+    }
+
+    private float updatedAngle() {
+        return Utilities.normalize((float) Math.toDegrees(
+                Math.atan2(ApplicationWindow.settings.getLvlMakerHeight() / 2 - MouseState.currentClickY,
+                        MouseState.currentClickX - ApplicationWindow.settings.getLvlMakerWidth() / 2)));
     }
 
     @Override
@@ -22,21 +58,12 @@ public class RotateMouseState extends MouseState {
     @Override
     public void mousePressed(MouseEvent e) {
 
-        if (SwingUtilities.isRightMouseButton(e))
-            rightClick();
-        else if (SwingUtilities.isLeftMouseButton(e))
+        if (SwingUtilities.isLeftMouseButton(e))
             select();
+
     }
 
-    private void rightClick() {
-        //delete shapes
-        if (ManageLevelArrayLists.getSelectedShapes().size() > 0) {
-            new Thread(() -> {
-                ManageLevelArrayLists.removeSelectedShapes();
-                ScrollPaneHandler.propSP.updatePropertyEditor();
-                ScrollPaneHandler.objSP.updateList();
-            }).start();
-        }
+    private void printCardinalLines(Shape shape) {
     }
 
     @Override

@@ -1,11 +1,19 @@
 package com.LevelEditor.Shapes;
 
 import com.LevelEditor.ApplicationWindow;
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.MouseStates.MouseState;
+import com.LevelEditor.MouseStates.RotateMouseState;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.ShapeFillListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideRotationOutlineListener;
+import com.LevelEditor.Utilities;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
+
+import static com.LevelEditor.ApplicationWindow.DASHED_STROKE;
+import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
+import static com.LevelEditor.MouseStates.RotateMouseState.EXTENSION;
 
 
 public class Ellipse extends Shape {
@@ -41,24 +49,50 @@ public class Ellipse extends Shape {
     }
 
     @Override
-    public void drawHitBox(Graphics2D g) {
-        if (HideHitBoxesListener.isHidden)
+    public void drawRotationOutline(Graphics2D g) {
+        if (HideRotationOutlineListener.isHidden || angle <= 0 || angle >= 360)
             return;
-
-
-    }
-
-    public void drawShape(Graphics2D g) {
 
         if (super.isSelected)
             g.setColor(ApplicationWindow.SELECTION_COLOR);
         else
             g.setColor(ApplicationWindow.SHAPE_COLOR);
 
-        if (ShapeFillListener.isFilled)
-            g.fillOval(topLeft.x, topLeft.y, width, height);
+        g.setStroke(DASHED_STROKE);
+        g.drawOval(topLeft.x, topLeft.y, width, height);
+        g.setStroke(NORMAL_STROKE);
+
+    }
+
+    public void drawShape(Graphics2D g) {
+
+        drawRotationOutline(g);
+
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), center.x, center.y);
+
+        if (super.isSelected)
+            rg2d.setColor(ApplicationWindow.SELECTION_COLOR);
         else
-            g.drawOval(topLeft.x, topLeft.y, width, height);
+            rg2d.setColor(ApplicationWindow.SHAPE_COLOR);
+
+        if (ShapeFillListener.isFilled)
+            rg2d.fillOval(topLeft.x, topLeft.y, width, height);
+        else
+            rg2d.drawOval(topLeft.x, topLeft.y, width, height);
+
+        //rotation lines
+        if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION && !HideRotationOutlineListener.isHidden) {
+
+            rg2d.setColor(RotateMouseState.LINE_COLOR);
+
+            rg2d.drawLine(topLeft.x - EXTENSION, topLeft.y + height / 2,
+                    width + topLeft.x + EXTENSION, topLeft.y + height / 2);
+            rg2d.drawLine(topLeft.x + width / 2, topLeft.y - EXTENSION,
+                    topLeft.x + width / 2, topLeft.y + height + EXTENSION);
+        }
+
+        rg2d.dispose();
     }
 
     public Point getTopLeft() {

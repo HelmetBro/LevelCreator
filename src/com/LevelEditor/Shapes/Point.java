@@ -1,11 +1,18 @@
 package com.LevelEditor.Shapes;
 
 import com.LevelEditor.ApplicationWindow;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideHitBoxesListener;
+import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
+import com.LevelEditor.MouseStates.MouseState;
+import com.LevelEditor.MouseStates.RotateMouseState;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideRotationOutlineListener;
+import com.LevelEditor.Utilities;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Line2D;
+
+import static com.LevelEditor.ApplicationWindow.NORMAL_STROKE;
+import static com.LevelEditor.MouseStates.RotateMouseState.EXTENSION;
 
 public class Point extends Shape {
 
@@ -54,31 +61,39 @@ public class Point extends Shape {
         float fontHeight = font.getLineMetrics(name, frc).getHeight();
 
         g.drawString(name, x - fontWidth / 2f, y - fontHeight / 2f - pointSize / 2f);
-
     }
 
     @Override
-    public void drawHitBox(Graphics2D g) {
-        if (HideHitBoxesListener.isHidden)
-            return;
-
-
+    public void drawRotationOutline(Graphics2D g) {
     }
 
     public void drawShape(Graphics2D g) {
 
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), x, y);
+
         if (super.isSelected)
-            g.setColor(ApplicationWindow.SELECTION_COLOR);
+            rg2d.setColor(ApplicationWindow.SELECTION_COLOR);
         else
-            g.setColor(ApplicationWindow.SHAPE_COLOR);
+            rg2d.setColor(ApplicationWindow.SHAPE_COLOR);
 
-        g.setStroke(new BasicStroke(pointLineWidth));
+        rg2d.setStroke(new BasicStroke(pointLineWidth));
 
-        g.draw(new Line2D.Float(x - pointSize, y - pointSize, x + pointSize, y + pointSize));
-        g.draw(new Line2D.Float(x + pointSize, y - pointSize, x - pointSize, y + pointSize));
+        rg2d.draw(new Line2D.Float(x - pointSize, y - pointSize, x + pointSize, y + pointSize));
+        rg2d.draw(new Line2D.Float(x + pointSize, y - pointSize, x - pointSize, y + pointSize));
 
-        g.setStroke(new BasicStroke(1));
+        rg2d.setStroke(NORMAL_STROKE);
 
+        //rotation lines
+        if (CustomMouseWheelListener.getState() == MouseState.EMouseStates.ROTATION && !HideRotationOutlineListener.isHidden) {
+
+            rg2d.setColor(RotateMouseState.LINE_COLOR);
+
+            rg2d.drawLine(x - EXTENSION, y, x + EXTENSION, y);
+            rg2d.drawLine(x, y - EXTENSION, x, y + EXTENSION);
+        }
+
+        rg2d.dispose();
     }
 
 //    private static BufferedImage realCircle() {
