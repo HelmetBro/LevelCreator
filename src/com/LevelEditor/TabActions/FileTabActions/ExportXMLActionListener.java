@@ -4,6 +4,7 @@ package com.LevelEditor.TabActions.FileTabActions;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
+import com.LevelEditor.StartWindow.InitializeWindow;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -42,6 +43,10 @@ public class ExportXMLActionListener extends ExportAction {
                 jaxbMarshaller.marshal(Main.currentLevel.flipYCopy(), file);
             else
                 jaxbMarshaller.marshal(Main.currentLevel, file);
+
+            InitializeWindow.isJSONNotXML = false;
+            InitializeWindow.filePath = path;
+            InitializeWindow.isFileLoaded = true;
 
             InfoLabelButton.updateLabelText("Exported. ( ͡° ͜ʖ ͡°)");
 

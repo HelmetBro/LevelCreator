@@ -577,7 +577,6 @@ public class InitializeWindow extends JFrame {
                 //read contents of that file, see if it can be loaded
                 if (!loadFile()) {
                     progressBar.setVisible(false);
-
                     return;
                 }
 

@@ -4,6 +4,7 @@ package com.LevelEditor.TabActions.FileTabActions;
 import com.LevelEditor.Level;
 import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.InfoLabelButton;
+import com.LevelEditor.StartWindow.InitializeWindow;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -52,6 +53,10 @@ public class ExportJSONActionListener extends ExportAction {
             writer.write(fileContents);
 
             writer.close();
+
+            InitializeWindow.isJSONNotXML = true;
+            InitializeWindow.filePath = path;
+            InitializeWindow.isFileLoaded = true;
 
             InfoLabelButton.updateLabelText("Exported. ( ͡° ͜ʖ ͡°)");
         } catch (IOException e1) {
