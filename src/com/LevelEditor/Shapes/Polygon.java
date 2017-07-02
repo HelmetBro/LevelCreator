@@ -203,6 +203,7 @@ public class Polygon extends Shape {
     @Override
     public Polygon copyFlip() {
         Polygon copy = new Polygon();
+        copy.setProperties(this.getProperties());
         copy.isConvex = this.isConvex;
         copy.name = this.name;
         copy.angle = this.angle;

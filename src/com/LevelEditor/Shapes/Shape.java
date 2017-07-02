@@ -31,5 +31,7 @@ public abstract class Shape {
     public ArrayList<Property> getProperties() {
         return this.properties;
     }
-
+    public void setProperties(ArrayList<Property> properties) {
+        this.properties = properties;
+    }
 }

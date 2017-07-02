@@ -103,6 +103,7 @@ public class Circle extends Shape {
     @Override
     public Circle copyFlip() {
         Circle copy = new Circle();
+        copy.setProperties(this.getProperties());
         copy.radius = this.radius;
         copy.name = this.name;
         copy.angle = this.angle;

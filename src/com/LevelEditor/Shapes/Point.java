@@ -158,6 +158,7 @@ public class Point extends Shape {
     @Override
     public Point copyFlip() {
         Point copy = new Point(this);
+        copy.setProperties(this.getProperties());
         copy.name = this.name;
         copy.angle = this.angle;
 

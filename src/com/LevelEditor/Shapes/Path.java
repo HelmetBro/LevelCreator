@@ -138,7 +138,7 @@ public class Path extends Shape {
     @Override
     public Path copyFlip() {
         Path copy = new Path();
-
+        copy.setProperties(this.getProperties());
         copy.name = this.name;
         copy.angle = this.angle;
 

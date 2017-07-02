@@ -133,6 +133,7 @@ public class Rectangle extends Shape {
     @Override
     public Rectangle copyFlip() {
         Rectangle copy = new Rectangle();
+        copy.setProperties(this.getProperties());
         copy.name = this.name;
         copy.angle = this.angle;
 
