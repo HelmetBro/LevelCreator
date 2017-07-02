@@ -139,6 +139,9 @@ public class Path extends Shape {
     public Path copyFlip() {
         Path copy = new Path();
 
+        copy.name = this.name;
+        copy.angle = this.angle;
+
         for (Point p : pathPoints)
             copy.addVector(p.copyFlip());
 

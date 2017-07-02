@@ -116,6 +116,8 @@ public class Ellipse extends Shape {
     @Override
     public Ellipse copyFlip() {
         Ellipse copy = new Ellipse();
+        copy.name = this.name;
+        copy.angle = this.angle;
 
         copy.width = this.width;
         copy.height = this.height;

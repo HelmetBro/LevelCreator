@@ -204,6 +204,8 @@ public class Polygon extends Shape {
     public Polygon copyFlip() {
         Polygon copy = new Polygon();
         copy.isConvex = this.isConvex;
+        copy.name = this.name;
+        copy.angle = this.angle;
 
         //adding points sets numPoints accordingly
         for (Point p : points)

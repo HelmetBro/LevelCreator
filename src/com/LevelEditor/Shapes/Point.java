@@ -158,6 +158,9 @@ public class Point extends Shape {
     @Override
     public Point copyFlip() {
         Point copy = new Point(this);
+        copy.name = this.name;
+        copy.angle = this.angle;
+
         copy.y = ApplicationWindow.settings.getLvlMakerHeight() - copy.y;
 
         return copy;

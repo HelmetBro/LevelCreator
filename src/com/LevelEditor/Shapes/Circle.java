@@ -104,6 +104,8 @@ public class Circle extends Shape {
     public Circle copyFlip() {
         Circle copy = new Circle();
         copy.radius = this.radius;
+        copy.name = this.name;
+        copy.angle = this.angle;
 
         copy.center = this.center.copyFlip();
         copy.topLeft = this.topLeft.copyFlip();
