@@ -1,7 +1,7 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels;
 
 import com.LevelEditor.ManageLevelArrayLists;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.DarkSpriteLinker;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.SpriteLinkerBox;
 import com.LevelEditor.Shapes.Shape;
 
 import javax.swing.*;
@@ -19,23 +19,18 @@ public class SpritesScrollPane extends CustomScrollPane {
             LIGHT_COLOR.getBlue(),
             Math.abs(LIGHT_COLOR.getAlpha() - 200));
 
-    private int windowHeight;
-    private int width;
-
     private JLabel infoTip;
 
     private FlowLayout layout = new FlowLayout(FlowLayout.LEFT);
 
+    //DONT KNOW IF I NEED WINDOWHEIGHT
     public SpritesScrollPane(int width, int windowHeight) {
         setFocusable(false);
-        this.windowHeight = windowHeight;
-        this.width = width - (int) getVerticalScrollBar().getPreferredSize().getWidth();
 
         infoTip = createInfoLabel();
 
         setViewportView(scrollPanel);
 
-        //TEMP, change properties to Flowlayout also
         scrollPanel.setPreferredSize(new Dimension(width, windowHeight));
         scrollPanel.setLayout(layout);
     }
@@ -65,10 +60,8 @@ public class SpritesScrollPane extends CustomScrollPane {
             return;
         }
 
-        for (Shape s : shapes){
-            DarkSpriteLinker link = new DarkSpriteLinker(s);
-            scrollPanel.add(link);
-        }
+        for (Shape s : shapes)
+            scrollPanel.add(new SpriteLinkerBox(s));
 
         revalidate();
         repaint();
@@ -85,8 +78,7 @@ public class SpritesScrollPane extends CustomScrollPane {
         infoTip = new JLabel("<html><div style='text-align: center;'>" +
                 "[select shapes to<br>link sprites]" +
                 "</div></html>", SwingConstants.CENTER);
-        infoTip.setBounds((width / 2 - labelWidth / 2) + (int) getVerticalScrollBar().getPreferredSize().getWidth() / 2,
-                20, labelWidth, labelHeight);
+        infoTip.setPreferredSize(new Dimension(labelWidth, labelHeight));
         infoTip.setFont(CONSOLAS);
 
         infoTip.setForeground(INFO_BOX_COLOR);

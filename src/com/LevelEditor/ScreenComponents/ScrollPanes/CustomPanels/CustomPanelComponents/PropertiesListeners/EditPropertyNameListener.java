@@ -1,7 +1,7 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners;
 
 
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.PropertiesScrollPane;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesBox;
 import com.LevelEditor.Shapes.Properties.Property;
 
 import javax.swing.event.DocumentEvent;
@@ -18,7 +18,7 @@ public class EditPropertyNameListener implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        String newName = PropertiesScrollPane.DEFAULT_BOX_NAME;
+        String newName = PropertiesBox.DEFAULT_BOX_NAME;
 
         if (e == null)
             return;

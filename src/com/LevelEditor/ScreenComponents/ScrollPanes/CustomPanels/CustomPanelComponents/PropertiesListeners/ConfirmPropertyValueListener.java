@@ -1,6 +1,6 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners;
 
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.PropertiesScrollPane;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesBox;
 import com.LevelEditor.Shapes.Properties.Property;
 
 import javax.swing.event.DocumentEvent;
@@ -18,7 +18,7 @@ public class ConfirmPropertyValueListener implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        String lastVal = PropertiesScrollPane.DEFAULT_BOX_VALUE;
+        String lastVal = PropertiesBox.DEFAULT_BOX_VALUE;
 
         if (e == null)
             return;

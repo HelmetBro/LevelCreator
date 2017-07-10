@@ -4,6 +4,9 @@ import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComp
 import com.LevelEditor.Shapes.Shape;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
@@ -12,20 +15,23 @@ import static com.LevelEditor.ApplicationWindow.*;
 
 public class DarkAddButton extends JButton {
 
-    private static final int width = 20;
-    private static final int height = width;
+    public static final int WIDTH = 30;
+    public static final int HEIGHT = WIDTH;
 
-    private static final int yOffset = 5;
+    public DarkAddButton(Shape shape) {
+        super("+");
 
-    public DarkAddButton(int x, int y, Shape shape, String text) {
-        super(text);
-        setBorder(new LineBorder(Color.BLACK, 1));
+        Border outline = new LineBorder(Color.BLACK, 1);
+        Border margin = new LineBorder(BACKGROUND_SHADED_COLOR, 5);
+        Border border = new CompoundBorder(margin, outline);
+
+        setBorder(border);
         setFocusable(false);
         setBackground(BACKGROUND_COLOR);
         setForeground(LIGHT_COLOR);
         setFont(CONSOLAS.deriveFont(19f));
-        setBounds(x, y + yOffset, width, height);
-        setToolTipText("Click to add property to shape");
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setToolTipText("Click to add property to shape.");
         setFocusPainted(false);
         setContentAreaFilled(false);
 

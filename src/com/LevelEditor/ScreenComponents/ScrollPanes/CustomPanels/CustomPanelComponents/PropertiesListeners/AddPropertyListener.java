@@ -1,6 +1,6 @@
 package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners;
 
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.PropertiesScrollPane;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesBox;
 import com.LevelEditor.ScreenComponents.ScrollPanes.ScrollPaneHandler;
 import com.LevelEditor.Shapes.Properties.Property;
 import com.LevelEditor.Shapes.Shape;
@@ -19,7 +19,7 @@ public class AddPropertyListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        shape.getProperties().add(new Property(PropertiesScrollPane.DEFAULT_BOX_NAME, PropertiesScrollPane.DEFAULT_BOX_VALUE));
+        shape.getProperties().add(new Property(PropertiesBox.DEFAULT_BOX_NAME, PropertiesBox.DEFAULT_BOX_VALUE));
         ScrollPaneHandler.propSP.updatePropertyEditor();
     }
 

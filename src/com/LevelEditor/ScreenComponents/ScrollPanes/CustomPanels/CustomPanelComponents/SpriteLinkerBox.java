@@ -7,17 +7,12 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-import static com.LevelEditor.ApplicationWindow.BACKGROUND_SHADED_COLOR;
-import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
-import static com.LevelEditor.ApplicationWindow.scrollHolder;
+import static com.LevelEditor.ApplicationWindow.*;
 import static com.LevelEditor.StartWindow.AspectSettings.TOOLS_WINDOW_SIZE_X;
 import static com.LevelEditor.StartWindow.InitializeWindow.NORMAL_FONT;
 import static com.LevelEditor.StartWindow.InitializeWindow.SMALL_FONT;
 
-public class DarkSpriteLinker extends JPanel {
-
-    //reference
-    private Shape shape;
+public class SpriteLinkerBox extends Container {
 
     //components
     private JLabel shapeName;
@@ -36,13 +31,8 @@ public class DarkSpriteLinker extends JPanel {
     private final static int PANEL_HEIGHT = NUM_BOXES * BOX_HEIGHT + NUM_BOXES * V_GAP;
 
 
-    public DarkSpriteLinker(Shape shape){
-        this.shape = shape;
+    public SpriteLinkerBox(Shape shape){
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, V_GAP));
-
-
-        System.out.println(PANEL_HEIGHT);
-        System.out.println();
         this.setPreferredSize(new Dimension(TOOLS_WINDOW_SIZE_X, PANEL_HEIGHT));
 
         shapeName = shapeName(shape.name);
@@ -54,7 +44,6 @@ public class DarkSpriteLinker extends JPanel {
         this.add(linker);
         this.add(widthBox);
         this.add(heightBox);
-
     }
 
     private JLabel shapeName(String name){
