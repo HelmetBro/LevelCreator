@@ -32,4 +32,15 @@ public class DarkAddButton extends JButton {
         addActionListener(new AddPropertyListener(shape));
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        if (getModel().isPressed())
+            g.setColor(BACKGROUND_COLOR.darker().darker());
+        else
+            g.setColor(BACKGROUND_COLOR);
+
+        g.fillRect(0, 0, getWidth(), getHeight());
+        super.paintComponent(g);
+    }
+
 }

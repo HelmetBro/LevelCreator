@@ -52,6 +52,7 @@ public final class ManageLevelArrayLists {
         Main.currentLevel.paths.removeIf(e -> shapeSelectedAndDeleted(e, ShapeType.PATH));
 
         ScrollPaneHandler.propSP.updatePropertyEditor();
+        ScrollPaneHandler.spritesSP.updateSpriteEditor();
         ScrollPaneHandler.objSP.updateList();
         UpdatePaint.remakeAll();
     }

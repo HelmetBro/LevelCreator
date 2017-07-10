@@ -39,7 +39,10 @@ public class CustomTreeSelectionListener implements TreeSelectionListener {
         }
 
         //starting new thread to manage property label stuff
-        new Thread(() -> ScrollPaneHandler.propSP.updatePropertyEditor()).start();
+        new Thread(() -> {
+            ScrollPaneHandler.propSP.updatePropertyEditor();
+            ScrollPaneHandler.spritesSP.updateSpriteEditor();
+        }).start();
 
         UpdatePaint.remakeWindow();
 

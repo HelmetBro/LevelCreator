@@ -35,10 +35,12 @@ public class InitializeWindow extends JFrame {
     private static final String TITLE = "Level Creator Prototype v1.5";
     private static final int PROGRESS_MAXIMUM = 100;
     private static final int PROGRESS_MINIMUM = 0;
-    private static final Font BIG_FONT = new Font("Consolas", Font.PLAIN, 24);
-    private static final Font NORMAL_FONT = new Font("Consolas", Font.PLAIN, 14);
-    private static final Font SMALL_FONT = new Font("Consolas", Font.PLAIN, 12);
-    private static final Font START_FONT = new Font("Consolas", Font.PLAIN, 17);
+
+    public static final Font BIG_FONT = new Font("Consolas", Font.PLAIN, 24);
+    public static final Font NORMAL_FONT = new Font("Consolas", Font.PLAIN, 14);
+    public static final Font SMALL_FONT = new Font("Consolas", Font.PLAIN, 12);
+    public static final Font START_FONT = new Font("Consolas", Font.PLAIN, 17);
+
     private static final Color INFO_BOX_COLOR = new Color(
             LIGHT_COLOR.getRed(),
             LIGHT_COLOR.getGreen(),

@@ -2,6 +2,7 @@ package com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels;
 
 
 import com.LevelEditor.ManageLevelArrayLists;
+import com.LevelEditor.ScreenComponents.DarkComponents.DarkJButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.DarkAddButton;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners.ConfirmPropertyValueListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.PropertiesListeners.DeletePropertyListener;
@@ -47,21 +48,13 @@ public class PropertiesScrollPane extends CustomScrollPane {
     private static Container createPropertyBox(int y, Property p, int width, Shape shape) {
 
         Container c = new Container();
-        //FlowLayout flowLayout = new FlowLayout(0);
         c.setLayout(new BorderLayout(0, 0));
         c.setBounds(-1, y, width + 1, PROP_BOX_HEIGHT);
 
-        //SUBTRACT BUTTON
-        JButton delete = new JButton();
-        delete.setFocusPainted(false);
-        delete.setContentAreaFilled(false);
-        delete.setPreferredSize(new Dimension(20, 20));
+        //DELETE BUTTON
+        DarkJButton delete = new DarkJButton("x", 20, 20,
+                CONSOLAS.deriveFont(16f), BACKGROUND_COLOR.darker(), LIGHT_COLOR);
         delete.setBorder(BorderFactory.createEmptyBorder());
-        delete.setFocusable(false);
-        delete.setBackground(BACKGROUND_COLOR);
-        delete.setForeground(LIGHT_COLOR);
-        delete.setFont(CONSOLAS.deriveFont(16f));
-        delete.setText("x");
         delete.setToolTipText("Click to delete this property");
         delete.addActionListener(new DeletePropertyListener(p, shape));
 
@@ -145,7 +138,7 @@ public class PropertiesScrollPane extends CustomScrollPane {
         for (Shape shape : shapes) {
 
             //TITLE
-            JTextField title = new JTextField(shape.name, SwingConstants.CENTER); //later make this the name of the shape
+            JTextField title = new JTextField(shape.name, SwingConstants.CENTER);
             title.setHorizontalAlignment(SwingConstants.CENTER);
             title.setBounds(0, lastHeight, width - 1, TITLE_BOX_HEIGHT);
             title.setFont(CONSOLAS);
@@ -177,7 +170,7 @@ public class PropertiesScrollPane extends CustomScrollPane {
 
         }//big for
 
-
+        //setting position
         if (lastHeight > windowHeight) {
             scrollPanel.setPreferredSize(new Dimension(width, windowHeight + (lastHeight - windowHeight) + 10)); //+10 spacing
         } else {
@@ -192,13 +185,14 @@ public class PropertiesScrollPane extends CustomScrollPane {
 
         JLabel infoTip;
 
-        int labelWidth = 150;
+        int labelWidth = 130;
+        int labelHeight = 70;
 
         infoTip = new JLabel("<html><div style='text-align: center;'>" +
                 "[select shapes<br>to add<br>properties]" +
                 "</div></html>", SwingConstants.CENTER);
         infoTip.setBounds((width / 2 - labelWidth / 2) + (int) getVerticalScrollBar().getPreferredSize().getWidth() / 2,
-                20, labelWidth, 80);
+                20, labelWidth, labelHeight);
         infoTip.setFont(CONSOLAS);
 
         infoTip.setForeground(INFO_BOX_COLOR);

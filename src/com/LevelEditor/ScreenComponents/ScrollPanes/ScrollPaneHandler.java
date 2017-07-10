@@ -17,7 +17,7 @@ public class ScrollPaneHandler extends Container implements Resizable {
     public static ObjectsTreeScrollPane objSP;
     public static PropertiesScrollPane propSP;
     private static ToolsScrollPane toolsSP;
-    private static SpritesScrollPane spritesSP;
+    public static SpritesScrollPane spritesSP;
 
     private int startX;
     private int startY;

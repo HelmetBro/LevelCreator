@@ -80,6 +80,7 @@ public abstract class MouseState {
 
         UpdatePaint.remakeWindow();
         ScrollPaneHandler.propSP.updatePropertyEditor();
+        ScrollPaneHandler.spritesSP.updateSpriteEditor();
     }
 
     public abstract void mouseClicked(MouseEvent e);

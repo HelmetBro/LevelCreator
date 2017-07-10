@@ -15,7 +15,6 @@ public class DarkJButton extends JButton {
 
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
-        setFocusable(false);
         setFocusPainted(false);
         setContentAreaFilled(false);
         setOpaque(false);
@@ -30,7 +29,7 @@ public class DarkJButton extends JButton {
         if (getModel().isPressed())
             g.setColor(baseBackgroundColor.darker().darker());
         else
-            g.setColor(getBackground());
+            g.setColor(baseBackgroundColor);
 
         g.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(g);
