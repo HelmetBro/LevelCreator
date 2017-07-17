@@ -51,7 +51,7 @@ public class Polygon extends Shape {
 
     @Override
     public void drawRotationOutline(Graphics2D g) {
-        if (HideRotationOutlineListener.isHidden || angle <= 0 || angle >= 360)
+        if (HideRotationOutlineListener.isHidden || angle < 1 || angle > 359)
             return;
 
         if (super.isSelected)
@@ -107,10 +107,11 @@ public class Polygon extends Shape {
             rg2d.setColor(RotateMouseState.LINE_COLOR);
 
             int longDist = (int) calculateLongestDistance();
+            System.out.println(longDist);
             rg2d.drawLine(centroid.x - longDist / 2 - EXTENSION, centroid.y,
                     centroid.x + longDist / 2 + EXTENSION, centroid.y);
             rg2d.drawLine(centroid.x, centroid.y - longDist / 2 - EXTENSION,
-                    centroid.x, centroid.y + longDist / 2 - EXTENSION);
+                    centroid.x, centroid.y + longDist / 2 + EXTENSION);
         }
 
         rg2d.dispose();
@@ -119,7 +120,7 @@ public class Polygon extends Shape {
 
     private float calculateLongestDistance() {
 
-        if (numPoints < 4)
+        if (numPoints < 3)
             return 0;
 
         float current, longest = 0f;

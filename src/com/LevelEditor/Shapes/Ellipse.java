@@ -50,7 +50,7 @@ public class Ellipse extends Shape {
 
     @Override
     public void drawRotationOutline(Graphics2D g) {
-        if (HideRotationOutlineListener.isHidden || angle <= 0 || angle >= 360)
+        if (HideRotationOutlineListener.isHidden || angle < 1 || angle > 359)
             return;
 
         if (super.isSelected)

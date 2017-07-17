@@ -22,7 +22,7 @@ public class RotateMouseState extends MouseState {
     //reference
     private ArrayList<Shape> selectedShapes;
     //degrees
-    private float currentAngle = 0;
+    public static float currentAngle = 0;
 
     @Override
     public void updateLayer(Graphics2D g) {
@@ -37,11 +37,8 @@ public class RotateMouseState extends MouseState {
         //current show degrees in ratio button
         ApplicationWindow.ratioButton.setText(Math.round(currentAngle) + "°");
 
-        //print cardinal direction for selected shapes
-        for (Shape s : selectedShapes) {
-            printCardinalLines(s);
+        for (Shape s : selectedShapes)
             s.angle = currentAngle;
-        }
 
     }
 
@@ -61,9 +58,6 @@ public class RotateMouseState extends MouseState {
         if (SwingUtilities.isLeftMouseButton(e))
             select();
 
-    }
-
-    private void printCardinalLines(Shape shape) {
     }
 
     @Override
