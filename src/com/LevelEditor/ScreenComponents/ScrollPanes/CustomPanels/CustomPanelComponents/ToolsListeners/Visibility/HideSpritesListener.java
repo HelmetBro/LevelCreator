@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HidePathsListener implements ActionListener {
+public class HideSpritesListener implements ActionListener {
 
     public static boolean isHidden;
 

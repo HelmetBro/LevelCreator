@@ -23,7 +23,6 @@ import com.LevelEditor.TabActions.ToolsTabActions.SwitchToolActionListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import static com.LevelEditor.StartWindow.AspectSettings.RULER_HEIGHT;
@@ -160,7 +159,10 @@ public class ApplicationWindow extends JFrame {
         JMenuItem exit = new JMenuItem("Exit");
         exit.setMnemonic(KeyEvent.VK_E);
         exit.setToolTipText("Exit application");
-        exit.addActionListener((ActionEvent event) -> System.exit(0));
+        exit.addActionListener(e -> {
+            dispose();
+            System.exit(0);
+        });
 
         //adding selections to file tab bar
         fileTab.add(save);

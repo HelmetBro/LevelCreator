@@ -53,7 +53,7 @@ public class Point extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!hasUniqueName)
+        if (name == null)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -159,6 +159,11 @@ public class Point extends Shape {
     public Point copyFlip() {
         Point copy = new Point(this);
         copy.setProperties(this.getProperties());
+
+        copy.spritePath = this.spritePath;
+        copy.spriteW = this.spriteW;
+        copy.spriteH = this.spriteH;
+
         copy.name = this.name;
         copy.angle = this.angle;
 

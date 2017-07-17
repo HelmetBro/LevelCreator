@@ -38,7 +38,7 @@ public class Ellipse extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!hasUniqueName)
+        if (name == null)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -117,6 +117,11 @@ public class Ellipse extends Shape {
     public Ellipse copyFlip() {
         Ellipse copy = new Ellipse();
         copy.setProperties(this.getProperties());
+
+        copy.spritePath = this.spritePath;
+        copy.spriteW = this.spriteW;
+        copy.spriteH = this.spriteH;
+
         copy.name = this.name;
         copy.angle = this.angle;
 

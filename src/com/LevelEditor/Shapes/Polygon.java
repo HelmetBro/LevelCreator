@@ -37,7 +37,7 @@ public class Polygon extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!hasUniqueName)
+        if (name == null)
             return;
 
         Point centroid = Utilities.compute2DPolygonCentroid(points);
@@ -204,6 +204,11 @@ public class Polygon extends Shape {
     public Polygon copyFlip() {
         Polygon copy = new Polygon();
         copy.setProperties(this.getProperties());
+
+        copy.spritePath = this.spritePath;
+        copy.spriteW = this.spriteW;
+        copy.spriteH = this.spriteH;
+
         copy.isConvex = this.isConvex;
         copy.name = this.name;
         copy.angle = this.angle;

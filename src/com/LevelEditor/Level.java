@@ -1,9 +1,9 @@
 package com.LevelEditor;
 
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideNamesListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HidePathsListener;
-import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HidePointsListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HidePointsPathsListener;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideShapesListener;
+import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.CustomPanelComponents.ToolsListeners.Visibility.HideSpritesListener;
 import com.LevelEditor.Shapes.*;
 import com.LevelEditor.Shapes.Point;
 import com.LevelEditor.Shapes.Polygon;
@@ -41,8 +41,6 @@ public class Level {
 
     private transient Font font = new Font("Consolas", Font.PLAIN, 16);
     private transient Color fontColor = new Color(216, 216, 213, 170);
-    //image opacity, 0 is transparent, 1 is opaque
-    float opacity = 0.5f;
 
     public Level() {
     }
@@ -83,23 +81,26 @@ public class Level {
                              CopyOnWriteArrayList<Rectangle> safeRectangles,
                              CopyOnWriteArrayList<Path> safePaths){
 
+        if (HideSpritesListener.isHidden)
+            return;
+
+        //image opacity, 0 is transparent, 1 is opaque
+        float opacity = 0.6f;
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 
-        if (!HideShapesListener.isHidden && !HideNamesListener.isHidden) {
-            for (Circle c : safeCircles)
-                g.drawImage(c.image, c.getTopLeft().getX(), c.getTopLeft().getY(), c.spriteW, c.spriteH, null);
-            for (Ellipse e : safeEllipses)
-                g.drawImage(e.image, e.getTopLeft().getX(), e.getTopLeft().getY(), e.spriteW, e.spriteH, null);
-            for (Rectangle r : safeRectangles)
-                g.drawImage(r.image, r.getTopLeft().getX(), r.getTopLeft().getY(), r.spriteW, r.spriteH, null);
-            for (Point p : safePoints)
-                g.drawImage(p.image, p.getX(), p.getY(), p.spriteW, p.spriteH, null);
-            for (Path p : safePaths)
-                g.drawImage(p.image, p.getPoints().get(0).getX(), p.getPoints().get(0).getY(), p.spriteW, p.spriteH, null);
-            for (Polygon p : safePolygons){
-                Point centroid = Utilities.compute2DPolygonCentroid(p.getPoints());
-                g.drawImage(p.image, centroid.getX(), centroid.getY(), p.spriteW, p.spriteH, null);
-            }
+        for (Circle c : safeCircles)
+            g.drawImage(c.image, c.getTopLeft().getX(), c.getTopLeft().getY(), c.spriteW, c.spriteH, null);
+        for (Ellipse e : safeEllipses)
+            g.drawImage(e.image, e.getTopLeft().getX(), e.getTopLeft().getY(), e.spriteW, e.spriteH, null);
+        for (Rectangle r : safeRectangles)
+            g.drawImage(r.image, r.getTopLeft().getX(), r.getTopLeft().getY(), r.spriteW, r.spriteH, null);
+        for (Point p : safePoints)
+            g.drawImage(p.image, p.getX(), p.getY(), p.spriteW, p.spriteH, null);
+        for (Path p : safePaths)
+            g.drawImage(p.image, p.getPoints().get(0).getX(), p.getPoints().get(0).getY(), p.spriteW, p.spriteH, null);
+        for (Polygon p : safePolygons){
+            Point centroid = Utilities.compute2DPolygonCentroid(p.getPoints());
+            g.drawImage(p.image, centroid.getX(), centroid.getY(), p.spriteW, p.spriteH, null);
         }
 
         //reset
@@ -129,13 +130,13 @@ public class Level {
                 r.drawName(g, font);
         }
 
-        if (!HidePointsListener.isHidden && !HideNamesListener.isHidden)
+        if (!HidePointsPathsListener.isHidden && !HideNamesListener.isHidden){
             for (Point p : safePoints)
                 p.drawName(g, font);
-
-        if (!HidePathsListener.isHidden && !HideNamesListener.isHidden)
             for (Path p : safePaths)
                 p.drawName(g, font);
+        }
+
     }
 
     private void drawShapes(Graphics2D g,
@@ -157,13 +158,13 @@ public class Level {
                 r.drawShape(g);
         }
 
-        if (!HidePointsListener.isHidden)
+        if (!HidePointsPathsListener.isHidden){
             for (Point p : safePoints)
                 p.drawShape(g);
-
-        if (!HidePathsListener.isHidden)
             for (Path p : safePaths)
                 p.drawShape(g);
+        }
+
     }
 
     public Level flipYCopy() {

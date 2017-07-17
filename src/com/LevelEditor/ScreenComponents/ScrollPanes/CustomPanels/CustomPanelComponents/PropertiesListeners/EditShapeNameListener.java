@@ -21,7 +21,6 @@ public class EditShapeNameListener implements DocumentListener {
 
         try {
             shape.name = e.getDocument().getText(0, e.getDocument().getLength());
-            shape.hasUniqueName = true;
             ScrollPaneHandler.objSP.updateList();
             UpdatePaint.remakeWindow();
         } catch (BadLocationException ignored) {

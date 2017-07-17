@@ -6,6 +6,10 @@ import com.LevelEditor.Main;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkJButton;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkProgressBar;
 import com.LevelEditor.ScreenComponents.DarkComponents.DarkRadioButton.DarkerRadioButton;
+import com.LevelEditor.Shapes.*;
+import com.LevelEditor.Shapes.Point;
+import com.LevelEditor.Shapes.Polygon;
+import com.LevelEditor.Shapes.Rectangle;
 import com.LevelEditor.StartWindow.StartListeners.AbsolutePixelListener;
 import com.LevelEditor.StartWindow.StartListeners.DimensionListener;
 import com.LevelEditor.StartWindow.StartListeners.OpenDirectoryListener;
@@ -317,6 +321,7 @@ public class InitializeWindow extends JFrame {
         return c;
     }
 
+    //work on this later
     private JPanel choicePanel(String title, String choice1, String choice2, int hGap, boolean isAspectNotPixels, Border border) {
         JPanel panel = new JPanel();
         BorderLayout layout = new BorderLayout();
@@ -598,10 +603,28 @@ public class InitializeWindow extends JFrame {
             if (Main.currentLevel.flipY)
                 Main.currentLevel = Main.currentLevel.flipYCopy();
 
-            InitializeWindow.updateProgressBar(100);
+            loadAssets();
 
+            InitializeWindow.updateProgressBar(100);
             dispose();
         }
+
+    }
+
+    private void loadAssets(){
+
+        for (Circle c : Main.currentLevel.circles)
+            c.image = Toolkit.getDefaultToolkit().getImage(c.spritePath);
+        for (Ellipse e : Main.currentLevel.ellipses)
+            e.image = Toolkit.getDefaultToolkit().getImage(e.spritePath);
+        for (Rectangle r : Main.currentLevel.rectangles)
+            r.image = Toolkit.getDefaultToolkit().getImage(r.spritePath);
+        for (Point p : Main.currentLevel.points)
+            p.image = Toolkit.getDefaultToolkit().getImage(p.spritePath);
+        for (Path p : Main.currentLevel.paths)
+            p.image = Toolkit.getDefaultToolkit().getImage(p.spritePath);
+        for (Polygon p : Main.currentLevel.polygons)
+            p.image = Toolkit.getDefaultToolkit().getImage(p.spritePath);
 
     }
 

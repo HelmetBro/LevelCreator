@@ -86,7 +86,7 @@ public class SpriteLinkerBox extends Container {
         //link button
         DarkJButton linker = new DarkJButton("::", BOX_HEIGHT, BOX_HEIGHT, NORMAL_FONT,
                 BACKGROUND_SHADED_COLOR.darker().darker(), LIGHT_COLOR);
-        linker.setToolTipText("Click to link sprite.");
+        linker.setToolTipText("Click to link sprite");
         linker.setBorderPainted(false);
         linker.setBorder(new LineBorder(Color.BLACK, 0));
         linker.addActionListener(new OpenSpriteListener(shape, pathField, dataFieldW, dataFieldH));
@@ -112,10 +112,10 @@ public class SpriteLinkerBox extends Container {
         label.setVerticalAlignment(JLabel.CENTER);
         if(isWidth){
             label.setText("W");
-            label.setToolTipText("Width of sprite on editor.");
+            label.setToolTipText("Width of sprite on editor");
         }else{
             label.setText("H");
-            label.setToolTipText("Height of sprite on editor.");
+            label.setToolTipText("Height of sprite on editor");
         }
 
         //text editor

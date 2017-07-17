@@ -124,7 +124,7 @@ public class Path extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!hasUniqueName)
+        if (name == null)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -139,6 +139,11 @@ public class Path extends Shape {
     public Path copyFlip() {
         Path copy = new Path();
         copy.setProperties(this.getProperties());
+
+        copy.spritePath = this.spritePath;
+        copy.spriteW = this.spriteW;
+        copy.spriteH = this.spriteH;
+
         copy.name = this.name;
         copy.angle = this.angle;
 

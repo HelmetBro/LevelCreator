@@ -68,7 +68,7 @@ public class Circle extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!hasUniqueName)
+        if (name == null)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -104,6 +104,11 @@ public class Circle extends Shape {
     public Circle copyFlip() {
         Circle copy = new Circle();
         copy.setProperties(this.getProperties());
+
+        copy.spritePath = this.spritePath;
+        copy.spriteW = this.spriteW;
+        copy.spriteH = this.spriteH;
+
         copy.radius = this.radius;
         copy.name = this.name;
         copy.angle = this.angle;

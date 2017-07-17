@@ -38,7 +38,7 @@ public class Rectangle extends Shape {
 
     @Override
     public void drawName(Graphics2D g, Font font) {
-        if (!hasUniqueName)
+        if (name == null)
             return;
 
         FontRenderContext frc = g.getFontRenderContext();
@@ -126,14 +126,15 @@ public class Rectangle extends Shape {
         this.center = new Point(topLeft.x + width / 2, topLeft.y + height / 2);
     }
 
-    public boolean hasSize() {
-        return width != 0 && height != 0;
-    }
-
     @Override
     public Rectangle copyFlip() {
         Rectangle copy = new Rectangle();
         copy.setProperties(this.getProperties());
+
+        copy.spritePath = this.spritePath;
+        copy.spriteW = this.spriteW;
+        copy.spriteH = this.spriteH;
+
         copy.name = this.name;
         copy.angle = this.angle;
 

@@ -78,14 +78,14 @@ public class ToolsScrollPane extends CustomScrollPane {
         rotateOutline.addActionListener(new HideRotationOutlineListener());
 
         //points
-        DarkerCheckBox points = new DarkerCheckBox("Hide Points", CONSOLAS);
-        points.setToolTipText("Enable to hide all points");
-        points.addActionListener(new HidePointsListener());
+        DarkerCheckBox points = new DarkerCheckBox("Hide Points & Paths", CONSOLAS);
+        points.setToolTipText("Enable to hide all points and paths");
+        points.addActionListener(new HidePointsPathsListener());
 
         //paths
-        DarkerCheckBox paths = new DarkerCheckBox("Hide Paths", CONSOLAS);
-        paths.setToolTipText("Enable to hide all dashed line paths");
-        paths.addActionListener(new HidePathsListener());
+        DarkerCheckBox paths = new DarkerCheckBox("Hide Sprites", CONSOLAS);
+        paths.setToolTipText("Enable to hide all linked sprites");
+        paths.addActionListener(new HideSpritesListener());
 
         p.add(editorLabel);
         p.add(shapes);

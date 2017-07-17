@@ -9,17 +9,18 @@ import java.util.ArrayList;
 
 public abstract class Shape {
 
-    public transient boolean hasUniqueName;
     public transient boolean isSelected;
     public transient Image image;
-    public transient int spriteW = 0;
-    public transient int spriteH = 0;
 
     @XmlElement
     public String name;
 
     @XmlElement
     public String spritePath;
+    @XmlElement
+    public int spriteW = 0;
+    @XmlElement
+    public int spriteH = 0;
 
     @XmlElement
     public float angle = 0;
