@@ -35,7 +35,7 @@ public class RotateMouseState extends MouseState {
         currentAngle = updatedAngle();
 
         //current show degrees in ratio button
-        ApplicationWindow.ratioButton.setText(Math.round(currentAngle) + "°");
+        ApplicationWindow.ratioButton.setText((Math.round(currentAngle * 10) / 10f) + "°");
 
         for (Shape s : selectedShapes)
             s.angle = currentAngle;
