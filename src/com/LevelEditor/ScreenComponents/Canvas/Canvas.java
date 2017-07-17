@@ -167,7 +167,6 @@ public class Canvas extends JPanel implements Resizable {
             CustomMouseListener.updateLayer(g2d);
             //then draw
             Main.currentLevel.updateLevel(g2d);
-
         } else {
             //draw the shapes
             Main.currentLevel.updateLevel(g2d);

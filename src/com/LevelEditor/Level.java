@@ -41,6 +41,8 @@ public class Level {
 
     private transient Font font = new Font("Consolas", Font.PLAIN, 16);
     private transient Color fontColor = new Color(216, 216, 213, 170);
+    //image opacity, 0 is transparent, 1 is opaque
+    float opacity = 0.5f;
 
     public Level() {
     }
@@ -70,6 +72,39 @@ public class Level {
 
         drawShapes(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles, safePaths);
         drawNames(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles, safePaths);
+        drawSprites(g, safeCircles, safeEllipses, safePoints, safePolygons, safeRectangles, safePaths);
+    }
+
+    private void drawSprites(Graphics2D g,
+                             CopyOnWriteArrayList<Circle> safeCircles,
+                             CopyOnWriteArrayList<Ellipse> safeEllipses,
+                             CopyOnWriteArrayList<Point> safePoints,
+                             CopyOnWriteArrayList<Polygon> safePolygons,
+                             CopyOnWriteArrayList<Rectangle> safeRectangles,
+                             CopyOnWriteArrayList<Path> safePaths){
+
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+
+        if (!HideShapesListener.isHidden && !HideNamesListener.isHidden) {
+            for (Circle c : safeCircles)
+                g.drawImage(c.image, c.getTopLeft().getX(), c.getTopLeft().getY(), c.spriteW, c.spriteH, null);
+            for (Ellipse e : safeEllipses)
+                g.drawImage(e.image, e.getTopLeft().getX(), e.getTopLeft().getY(), e.spriteW, e.spriteH, null);
+            for (Rectangle r : safeRectangles)
+                g.drawImage(r.image, r.getTopLeft().getX(), r.getTopLeft().getY(), r.spriteW, r.spriteH, null);
+            for (Point p : safePoints)
+                g.drawImage(p.image, p.getX(), p.getY(), p.spriteW, p.spriteH, null);
+            for (Path p : safePaths)
+                g.drawImage(p.image, p.getPoints().get(0).getX(), p.getPoints().get(0).getY(), p.spriteW, p.spriteH, null);
+            for (Polygon p : safePolygons){
+                Point centroid = Utilities.compute2DPolygonCentroid(p.getPoints());
+                g.drawImage(p.image, centroid.getX(), centroid.getY(), p.spriteW, p.spriteH, null);
+            }
+        }
+
+        //reset
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
+
     }
 
     private void drawNames(Graphics2D g,

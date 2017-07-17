@@ -22,16 +22,15 @@ public class PropertiesScrollPane extends CustomScrollPane {
             Math.abs(LIGHT_COLOR.getAlpha() - 200));
 
     private JLabel infoTip;
-    private FlowLayout layout = new FlowLayout(FlowLayout.LEFT,0 , 0);
+    private GridBagLayout layout = new GridBagLayout();
 
-    public PropertiesScrollPane(int width, int windowHeight) {
+    public PropertiesScrollPane() {
         setFocusable(false);
-
         infoTip = createInfoLabel();
+        scrollPanel.add(infoTip);
 
         setViewportView(scrollPanel);
 
-        scrollPanel.setPreferredSize(new Dimension(width, windowHeight));
         scrollPanel.setLayout(layout);
     }
 
@@ -54,7 +53,9 @@ public class PropertiesScrollPane extends CustomScrollPane {
             return;
         }
 
-        for (Shape shape : shapes) {
+        for(int i = 0; i < shapes.size(); i++){
+
+            Shape shape = shapes.get(i);
 
             PropertiesBox pb = new PropertiesBox(shape);
 
@@ -67,9 +68,12 @@ public class PropertiesScrollPane extends CustomScrollPane {
             //add button
             pb.showAddButton();
 
-            scrollPanel.add(pb);
-
-        }//big for
+            GridBagConstraints c = new GridBagConstraints();
+            c.ipady = 5;
+            c.gridx = 0;
+            c.gridy = i;
+            scrollPanel.add(pb, c);
+        }
 
         revalidate();
         repaint();

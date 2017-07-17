@@ -21,18 +21,14 @@ public class SpritesScrollPane extends CustomScrollPane {
 
     private JLabel infoTip;
 
-    private FlowLayout layout = new FlowLayout(FlowLayout.LEFT);
-
-    //DONT KNOW IF I NEED WINDOWHEIGHT
-    public SpritesScrollPane(int width, int windowHeight) {
+    public SpritesScrollPane() {
         setFocusable(false);
-
         infoTip = createInfoLabel();
+        scrollPanel.add(infoTip);
 
         setViewportView(scrollPanel);
 
-        scrollPanel.setPreferredSize(new Dimension(width, windowHeight));
-        scrollPanel.setLayout(layout);
+        scrollPanel.setLayout(new GridBagLayout());
     }
 
     public void updateSpriteEditor() {
@@ -45,13 +41,8 @@ public class SpritesScrollPane extends CustomScrollPane {
         //manages is info tip is there or not based off # of shapes
         if (shapes.size() > 0) {
             scrollPanel.remove(infoTip);
-            layout.setVgap(0);
-            layout.setHgap(0);
         } else {
             scrollPanel.add(infoTip);
-
-            layout.setVgap(20);
-            layout.setHgap(10);
 
             //redrawing pane
             revalidate();
@@ -60,8 +51,16 @@ public class SpritesScrollPane extends CustomScrollPane {
             return;
         }
 
-        for (Shape s : shapes)
-            scrollPanel.add(new SpriteLinkerBox(s));
+        for(int i = 0; i < shapes.size(); i++){
+
+            GridBagConstraints c = new GridBagConstraints();
+            c.ipady = 5;
+            c.gridx = 0;
+            c.gridy = i;
+
+            scrollPanel.add(new SpriteLinkerBox(shapes.get(i)), c);
+
+        }
 
         revalidate();
         repaint();

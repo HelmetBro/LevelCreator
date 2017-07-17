@@ -24,8 +24,6 @@ public class PropertiesBox extends Container {
     //reference
     private Shape shape;
 
-    //components
-    private JTextField title;
     private DarkAddButton addButton;
 
     private Integer currentHeight;
@@ -43,14 +41,11 @@ public class PropertiesBox extends Container {
         this.shape = shape;
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         this.currentHeight = BOX_HEIGHT + DarkAddButton.WIDTH;
-        this.setPreferredSize(new Dimension(
-                TOOLS_WINDOW_SIZE_X - (int)scrollHolder.getVerticalScrollBar().getPreferredSize().getWidth(),
-                currentHeight));
+        this.setPreferredSize(new Dimension(TOOLS_WINDOW_SIZE_X - 1, currentHeight));
 
-        title = title();
         addButton = new DarkAddButton(shape);
 
-        this.add(title);
+        this.add(title());
     }
 
     private JTextField title(){
@@ -79,10 +74,9 @@ public class PropertiesBox extends Container {
         delete.setBorder(BorderFactory.createEmptyBorder());
         delete.setToolTipText("Click to delete this property");
         delete.addActionListener(new DeletePropertyListener(p, shape));
+
         Container nameValueContainer = new Container();
-        nameValueContainer.setPreferredSize(new Dimension(
-                TOOLS_WINDOW_SIZE_X - (int)scrollHolder.getVerticalScrollBar().getPreferredSize().getWidth() - BOX_HEIGHT,
-                BOX_HEIGHT));
+        nameValueContainer.setPreferredSize(new Dimension(TOOLS_WINDOW_SIZE_X - BOX_HEIGHT - 1, BOX_HEIGHT));
         nameValueContainer.setLayout(new GridBagLayout());
 
         //NAME
@@ -127,9 +121,7 @@ public class PropertiesBox extends Container {
         c.add(delete);
 
         this.currentHeight += BOX_HEIGHT;
-        this.setPreferredSize(new Dimension(
-                TOOLS_WINDOW_SIZE_X - (int)scrollHolder.getVerticalScrollBar().getPreferredSize().getWidth(),
-                currentHeight));
+        this.setPreferredSize(new Dimension(TOOLS_WINDOW_SIZE_X - 1, currentHeight));
         this.add(c);
     }
 

@@ -4,6 +4,7 @@ import com.LevelEditor.ApplicationWindow;
 import com.LevelEditor.GlobalMouseListeners.CustomMouseWheelListener;
 import com.LevelEditor.MouseStates.MouseState;
 import com.LevelEditor.Resizable;
+import com.LevelEditor.StartWindow.AspectSettings;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -50,7 +51,7 @@ public class InfoLabelButton extends JButton implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
+        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - AspectSettings.TOOLS_WINDOW_SIZE_X);
         setLocation(startX + moveDistance, startY);
     }
 

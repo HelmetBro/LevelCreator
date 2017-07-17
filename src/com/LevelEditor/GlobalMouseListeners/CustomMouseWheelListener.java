@@ -17,7 +17,7 @@ public class CustomMouseWheelListener implements MouseWheelListener {
 
     public static String[] stateStrings = {"Polygon", "Rotation", "Rectangle", "Ellipse", "Circle", "Point", "Path"};
     private static final int NUM_OF_MOUSE_STATES = stateStrings.length;
-    private static EMouseStates currentMouseEnumState = EMouseStates.ROTATION;
+    private static EMouseStates currentMouseEnumState = EMouseStates.RECTANGLE;
     private static MouseState polyState;
     private static MouseState rotateState;
     private static MouseState rectState;

@@ -7,6 +7,7 @@ import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.ObjectsTreeScro
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.PropertiesScrollPane;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.SpritesScrollPane;
 import com.LevelEditor.ScreenComponents.ScrollPanes.CustomPanels.ToolsScrollPane;
+import com.LevelEditor.StartWindow.AspectSettings;
 
 import java.awt.*;
 
@@ -37,9 +38,9 @@ public class ScrollPaneHandler extends Container implements Resizable {
         setBounds(x, y, width, height);
 
         objSP = new ObjectsTreeScrollPane();
-        propSP = new PropertiesScrollPane(width, height);
+        propSP = new PropertiesScrollPane();
         toolsSP = new ToolsScrollPane(width);
-        spritesSP = new SpritesScrollPane(width, height);
+        spritesSP = new SpritesScrollPane();
     }
 
     public void switchTab(int state) {
@@ -71,7 +72,7 @@ public class ScrollPaneHandler extends Container implements Resizable {
 
     @Override
     public void moveComponent(int windowWidth, int windowHeight) {
-        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - ApplicationWindow.settings.TOOLS_WINDOW_SIZE_X);
+        int moveDistance = (windowWidth - ApplicationWindow.settings.getLvlMakerWidth() - RULER_WIDTH - AspectSettings.TOOLS_WINDOW_SIZE_X);
         int resizeHeight = windowHeight - ApplicationWindow.settings.getLvlMakerHeight() - RULER_WIDTH;
         setBounds(startX + moveDistance, startY, startWidth, startHeight + resizeHeight + Resizable.Y_OFFSET + 5);
 

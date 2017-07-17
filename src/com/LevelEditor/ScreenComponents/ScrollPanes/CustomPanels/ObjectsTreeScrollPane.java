@@ -191,11 +191,11 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
             CustomTreeNode ellipseNode = new CustomTreeNode(ellipse);
 
             //root node
-            DefaultMutableTreeNode widthNode = new DefaultMutableTreeNode("Width: " + ellipse.width);
+            DefaultMutableTreeNode widthNode = new DefaultMutableTreeNode("W: " + ellipse.width);
             widthNode.setAllowsChildren(false);
 
             //root node
-            DefaultMutableTreeNode heightNode = new DefaultMutableTreeNode("Height: " + ellipse.height);
+            DefaultMutableTreeNode heightNode = new DefaultMutableTreeNode("H: " + ellipse.height);
             heightNode.setAllowsChildren(false);
 
             //root node
@@ -256,6 +256,7 @@ public class ObjectsTreeScrollPane extends CustomScrollPane {
 
             Polygon poly = Main.currentLevel.polygons.get(i);
 
+            //move this elsewhere
             if (poly.name == null)
                 poly.name = "Polygon " + (i + 1);
 

@@ -42,7 +42,7 @@ public class OpenDirectoryListener implements ActionListener {
 
     private String showSaveFileDialog() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Open file");
+        fileChooser.setDialogTitle("Open File");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setDragEnabled(true);
 
