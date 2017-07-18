@@ -136,6 +136,17 @@ public class Path extends Shape {
     }
 
     @Override
+    public void drawSprite(Graphics2D g) {
+        Graphics2D rg2d = (Graphics2D) g.create();
+        Point p = pathPoints.get(0);
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), p.x , p.y);
+
+        rg2d.drawImage(image, p.x - spriteW/2, p.y - spriteH/2, spriteW, spriteH, null);
+
+        rg2d.dispose();
+    }
+
+    @Override
     public Path copyFlip() {
         Path copy = new Path();
         copy.setProperties(this.getProperties());

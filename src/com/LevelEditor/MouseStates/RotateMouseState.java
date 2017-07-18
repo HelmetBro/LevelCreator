@@ -55,7 +55,7 @@ public class RotateMouseState extends MouseState {
     @Override
     public void mousePressed(MouseEvent e) {
 
-        if (SwingUtilities.isLeftMouseButton(e))
+        if (SwingUtilities.isRightMouseButton(e) || SwingUtilities.isLeftMouseButton(e))
             select();
 
     }

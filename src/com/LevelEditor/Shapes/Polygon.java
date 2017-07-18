@@ -50,6 +50,17 @@ public class Polygon extends Shape {
     }
 
     @Override
+    public void drawSprite(Graphics2D g) {
+        Point centroid = Utilities.compute2DPolygonCentroid(points);
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), centroid.x , centroid.y);
+
+        rg2d.drawImage(image, centroid.x - spriteW/2, centroid.y - spriteH/2, spriteW, spriteH, null);
+
+        rg2d.dispose();
+    }
+
+    @Override
     public void drawRotationOutline(Graphics2D g) {
         if (HideRotationOutlineListener.isHidden || angle < 1 || angle > 359)
             return;
@@ -107,7 +118,6 @@ public class Polygon extends Shape {
             rg2d.setColor(RotateMouseState.LINE_COLOR);
 
             int longDist = (int) calculateLongestDistance();
-            System.out.println(longDist);
             rg2d.drawLine(centroid.x - longDist / 2 - EXTENSION, centroid.y,
                     centroid.x + longDist / 2 + EXTENSION, centroid.y);
             rg2d.drawLine(centroid.x, centroid.y - longDist / 2 - EXTENSION,

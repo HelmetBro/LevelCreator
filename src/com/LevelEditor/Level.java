@@ -89,19 +89,17 @@ public class Level {
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 
         for (Circle c : safeCircles)
-            g.drawImage(c.image, c.getTopLeft().getX(), c.getTopLeft().getY(), c.spriteW, c.spriteH, null);
+            c.drawSprite(g);
         for (Ellipse e : safeEllipses)
-            g.drawImage(e.image, e.getTopLeft().getX(), e.getTopLeft().getY(), e.spriteW, e.spriteH, null);
+            e.drawSprite(g);
         for (Rectangle r : safeRectangles)
-            g.drawImage(r.image, r.getTopLeft().getX(), r.getTopLeft().getY(), r.spriteW, r.spriteH, null);
+            r.drawSprite(g);
         for (Point p : safePoints)
-            g.drawImage(p.image, p.getX(), p.getY(), p.spriteW, p.spriteH, null);
+            p.drawSprite(g);
         for (Path p : safePaths)
-            g.drawImage(p.image, p.getPoints().get(0).getX(), p.getPoints().get(0).getY(), p.spriteW, p.spriteH, null);
-        for (Polygon p : safePolygons){
-            Point centroid = Utilities.compute2DPolygonCentroid(p.getPoints());
-            g.drawImage(p.image, centroid.getX(), centroid.getY(), p.spriteW, p.spriteH, null);
-        }
+            p.drawSprite(g);
+        for (Polygon p : safePolygons)
+            p.drawSprite(g);
 
         //reset
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));

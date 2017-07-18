@@ -79,6 +79,16 @@ public class Circle extends Shape {
     }
 
     @Override
+    public void drawSprite(Graphics2D g) {
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), center.x, center.y);
+
+        rg2d.drawImage(image, center.x - spriteW/2, center.y - spriteH/2, spriteW, spriteH, null);
+
+        rg2d.dispose();
+    }
+
+    @Override
     public void drawRotationOutline(Graphics2D g) {
     }
 

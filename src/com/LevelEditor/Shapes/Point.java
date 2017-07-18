@@ -64,6 +64,16 @@ public class Point extends Shape {
     }
 
     @Override
+    public void drawSprite(Graphics2D g) {
+        Graphics2D rg2d = (Graphics2D) g.create();
+        rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), x, y);
+
+        rg2d.drawImage(image, x - spriteW/2, y - spriteH/2, spriteW, spriteH, null);
+
+        rg2d.dispose();
+    }
+
+    @Override
     public void drawRotationOutline(Graphics2D g) {
     }
 
