@@ -68,7 +68,13 @@ public class Point extends Shape {
         Graphics2D rg2d = (Graphics2D) g.create();
         rg2d.rotate(Math.toRadians(Utilities.undoAngleMods(angle)), x, y);
 
-        rg2d.drawImage(image, x - spriteW/2, y - spriteH/2, spriteW, spriteH, null);
+        if (name.equalsIgnoreCase("background")){
+            rg2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.2f));
+            rg2d.drawImage(image, 0,0, spriteW, spriteH, null);
+        } else {
+            rg2d.drawImage(image, x - spriteW/2, y - spriteH/2, spriteW, spriteH, null);
+        }
+
 
         rg2d.dispose();
     }

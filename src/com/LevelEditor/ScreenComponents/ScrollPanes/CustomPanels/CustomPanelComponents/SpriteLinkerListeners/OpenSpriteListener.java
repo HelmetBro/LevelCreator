@@ -80,6 +80,7 @@ public class OpenSpriteListener implements ActionListener {
         heightField.setText("" + shape.spriteH);
 
         //written to file
+        path = path.replace("\\", "/");
         shape.spritePath = path;
 
         pathField.setText(path);
