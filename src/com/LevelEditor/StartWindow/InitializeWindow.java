@@ -36,7 +36,7 @@ import static com.LevelEditor.ApplicationWindow.LIGHT_COLOR;
 
 public class InitializeWindow extends JFrame {
 
-    private static final String TITLE = "Level Creator Prototype v1.5";
+    private static final String TITLE = "Editor Prototype v2";
     private static final int PROGRESS_MAXIMUM = 100;
     private static final int PROGRESS_MINIMUM = 0;
 
