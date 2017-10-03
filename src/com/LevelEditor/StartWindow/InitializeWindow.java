@@ -52,7 +52,7 @@ public class InitializeWindow extends JFrame {
             Math.abs(LIGHT_COLOR.getAlpha() - 200));
     private static final Color START_BUTTON_COLOR = new Color(34, 34, 31);
     private static final int INITIALIZE_WINDOW_WIDTH = 410;
-    private static final int INITIALIZE_WINDOW_HEIGHT = 490;
+    private static final int INITIALIZE_WINDOW_HEIGHT = 500;
     public static String filePath;
     public static boolean isFileLoaded;
     public static boolean isJSONNotXML;
